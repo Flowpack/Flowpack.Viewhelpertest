@@ -1,6 +1,8 @@
 <h1>form</h1>
+<h2>empty form</h2>
 <f:form />
-<f:form name="foo" action="foo" id="bar" method="GET">
+<h2>standard form</h2>
+<f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'foo'}" method="GET">
 	<f:form.select value="{selected}" name="mySelect" options="{array}" multiple="multiple" size="5"><select><option>###dummy###</option></select></f:form.select>
 	<h2>form.select</h2>
 	<f:form.select value="2" name="mySelect2" options="{users}" optionValueField="id" optionLabelField="lastName"><select><option>###dummy###</option></select></f:form.select>
@@ -20,6 +22,11 @@
 	<f:form.hidden name="hiddenName" value="hiddenValue">HIDDEN</f:form.hidden>
 	<h2>form.submit</h2>
 	<f:form.submit value="submit form" />
+</f:form>
+<h2>form bound to domain object (call setupAction to create a user domain object)</h2>
+<f:form name="someUser" object="{userDomainObject}">
+	<f:form.textbox property="firstName" />
+	<f:form.textbox property="lastName" />
 </f:form>
 <h1>format.date</h1>
 1 <f:format.date>{date}</f:format.date>
@@ -91,7 +98,7 @@
 <h2>uri.action</h2>
 <f:uri.action action="someAction" />
 <br />
-<f:uri.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" />
+<f:uri.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" section="someSection" />
 <h1>link</h1>
 <h2>link.external</h2>
 <f:link.external uri="http://www.typo3.org" target="_blank" style="background: red">external link</f:link.external>
@@ -106,9 +113,9 @@
 <f:link.page pageUid="5" linkAccessRestrictedPages="true">page link</f:link.page>
 ]]>
 <h2>link.action</h2>
-<f:link.action action="someAction">action link</f:link.action>
+<f:link.action action="someAction" target="_blank">action link</f:link.action>
 <br />
-<f:link.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}">action link</f:link.action>
+<f:link.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" section="someSection">action link</f:link.action>
 <![CDATA[
 <h1>html <em>not available in FLOW3</em></h1>
 <f:format.html>foo <b>bar</b>. Some <LINK 1>link</LINK>.</f:format.html>
@@ -143,9 +150,9 @@
 <h1>image <em>not available in FLOW3</em></h1>
 <f:image src="EXT:viewhelpertest/Resources/Public/typo3_logo.png" alt="alt text" width="100m" />
 ]]>
-
-<h1>Expressions (Exp)</h1>
-
-<h2>exp.equals</h2>
-<f:exp.equals left="bla" right="bla" />
-{f:exp.equals(left="bla" right="bla")}
+<h1>combined view helpers</h1>
+<ul>
+	<f:for each="{users}" as="user" key="index">
+		<li <f:if condition="{index} % 2">class="even"</f:if>>{user.firstName} {user.lastName}</li>
+	</f:for>
+</ul>

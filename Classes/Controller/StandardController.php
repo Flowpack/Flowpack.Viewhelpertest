@@ -30,6 +30,12 @@ namespace F3\Viewhelpertest\Controller;
  */
 class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 
+	/**
+	 * @inject
+	 * @var \F3\Viewhelpertest\Domain\Model\UserRepository
+	 */
+	protected $userRepository;
+
 	public function indexAction() {
 		$this->view->assign('text', 'this is some text with newlines' . chr(10) . 'and special characters: äöüß');
 		$this->view->assign('array', array('a', 'b', 'c', 'd', 'e'));
@@ -37,13 +43,27 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 		$this->view->assign('null', NULL);
 		$this->view->assign('selected', array(3, 2));
 		$user1 = new User(1, 'Ingmar', 'Schlecht');
-		$user2 = new User(2, 'Sebastian', 'Kurfuerst');
-		$user3 = new User(3, 'Robert', 'Lemke');
+		$user2 = new User(3, 'Sebastian', 'Kurfuerst');
+		$user3 = new User(2, 'Robert', 'Lemke');
 		$this->view->assign('user1', $user1);
 		$this->view->assign('user2', $user2);
 		$this->view->assign('user3', $user3);
 		$this->view->assign('users', array($user1, $user2, $user3));
+		$userDomainObject = $this->userRepository->getOne();
+		$this->view->assign('userDomainObject', $userDomainObject);
 		$this->view->assign('date', new \DateTime());
+	}
+
+	public function setupAction() {
+		foreach ($this->userRepository->findAll() as $user) {
+			$this->userRepository->remove($user);
+		}
+
+		$user = $this->objectFactory->create('F3\Viewhelpertest\Domain\Model\User');
+		$user->setFirstName('Kasper');
+		$user->setLastName('Skårhøj');
+		$this->userRepository->add($user);
+		$this->redirect('index');
 	}
 }
 
@@ -51,7 +71,7 @@ class User {
 	protected $id;
 	protected $firstName;
 	protected $lastName;
-	
+
 	public function __construct($id, $firstName, $lastName) {
 		$this->id = $id;
 		$this->firstName = $firstName;
