@@ -1,0 +1,29 @@
+body {
+	margin: 20px;
+	padding: 0;
+	background: #fff;
+	font: 11px arial;
+}
+
+h1 {
+	margin: 10px 0 0 0;
+	padding: 5px 0 0 0;
+	border-top: 1px dotted #ccc;
+	font: 19px arial;
+}
+
+h2 {
+	margin: 12px 0 5px 0;
+	padding: 5px;
+	border: 1px solid #ddd;
+	background: #efefef;
+	color: #333;
+	font-weight: normal;
+	white-space: pre;
+	font: 11px monospace;
+	overflow: auto;
+}
+
+li.even {
+	background: #eee;
+}
