@@ -18,7 +18,7 @@ namespace F3\Viewhelpertest\Domain\Model;
 /**
  * @package Viewhelpertest
  * @subpackage Domain
- * @version $Id$
+ * @version $Id: User.php 2613 2009-06-15 14:23:39Z bwaidelich $
  */
 
 /**
@@ -26,70 +26,26 @@ namespace F3\Viewhelpertest\Domain\Model;
  *
  * @package Viewhelpertest
  * @subpackage Domain
- * @version $Id$
+ * @version $Id: User.php 2613 2009-06-15 14:23:39Z bwaidelich $
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  * @scope prototype
  * @entity
  */
 
-class User {
-
+class Role {
+	
 	/**
 	 * @var string
 	 */
-	protected $firstName;
-
-	/**
-	 * @var string
-	 */
-	protected $lastName;
+	protected $name;
 	
-	/**
-	 * @var F3\Viewhelpertest\Domain\Model\Role
-	 */
-	protected $role;
-
-	/**
-	 * @param string $firstName
-	 * @return void
-	 */
-	public function setFirstName($firstName) {
-		$this->firstName = $firstName;
-	}
-	/**
-	 * @return string
-	 */
-	public function getFirstName() {
-		return $this->firstName;
-	}
-
-	/**
-	 * @param string $lastName
-	 * @return void
-	 */
-	public function setLastName($lastName) {
-		$this->lastName = $lastName;
-	}
-	/**
-	 * @return string
-	 */
-	public function getLastName() {
-		return $this->lastName;
+	public function getName() {
+		return $this->name;
 	}
 	
-	/**
-	 * @return F3\Viewhelpertest\Domain\Model\Role
-	 */
-	public function getRole() {
-		return $this->role;
-	}
-	
-	/**
-	 * @param F3\Viewhelpertest\Domain\Model\Role $role
-	 */
-	public function setRole(\F3\Viewhelpertest\Domain\Model\Role $role) {
-		$this->role = $role;
+	public function setName($name) {
+		$this->name = $name;
 	}
 }
 ?>

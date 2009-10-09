@@ -58,14 +58,17 @@
 	<h2><![CDATA[&lt;f:form.submit value="submit form" /&gt;]]></h2>
 	<f:form.submit value="submit form" />
 </f:form>
-
+<h1>form bound to domain object (call setupAction to create a user domain object)</h1>
 <h2><![CDATA[&lt;f:form name="someUser" object="{userDomainObject}"&gt;]]> - form bound to domain object (call setupAction to create a user domain object)</h2>
-<f:form name="someUser" object="{userDomainObject}">
+<f:form name="user" object="{userDomainObject}" action="save">
 	<h2><![CDATA[&lt;f:form.textbox property="firstName" /&gt;]]></h2>
 	<f:form.textbox property="firstName" />
 
 	<h2><![CDATA[&lt;f:form.textbox property="lastName" /&gt;]]></h2>
 	<f:form.textbox property="lastName" />
+	<h2><![CDATA[&lt;f:form.textbox property="role.name" /&gt;]]></h2>
+	<f:form.textbox property="role.name" />
+	<f:form.submit value="submit form" />
 </f:form>
 
 <h1>format.date</h1>

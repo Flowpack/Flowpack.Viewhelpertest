@@ -62,7 +62,21 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 		$user = $this->objectFactory->create('F3\Viewhelpertest\Domain\Model\User');
 		$user->setFirstName('Kasper');
 		$user->setLastName('Skårhøj');
+		$role = $this->objectFactory->create('F3\Viewhelpertest\Domain\Model\Role');
+		$role->setName('Friendly Ghost');
+		$user->setRole($role);
 		$this->userRepository->add($user);
+		$this->redirect('index');
+	}
+
+	/**
+	 * Save the updated user
+	 *
+	 * @param F3\Viewhelpertest\Domain\Model\User $user The user to save
+	 */
+	public function saveAction(\F3\Viewhelpertest\Domain\Model\User $user) {
+		$this->userRepository->update($user);
+		//return "Hallo";
 		$this->redirect('index');
 	}
 }
