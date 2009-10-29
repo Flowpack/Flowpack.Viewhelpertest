@@ -32,7 +32,6 @@ namespace F3\Viewhelpertest\Domain\Model;
  * @scope prototype
  * @entity
  */
-
 class User {
 
 	/**
@@ -49,6 +48,16 @@ class User {
 	 * @var F3\Viewhelpertest\Domain\Model\Role
 	 */
 	protected $role;
+
+	/**
+	 * @var boolean
+	 */
+	protected $newsletter = FALSE;
+
+	/**
+	 * @var array
+	 */
+	protected $interests = array();
 
 	/**
 	 * @param string $firstName
@@ -76,6 +85,34 @@ class User {
 	 */
 	public function getLastName() {
 		return $this->lastName;
+	}
+
+	/**
+	 * @param boolean $newsletter
+	 * @return void
+	 */
+	public function setNewsletter($newsletter) {
+		$this->newsletter = $newsletter;
+	}
+	/**
+	 * @return boolean
+	 */
+	public function getNewsletter() {
+		return $this->newsletter;
+	}
+
+	/**
+	 * @param array $interests
+	 * @return void
+	 */
+	public function setInterests(array $interests) {
+		$this->interests = $interests;
+	}
+	/**
+	 * @return array
+	 */
+	public function getInterests() {
+		return $this->interests;
 	}
 	
 	/**

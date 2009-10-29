@@ -1,222 +1,30 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Fluid - Viewhelpertest</title>
-<f:base />
-<link rel="stylesheet" type="text/css" href="Resources/Packages/Viewhelpertest/styles.css" />
-<link rel="stylesheet" type="text/css" href="../../../Public/styles.css" />
-</head>
-<body>
-
-<h1>base</h1>
-<h2><![CDATA[&lt;f:base /&gt;]]></h2>
-<f:base />
-
-<h1>form</h1>
-<h2><![CDATA[&lt;f:form /&gt;]]></h2>
-<f:form />
-
-<h2><![CDATA[&lt;f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'foo'}" method="GET"&gt;]]></h2>
-<f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'foo'}" method="GET">
-	<h1>form.select</h1>
-	<h2><![CDATA[&lt;f:form.select value="{selected}" name="mySelect" options="{array}" multiple="multiple" size="5"&gt;&lt;select&gt;&lt;option&gt;###dummy###&lt;/option&gt;&lt;/select&gt;&lt;/f:form.select&gt;]]></h2>
-	<f:form.select value="{selected}" name="mySelect" options="{array}" multiple="multiple" size="5"><select><option>###dummy###</option></select></f:form.select>
-	<h2><![CDATA[&lt;f:form.select value="2" name="mySelect2" options="{users}" optionValueField="id" optionLabelField="lastName"&gt;&lt;select&gt;&lt;option&gt;###dummy###&lt;/option&gt;&lt;/select&gt;&lt;/f:form.select&gt;]]></h2>
-	<f:form.select value="2" name="mySelect2" options="{users}" optionValueField="id" optionLabelField="lastName"><select><option>###dummy###</option></select></f:form.select>
-	<h2><![CDATA[&lt;f:form.select value="{0:1, 1:3}" name="mySelect3" options="{users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName"&gt;
-	[dummy]
-&lt;/f:form.select&gt;]]></h2>
-	<f:form.select value="{0:1, 1:3}" name="mySelect3" options="{users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName">
-		[dummy]
-	</f:form.select>
-
-	<h1>form.textarea</h1>
-	<h2><![CDATA[&lt;f:form.textarea value="{text}" name="myTextArea" rows="5" cols="10"&gt;&lt;textarea&gt;###dummy###&lt;/textarea&gt;&lt;/f:form.textarea&gt;]]></h2>
-	<f:form.textarea value="{text}" name="myTextArea" rows="5" cols="10"><textarea>###dummy###</textarea></f:form.textarea>
-	<h2><![CDATA[&lt;f:form.textarea value="Some 'Test'" rows="4" cols="18" /&gt;</h2>]]>
-	<f:form.textarea value="Some 'Test'" rows="4" cols="18" />
-
-	<h1>form.textbox</h1>
-	<h2><![CDATA[&lt;f:form.textbox value="other value" name="myTextBox"&gt;&lt;input type="text" value="###dummy###" /&gt;&lt;/f:form.textbox&gt;]]></h2>
-	<f:form.textbox value="other value" name="myTextBox"><input type="text" value="###dummy###" /></f:form.textbox>
-
-	<h1>form.submit</h1>
-	<h2><![CDATA[&lt;f:form.submit name="myName" value="myValue"&gt;&lt;button&gt;###dummy###&lt;/button&gt;&lt;/f:form.submit&gt;]]></h2>
-	<f:form.submit name="myName" value="myValue"><button>###dummy###</button></f:form.submit>
-
-	<h1>form.upload</h1>
-	<h2><![CDATA[&lt;f:form.upload name="myName"&gt;&lt;input type="file" /&gt;&lt;/f:form.upload&gt;]]></h2>
-	<f:form.upload name="myName"><input type="file" /></f:form.upload>
-
-	<h1>form.hidden</h1>
-	<h2><![CDATA[&lt;f:form.hidden name="hiddenName" value="hiddenValue"&gt;HIDDEN&lt;/f:form.hidden&gt;]]></h2>
-	<f:form.hidden name="hiddenName" value="hiddenValue">HIDDEN</f:form.hidden>
-
-	<h1>form.submit</h1>
-	<h2><![CDATA[&lt;f:form.submit value="submit form" /&gt;]]></h2>
-	<f:form.submit value="submit form" />
-</f:form>
-<h1>form bound to domain object (call setupAction to create a user domain object)</h1>
-<h2><![CDATA[&lt;f:form name="someUser" object="{userDomainObject}"&gt;]]> - form bound to domain object (call setupAction to create a user domain object)</h2>
-<f:form name="user" object="{userDomainObject}" action="save">
-	<h2><![CDATA[&lt;f:form.textbox property="firstName" /&gt;]]></h2>
-	<f:form.textbox property="firstName" />
-
-	<h2><![CDATA[&lt;f:form.textbox property="lastName" /&gt;]]></h2>
-	<f:form.textbox property="lastName" />
-	<h2><![CDATA[&lt;f:form.textbox property="role.name" /&gt;]]></h2>
-	<f:form.textbox property="role.name" />
-	<f:form.submit value="submit form" />
-</f:form>
-
-<h1>format.date</h1>
-<h2><![CDATA[&lt;f:format.date&gt;{date}&lt;/f:format.date&gt;]]></h2>
-<f:format.date>{date}</f:format.date>
-<h2><![CDATA[&lt;f:format.date format="H:i"&gt;{date}&lt;/f:format.date&gt;]]></h2>
-<f:format.date format="H:i">{date}</f:format.date>
-<h2><![CDATA[&lt;f:format.date format="d.m.Y - H:i:s"&gt;+1 week 2 days 4 hours 2 seconds&lt;/f:format.date&gt;]]></h2>
-<f:format.date format="d.m.Y - H:i:s">+1 week 2 days 4 hours 2 seconds</f:format.date>
-<h2><![CDATA[&lt;f:format.date>foo&lt;/f:format.date&gt;]]></h2>
-<f:format.date>foo</f:format.date>
-
-<h1>format.number</h1>
-<h2><![CDATA[&lt;f:format.number decimals="3" decimalSeparator="," thousandsSeparator="."&gt;423423.234&lt;/f:format.number&gt;]]></h2>
-<f:format.number decimals="3" decimalSeparator="," thousandsSeparator=".">423423.234</f:format.number>
-
-<h1>format.printf</h1>
-<h2><![CDATA[&lt;f:format.printf arguments="{number : 362525200}"&gt;%.3e&lt;/f:format.printf&gt;]]></h2>
-<f:format.printf arguments="{number : 362525200}">%.3e</f:format.printf>
-<h2><![CDATA[&lt;f:format.printf arguments="{0: 3,1: 'Kasper'}"&gt;%2$s is great, TYPO%1$d too. Yes, TYPO%1$d is great and so is %2$s!&lt;/f:format.printf&gt;]]></h2>
-<f:format.printf arguments="{0: 3,1: 'Kasper'}">%2$s is great, TYPO%1$d too. Yes, TYPO%1$d is great and so is %2$s!</f:format.printf>
-<h2><![CDATA[&lt;f:format.printf arguments="{1:'TYPO3'}"&gt;We love %1$s&lt;/f:format.printf&gt;]]></h2>
-<f:format.printf arguments="{1:'TYPO3'}">We love %1$s</f:format.printf>
-
-<h1>format.currency</h1>
-<h2><![CDATA[&lt;f:format.currency currencySign="$" decimalSeparator="." thousandsSeparator=","&gt;54321&lt;/f:format.currency&gt;]]></h2>
-<f:format.currency currencySign="$" decimalSeparator="." thousandsSeparator=",">54321</f:format.currency>
-
-<h1>format.crop</h1>
-<h2><![CDATA[&lt;f:format.crop maxCharacters="10"&gt;This is some very long text&lt;/f:format.crop&gt;]]></h2>
-<f:format.crop maxCharacters="10">This is some very long text</f:format.crop>
-<h2><![CDATA[&lt;f:format.crop maxCharacters="17" append="&amp;nbsp;[more]"&gt;This is some very long text&lt;/f:format.crop&gt;]]></h2>
-<f:format.crop maxCharacters="17" append="&nbsp;[more]">This is some very long text</f:format.crop>
-<h2><del title="not supported by FLOW3"><![CDATA[&lt;f:format.crop maxCharacters="10" respectWordBoundaries="false"&gt;This is some very long text&lt;/f:format.crop&gt;]]></del></h2>
-<!-- <![CDATA[<f:format.crop maxCharacters="10" respectWordBoundaries="false">This is some very long text</f:format.crop>]]> -->
-
-<h1>for</h1>
-<h2><![CDATA[&lt;f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo"&gt;{foo}&lt;/f:for&gt;]]></h2>
-<f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo">{foo}</f:for>
-
-<h2><![CDATA[&lt;ul&gt;
-	&lt;f:for each="{fruit1: 'apple', fruit2: 'pear', fruit3: 'banana', fruit4: 'cherry'}" as="fruit" key="label"&gt;
-		&lt;li&gt;{label}: {fruit}&lt;/li&gt;
-	&lt;/f:for&gt;
-&lt;/ul&gt;]]></h2>
-<ul>
-	<f:for each="{fruit1: 'apple', fruit2: 'pear', fruit3: 'banana', fruit4: 'cherry'}" as="fruit" key="label">
-		<li>{label}: {fruit}</li>
-	</f:for>
-</ul>
-
-<h1>if</h1>
-<h2><![CDATA[&lt;f:if condition="true"&gt;satisfied condition!&lt;/f:if&gt;]]></h2>
-<f:if condition="true">satisfied condition!</f:if>
-<h2><![CDATA[&lt;f:if condition="FALSE"&gt;should not be displayed!!&lt;/f:if&gt;]]></h2>
-<f:if condition="FALSE">should not be displayed!!</f:if>
-<h2><![CDATA[&lt;f:if condition="false"&gt;
-	&lt;f:then&gt;
-		Then part!
-	&lt;/f:then&gt;
-	&lt;f:else&gt;
-		Else part!
-	&lt;/f:else&gt;
-&lt;/f:if&gt;]]></h2>
-<f:if condition="false">
-	<f:then>
-		Then part!
-	</f:then>
-	<f:else>
-		Else part!
-	</f:else>
-</f:if>
-<h2><![CDATA[&lt;f:if condition="{user2}"&gt;
-	&lt;f:then&gt;
-		Then part!
-	&lt;/f:then&gt;
-	&lt;f:else&gt;
-		Else part!
-	&lt;/f:else&gt;
-&lt;/f:if&gt;]]></h2>
-<f:if condition="{user2}">
-	<f:then>
-		Then part!
-	</f:then>
-	<f:else>
-		Else part!
-	</f:else>
-</f:if>
-
-<h1>uri.external</h1>
-<h2><![CDATA[&lt;f:uri.external uri="http://www.typo3.org" /&gt;]]></h2>
-<f:uri.external uri="http://www.typo3.org" />
-
-<h1>uri.email</h1>
-<h2><![CDATA[&lt;f:uri.email email="foo@bar.com" /&gt;]]></h2>
-<f:uri.email email="foo@bar.com" />
-
-<h1><del title="not supported by FLOW3">uri.page</del></h1>
-
-<h1>uri.action</h1>
-<h2><![CDATA[&lt;f:uri.action action="someAction" /&gt;]]></h2>
-<f:uri.action action="someAction" />
-<h2><![CDATA[&lt;f:uri.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" section="someSection" /&gt;]]></h2>
-<f:uri.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" section="someSection" />
-
-<h1>link.external</h1>
-<h2><![CDATA[&lt;f:link.external uri="http://www.typo3.org" target="_blank" style="background: red"&gt;external link&lt;/f:link.external&gt;]]></h2>
-<f:link.external uri="http://www.typo3.org" target="_blank" style="background: red">external link</f:link.external>
-
-<h1>link.email</h1>
-<h2><![CDATA[&lt;f:link.email email="foo@bar.com" /&gt;]]></h2>
-<f:link.email email="foo@bar.com" />
-
-<h1><del title="not supported by FLOW3">link.page</del></h1>
-
-<h1>link.action</h1>
-<h2><![CDATA[&lt;f:link.action action="someAction" target="_blank"&gt;action link&lt;/f:link.action&gt;]]></h2>
-<f:link.action action="someAction" target="_blank">action link</f:link.action>
-<h2><![CDATA[&lt;f:link.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" section="someSection"&gt;action link&lt;/f:link.action&gt;]]></h2>
-<f:link.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" section="someSection">action link</f:link.action>
-
-<h1><del title="not supported by FLOW3">format.html</del></h1>
-
-<h1><del title="not supported by FLOW3">translate</del></h1>
-
-<h1><del title="not supported by FLOW3">cObject</del></h1>
-
-<h1><del title="not supported by FLOW3">debug</del></h1>
-
-<h1><del title="not supported by FLOW3">image</del></h1>
-
-<h1>alias</h1>
-<h2><![CDATA[&lt;f:alias map="{name: user1.firstName}"&gt;Name: {name}&lt;/f:alias&gt;]]></h2>
-<f:alias map="{name: user1.firstName}">Name: {name}</f:alias>
-<h2><![CDATA[&lt;f:alias map="{firstName: user2.firstName, user: user2}"&gt;{user.lastName}, {firstName}&lt;/f:alias&gt;]]></h2>
-<f:alias map="{firstName: user2.firstName, user: user2}">{user.lastName}, {firstName}</f:alias>
-
-<h1>combined view helpers</h1>
-<h2><![CDATA[&lt;ul&gt;
-	&lt;f:for each="{users}" as="user" key="index"&gt;
-			&lt;li &lt;f:if condition="{index} % 2"&gt;class="even"&lt;/f:if&gt;&gt;{user.firstName} {user.lastName}&lt;/li&gt;
-	&lt;/f:for&gt;
-&lt;/ul&gt;]]></h2>
-<ul>
-	<f:for each="{users}" as="user" key="index">
-		<li <f:if condition="{index} % 2">class="even"</f:if>>{user.firstName} {user.lastName}</li>
-	</f:for>
-</ul>
-
-</body>
-</html>
+<f:layout name="default" />
+<f:section name="content">
+	<div class="viewhelpertest">
+		<f:render partial="alias" arguments="{user1: user1, user2: user2}" />
+		<f:render partial="base" />
+		<h1><del title="not supported by FLOW3">cObject</del></h1>
+		<f:render partial="cycle" arguments="{fruits: fruits}" />
+		<h1><del title="not supported by FLOW3">debug</del></h1>
+		<f:render partial="flashMessages" />
+		<f:render partial="for" />
+		<f:render partial="form" arguments="{array: array, users: users, userDomainObject: userDomainObject}" />
+		<f:render partial="format.crop" />
+		<f:render partial="format.currency" />
+		<f:render partial="format.date" arguments="{date: date}" />
+		<f:render partial="format.number" />
+		<f:render partial="format.printf" />
+		<f:render partial="groupedFor" arguments="{fruits: fruits}" />
+		<h1><del title="not supported by FLOW3">html</del></h1>
+		<f:render partial="if" arguments="{user2: user2}" />
+		<h1><del title="not supported by FLOW3">image</del></h1>
+		<f:render partial="link.action" />
+		<f:render partial="link.email" />
+		<h1><del title="not supported by FLOW3">link.page</del></h1>
+		<h1><del title="not supported by FLOW3">translate</del></h1>
+		<f:render partial="uri.action" />
+		<f:render partial="uri.email" />
+		<f:render partial="uri.external" />
+		<f:render partial="uri.resource" />
+	</div>
+</f:section>

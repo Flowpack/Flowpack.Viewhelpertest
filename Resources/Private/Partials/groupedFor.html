@@ -1,0 +1,25 @@
+<h1>groupedFor</h1>
+<h2><![CDATA[&lt;ul&gt;
+	&lt;f:groupedFor each="{fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType"&gt;
+		&lt;li&gt;
+			&lt;strong&gt;{fruitType}:&lt;/strong&gt;
+			&lt;ul&gt;
+				&lt;f:for each="{fruitsOfThisType}" as="fruit" key="index"&gt;
+					&lt;li&gt;Fruit #{index}: {fruit.name}&lt;/li&gt;
+				&lt;/f:for&gt;
+			&lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/f:groupedFor&gt;
+&lt;/ul&gt;]]></h2>
+<ul>
+	<f:groupedFor each="{fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType">
+		<li>
+			<strong>{fruitType}:</strong>
+			<ul>
+				<f:for each="{fruitsOfThisType}" as="fruit" key="index">
+					<li>Fruit #{index}: {fruit.name}</li>
+				</f:for>
+			</ul>
+		</li>
+	</f:groupedFor>
+</ul>
