@@ -1,8 +1,9 @@
-<h1>if</h1>
 <h2><![CDATA[&lt;f:if condition="true"&gt;satisfied condition!&lt;/f:if&gt;]]></h2>
 <f:if condition="true">satisfied condition!</f:if>
+
 <h2><![CDATA[&lt;f:if condition="FALSE"&gt;should not be displayed!!&lt;/f:if&gt;]]></h2>
 <f:if condition="FALSE">should not be displayed!!</f:if>
+
 <h2><![CDATA[&lt;f:if condition="false"&gt;
 	&lt;f:then&gt;
 		Then part!
@@ -19,7 +20,8 @@
 		Else part!
 	</f:else>
 </f:if>
-<h2><![CDATA[&lt;f:if condition="{user2}"&gt;
+
+<h2><![CDATA[&lt;f:if condition="{testVariables.user2}"&gt;
 	&lt;f:then&gt;
 		Then part!
 	&lt;/f:then&gt;
@@ -27,7 +29,7 @@
 		Else part!
 	&lt;/f:else&gt;
 &lt;/f:if&gt;]]></h2>
-<f:if condition="{user2}">
+<f:if condition="{testVariables.user2}">
 	<f:then>
 		Then part!
 	</f:then>

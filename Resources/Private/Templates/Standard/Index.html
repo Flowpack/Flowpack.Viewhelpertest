@@ -1,30 +1,27 @@
 <f:layout name="default" />
 <f:section name="content">
 	<div class="viewhelpertest">
-		<div id="f-fluid-alias"><f:render partial="alias" arguments="{user1: user1, user2: user2}" /></div>
-		<div id="f-fluid-base"><f:render partial="base" /></div>
-		<h1><del title="not supported by FLOW3">cObject</del></h1>
-		<div id="f-fluid-cycle"><f:render partial="cycle" arguments="{fruits: fruits}" /></div>
-		<h1><del title="not supported by FLOW3">debug</del></h1>
-		<div id="f-fluid-flashMessages"><f:render partial="flashMessages" /></div>
-		<div id="f-fluid-for"><f:render partial="for" /></div>
-		<div id="f-fluid-form"><f:render partial="form" arguments="{array: array, users: users, userDomainObject: userDomainObject}" /></div>
-		<div id="f-fluid-format-crop"><f:render partial="format.crop" /></div>
-		<div id="f-fluid-format-currency"><f:render partial="format.currency" /></div>
-		<div id="f-fluid-format-date"><f:render partial="format.date" arguments="{date: date}" /></div>
-		<div id="f-fluid-format-number"><f:render partial="format.number" /></div>
-		<div id="f-fluid-format-printf"><f:render partial="format.printf" /></div>
-		<div id="f-fluid-groupedFor"><f:render partial="groupedFor" arguments="{fruits: fruits}" /></div>
-		<h1><del title="not supported by FLOW3">html</del></h1>
-		<div id="f-fluid-if"><f:render partial="if" arguments="{user2: user2}" /></div>
-		<h1><del title="not supported by FLOW3">image</del></h1>
-		<div id="f-fluid-link-action"><f:render partial="link.action" /></div>
-		<div id="f-fluid-link-email"><f:render partial="link.email" /></div>
-		<h1><del title="not supported by FLOW3">link.page</del></h1>
-		<h1><del title="not supported by FLOW3">translate</del></h1>
-		<div id="f-fluid-uri-action"><f:render partial="uri.action" /></div>
-		<div id="f-fluid-uri-email"><f:render partial="uri.email" /></div>
-		<div id="f-fluid-uri-external"><f:render partial="uri.external" /></div>
-		<div id="f-fluid-uri-resource"><f:render partial="uri.resource" /></div>
+		<f:if condition="{selectedPartials}">
+			<f:for each="{selectedPartials}" as="partial">
+				<div id="f-fluid-{partial}">
+					<h1>{partial}</h1>
+					<f:render partial="{partial}" arguments="{settings: settings, testVariables: testVariables}" />
+				</div>
+			</f:for>
+			<hr />
+		</f:if>
+		<ul>
+			<f:for each="{allowedPartials}" as="partial">
+				<li>
+					<f:link.action arguments="{selectedPartials: {0: partial}}">{partial}</f:link.action>
+				</li>
+			</f:for>
+			<li>
+				<hr />
+			</li>
+			<li>
+				<f:link.action arguments="{selectedPartials: {0: ''}}"><em>show all</em></f:link.action>
+			</li>
+		</ul>
 	</div>
 </f:section>

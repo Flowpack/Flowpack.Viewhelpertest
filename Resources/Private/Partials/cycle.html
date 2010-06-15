@@ -1,19 +1,19 @@
-<h1>cycle</h1>
 <h2><![CDATA[&lt;f:for each=&quot;{0:1, 1:2, 2:3, 3:4}&quot; as=&quot;foo&quot;&gt;
 	&lt;f:cycle values=&quot;{0: \'foo\', 1: \'bar\', 2: \'baz\'}&quot; as=&quot;cycle&quot;&gt;{cycle}&lt;/f:cycle&gt;
 &lt;/f:for&gt;]]></h2>
 <f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo">
 	<f:cycle values="{0: 'foo', 1: 'bar', 2: 'baz'}" as="cycle">{cycle}</f:cycle>
 </f:for>
+
 <h2><![CDATA[&lt;ul&gt;
-	&lt;f:for each=&quot;{fruits}&quot; as=&quot;fruit&quot;&gt;
+	&lt;f:for each=&quot;{testVariables.fruits}&quot; as=&quot;fruit&quot;&gt;
 		&lt;f:cycle values=&quot;{0: \'odd\', 1: \'even\'}&quot; as=&quot;zebraClass&quot;&gt;
 			&lt;li class=&quot;{zebraClass}&quot;&gt;{fruit.name}&lt;/li&gt;
 		&lt;/f:cycle&gt;
 	&lt;/f:for&gt;
 &lt;/ul&gt;]]></h2>
 <ul>
-	<f:for each="{fruits}" as="fruit">
+	<f:for each="{testVariables.fruits}" as="fruit">
 		<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 			<li class="{zebraClass}">{fruit.name}</li>
 		</f:cycle>

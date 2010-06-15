@@ -36,25 +36,49 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	 */
 	protected $userRepository;
 
-	public function indexAction() {
-		$this->view->assign('text', 'this is some text with newlines' . chr(10) . 'and special characters: äöüß');
-		$this->view->assign('array', array('a', 'b', 'c', 'd', 'e'));
-		$this->view->assign('fruits', array(array('name' => 'blackberry', 'type' => 'berry'), array('name' => 'orange', 'type' => 'citrus fruit'), array('name' => 'cranberry', 'type' => 'berry'), array('name' => 'pear', 'type' => 'core'), array('name' => 'lemon', 'type' => 'citrus fruit'), array('name' => 'grape', 'type' => 'berry'), array('name' => 'apple', 'type' => 'core')));
-		$this->view->assign('emptyArray', array());
-		$this->view->assign('null', NULL);
-		$this->view->assign('selected', array(3, 2));
+	/**
+	 * @var array
+	 */
+	protected $allowedPartials = array('alias', 'base', 'cycle', 'escape', 'flashMessages', 'for', 'form', 'format.crop', 'format.currency', 'format.date', 'format.nl2br', 'format.number', 'format.padding', 'format.printf', 'groupedFor', 'if', 'raw', 'link.action', 'link.email', 'link.external', 'security.ifAccess', 'security.ifAuthenticated', 'security.ifHasRole', 'uri.action', 'uri.email', 'uri.external', 'uri.resource');
+
+	/**
+	 * @param array $selectedPartials
+	 * @return void
+	 */
+	public function indexAction(array $selectedPartials = array()) {
+		if (isset($selectedPartials[0]) && strlen($selectedPartials[0]) === 0) {
+			$selectedPartials = $this->allowedPartials;
+		} else {
+			$selectedPartials = array_intersect($this->allowedPartials, $selectedPartials);
+		}
+		$this->view->assign('allowedPartials', $this->allowedPartials);
+		$this->view->assign('selectedPartials', $selectedPartials);
+
 		$user1 = new User(1, 'Ingmar', 'Schlecht', TRUE);
-		$user2 = new User(3, 'Sebastian', 'Kurfuerst', FALSE);
+		$user2 = new User(3, 'Sebastian', 'Kurfürst', FALSE);
 		$user3 = new User(2, 'Robert', 'Lemke', TRUE);
-		$this->view->assign('user1', $user1);
-		$this->view->assign('user2', $user2);
-		$this->view->assign('user3', $user3);
-		$this->view->assign('users', array($user1, $user2, $user3));
 		$userDomainObject = $this->userRepository->getOne();
-		$this->view->assign('userDomainObject', $userDomainObject);
-		$this->view->assign('date', new \DateTime());
+		$testVariables = array(
+			'text' => 'this is some text with newlines' . chr(10) . 'and special characters: äöüß',
+			'array' => array('a', 'b', 'c', 'd', 'e'),
+			'fruits' => array(array('name' => 'blackberry', 'type' => 'berry'), array('name' => 'orange', 'type' => 'citrus fruit'), array('name' => 'cranberry', 'type' => 'berry'), array('name' => 'pear', 'type' => 'core'), array('name' => 'lemon', 'type' => 'citrus fruit'), array('name' => 'grape', 'type' => 'berry'), array('name' => 'apple', 'type' => 'core')),
+			'emptyArray' => array(),
+			'null' => NULL,
+			'selected' => array(3, 2),
+			'user1' => $user1,
+			'user2' => $user2,
+			'user3' => $user3,
+			'users' => array($user1, $user2, $user3),
+			'userDomainObject' => $userDomainObject,
+			'date' => new \DateTime(),
+			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>'
+		);
+		$this->view->assign('testVariables', $testVariables);
 	}
 
+	/**
+	 * @return void
+	 */
 	public function setupAction() {
 		$this->userRepository->removeAll();
 
@@ -68,13 +92,13 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 		$role->setName('Friendly Ghost');
 		$user->setRole($role);
 		$this->userRepository->add($user);
-		$this->redirect('index');
+		$this->redirect('index', NULL, NULL, array('selectedPartials' => array('form')));
 	}
 
 	public function flashMessagesAction() {
 		$this->flashMessageContainer->add('Some dummy flash message at ' . date('H:i:s'));
 		$this->flashMessageContainer->add('Another dummy flash message.');
-		$this->redirect('index');
+		$this->redirect('index', NULL, NULL, array('selectedPartials' => array('flashMessages')));
 	}
 
 	/**
@@ -89,6 +113,7 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	 * Save the updated user
 	 *
 	 * @param F3\Viewhelpertest\Domain\Model\User $user The user to save
+	 * @return void
 	 */
 	public function saveAction(\F3\Viewhelpertest\Domain\Model\User $user) {
 		$this->userRepository->update($user);

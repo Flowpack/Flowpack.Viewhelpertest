@@ -1,6 +1,5 @@
-<h1>groupedFor</h1>
 <h2><![CDATA[&lt;ul&gt;
-	&lt;f:groupedFor each="{fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType"&gt;
+	&lt;f:groupedFor each="{testVariables.fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType"&gt;
 		&lt;li&gt;
 			&lt;strong&gt;{fruitType}:&lt;/strong&gt;
 			&lt;ul&gt;
@@ -12,7 +11,7 @@
 	&lt;/f:groupedFor&gt;
 &lt;/ul&gt;]]></h2>
 <ul>
-	<f:groupedFor each="{fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType">
+	<f:groupedFor each="{testVariables.fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType">
 		<li>
 			<strong>{fruitType}:</strong>
 			<ul>
