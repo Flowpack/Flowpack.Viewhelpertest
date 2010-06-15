@@ -22,27 +22,13 @@ namespace F3\Viewhelpertest;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-require_once(__DIR__ . '/SeleniumBaseTestCase.php');
-
-class AliasViewHelperTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
+class SeleniumBaseTestCase extends \F3\Testing\SeleniumTestCase {
 
 	/**
-	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 * @author Bastian Waidelich <bastian@typo3.org>
 	 */
-    public function aliasViewHelperWorksWithOneParameter() {
-		$this->navigateToViewHelper('alias');
-        $this->assertText('f-fluid-alias', 'Name: Ingmar');
-    }
-
-	/**
-	 * @test
-	 * @author Bastian Waidelich <bastian@typo3.org>
-	 */
-    public function aliasViewHelperWorksWithTwoParametersAndSpecialCharacters() {
-		$this->navigateToViewHelper('alias');
-        $this->assertText('f-fluid-alias', 'Kurfürst, Sebastian');
+    protected function navigateToViewHelper($viewHelper) {
+		$this->open('/viewhelpertest/standard?selectedPartials%5B0%5D=' . $viewHelper);
     }
 }
 ?>
