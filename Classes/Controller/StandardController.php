@@ -39,7 +39,7 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	/**
 	 * @var array
 	 */
-	protected $allowedPartials = array('alias', 'base', 'cycle', 'escape', 'flashMessages', 'for', 'form', 'format.crop', 'format.currency', 'format.date', 'format.nl2br', 'format.number', 'format.padding', 'format.printf', 'groupedFor', 'if', 'raw', 'link.action', 'link.email', 'link.external', 'security.ifAccess', 'security.ifAuthenticated', 'security.ifHasRole', 'uri.action', 'uri.email', 'uri.external', 'uri.resource');
+	protected $allowedPartials = array('alias', 'base', 'cycle', 'escape', 'flashMessages', 'for', 'form', 'form.withFieldsInPartial', 'format.crop', 'format.currency', 'format.date', 'format.nl2br', 'format.number', 'format.padding', 'format.printf', 'groupedFor', 'if', 'raw', 'link.action', 'link.email', 'link.external', 'security.ifAccess', 'security.ifAuthenticated', 'security.ifHasRole', 'uri.action', 'uri.email', 'uri.external', 'uri.resource');
 
 	/**
 	 * @param array $selectedPartials
