@@ -1,0 +1,8 @@
+<div id="empty"><f:section name="subsection">
+	This is a section inside the partial.
+	The name of the original variable is not available: <span id="original" class="variableOutput">{variable}</span><br />
+	We passed the variable into the partial as "renamedVariable", so when we output this, it is available: <span id="renamed" class="variableOutput">{renamedVariable}</span>
+	</f:section></div>
+
+<div id="insidePartial">This is in the partial main file.<br /><f:render section="subsection" arguments="{renamedVariable: variable}" /></div>
+

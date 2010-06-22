@@ -1,0 +1,11 @@
+<f:layout name="RenderTest" />
+
+<f:section name="explanation">
+	This test checks that partials can not access all template variables, but instead need their variables explicitely passed in.
+</f:section>
+
+<f:section name="content">
+	<f:render partial="Render/RenderWithVariables" arguments="{renamedVariable: variable}" />
+
+	Inside the main template, the variable is still accessible with the original name: <span id="variableInOriginalTemplate" class="variableOutput">{variable}</span>
+</f:section>

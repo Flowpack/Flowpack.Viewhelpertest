@@ -30,5 +30,15 @@ class SeleniumBaseTestCase extends \F3\Testing\SeleniumTestCase {
     protected function navigateToViewHelper($viewHelper) {
 		$this->open('/viewhelpertest/standard?selectedPartials%5B0%5D=' . $viewHelper);
     }
+
+	/**
+	 *
+	 * @param string $controller
+	 * @param string $action
+	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 */
+	protected function navigateToControllerAndAction($controller, $action) {
+		$this->open('/viewhelpertest/' . $controller . '/' . strtolower($action));
+	}
 }
 ?>

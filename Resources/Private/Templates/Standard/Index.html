@@ -10,6 +10,7 @@
 			</f:for>
 			<hr />
 		</f:if>
+		<h1>ViewHelpers</h1>
 		<ul>
 			<f:for each="{allowedPartials}" as="partial">
 				<li>
@@ -21,6 +22,19 @@
 			</li>
 			<li>
 				<f:link.action arguments="{selectedPartials: {0: ''}}"><em>show all</em></f:link.action>
+			</li>
+		</ul>
+		<h1>Additional Fluid features</h1>
+		<ul>
+			<li>Testing &lt;f:render /&gt;
+				<ul>
+					<li><f:link.action controller="Render" action="optionalSections">you can render optional sections</f:link.action></li>
+					<li><f:link.action controller="Render" action="renderSectionInLayoutUsesTemplateVariables">Rendering sections in a layout uses template the defined sections and variables in the template</f:link.action></li>
+					<li><f:link.action controller="Render" action="renderSectionInPartialNeedsArgumentsExplicitely">Rendering sections in a partial needs the arguments explicitely set</f:link.action></li>
+					<li><f:link.action controller="Render" action="renderPartialNeedsArgumentsExplicitely">Rendering a partial needs the arguments explicitely set</f:link.action></li>
+					<li><f:link.action controller="Render" action="renderSectionInsideTemplateNeedsArgumentsExplicitely">Rendering a section inside the template needs the arguments explicitely set</f:link.action></li>
+					<li><f:link.action controller="Render" action="renderSectionInsidePartialNeedsArgumentsExplicitely">Rendering a section inside the partial needs the arguments explicitely set</f:link.action></li>
+				</ul>
 			</li>
 		</ul>
 	</div>

@@ -27,3 +27,27 @@ h2 {
 li.even {
 	background: #eee;
 }
+
+.renderTest .explanation div {
+	float:left;
+	height:20px;
+}
+.renderTest .layout {
+	background-color:#FFB5B5;
+	margin:5px;
+	padding:5px;
+}
+
+.renderTest .content {
+	background-color:#71C05D;
+	margin:5px;
+	padding:5px;
+}
+.renderTest .variableOutput {
+	font-weight:bold;
+}
+.explanation {
+}
+hr {
+	clear:both;
+}

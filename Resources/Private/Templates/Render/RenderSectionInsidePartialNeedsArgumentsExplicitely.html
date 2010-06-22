@@ -1,0 +1,9 @@
+<f:layout name="RenderTest" />
+
+<f:section name="explanation">
+	This test checks that if one uses &lt;f:render partial="..." section="..." /&gt; anywhere, then only the specified section of the partial is rendered, and all arguments need to be specified explicitely.
+</f:section>
+
+<f:section name="content">
+	<f:render partial="Render/RenderCallingAnotherSectionInThePartial" section="subsection" arguments="{renamedVariable: variable}" />
+</f:section>
