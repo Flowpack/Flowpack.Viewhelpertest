@@ -1,13 +1,12 @@
-<h2><![CDATA[&lt;f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo"&gt;{foo}&lt;/f:for&gt;]]></h2>
-<f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo">{foo}</f:for>
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="1234"><![CDATA[
+	<f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo">{foo}</f:for>
+]]></vht:highlight>
 
-<h2><![CDATA[&lt;ul&gt;
-	&lt;f:for each="{fruit1: 'apple', fruit2: 'pear', fruit3: 'banana', fruit4: 'cherry'}" as="fruit" key="label"&gt;
-		&lt;li&gt;{label}: {fruit}&lt;/li&gt;
-	&lt;/f:for&gt;
-&lt;/ul&gt;]]></h2>
-<ul>
-	<f:for each="{fruit1: 'apple', fruit2: 'pear', fruit3: 'banana', fruit4: 'cherry'}" as="fruit" key="label">
-		<li>{label}: {fruit}</li>
-	</f:for>
-</ul>
+<vht:highlight expectedRegex="/<ul>\n\s*<li>fruit1: apple<\/li>\n\s*<li>fruit2: pear<\/li>\n\s*<li>fruit3: banana<\/li>\n\s*<li>fruit4: cherry<\/li>\n\s*<\/ul>/"><![CDATA[
+	<ul>
+		<f:for each="{fruit1: 'apple', fruit2: 'pear', fruit3: 'banana', fruit4: 'cherry'}" as="fruit" key="label">
+			<li>{label}: {fruit}</li>
+		</f:for>
+	</ul>
+]]></vht:highlight>

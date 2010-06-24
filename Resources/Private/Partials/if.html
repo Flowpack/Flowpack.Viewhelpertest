@@ -1,39 +1,30 @@
-<h2><![CDATA[&lt;f:if condition="true"&gt;satisfied condition!&lt;/f:if&gt;]]></h2>
-<f:if condition="true">satisfied condition!</f:if>
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition="true">satisfied condition!</f:if>
+]]></vht:highlight>
 
-<h2><![CDATA[&lt;f:if condition="FALSE"&gt;should not be displayed!!&lt;/f:if&gt;]]></h2>
-<f:if condition="FALSE">should not be displayed!!</f:if>
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="FALSE">should not be displayed!!</f:if>
+]]></vht:highlight>
 
-<h2><![CDATA[&lt;f:if condition="false"&gt;
-	&lt;f:then&gt;
-		Then part!
-	&lt;/f:then&gt;
-	&lt;f:else&gt;
-		Else part!
-	&lt;/f:else&gt;
-&lt;/f:if&gt;]]></h2>
-<f:if condition="false">
-	<f:then>
-		Then part!
-	</f:then>
-	<f:else>
-		Else part!
-	</f:else>
-</f:if>
+<vht:highlight expected="Else part!"><![CDATA[
+	<f:if condition="false">
+		<f:then>
+			Then part!
+		</f:then>
+		<f:else>
+			Else part!
+		</f:else>
+	</f:if>
+]]></vht:highlight>
 
-<h2><![CDATA[&lt;f:if condition="{testVariables.user2}"&gt;
-	&lt;f:then&gt;
-		Then part!
-	&lt;/f:then&gt;
-	&lt;f:else&gt;
-		Else part!
-	&lt;/f:else&gt;
-&lt;/f:if&gt;]]></h2>
-<f:if condition="{testVariables.user2}">
-	<f:then>
-		Then part!
-	</f:then>
-	<f:else>
-		Else part!
-	</f:else>
-</f:if>
+<vht:highlight expected="Then part!"><![CDATA[
+	<f:if condition="{testVariables.user2}">
+		<f:then>
+			Then part!
+		</f:then>
+		<f:else>
+			Else part!
+		</f:else>
+	</f:if>
+]]></vht:highlight>

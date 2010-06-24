@@ -1,5 +1,8 @@
-<h2><![CDATA[&lt;f:uri.resource path="typo3_logo.png" /&gt;]]></h2>
-<f:uri.resource path="typo3_logo.png" />
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expectedRegex="/https?:\/\/.+\/_Resources\/Static\/Packages\/Viewhelpertest\/typo3_logo.png/"><![CDATA[
+	<f:uri.resource path="typo3_logo.png" />
+]]></vht:highlight>
 
-<h2><![CDATA[&lt;f:uri.resource path="Icons/icon_tx_blogexample_domain_model_blog.gif" package="Blog" /&gt;]]></h2>
-<f:uri.resource path="Icons/icon_tx_blogexample_domain_model_blog.gif" package="Blog" />
+<vht:highlight expectedRegex="/https?:\/\/.+\/_Resources\/Static\/Packages\/FLOW3\/MVC\/StandardView_Package.png/"><![CDATA[
+	{f:uri.resource(path: 'MVC/StandardView_Package.png', package: 'FLOW3')}
+]]></vht:highlight>

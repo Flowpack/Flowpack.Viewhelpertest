@@ -1,1 +1,8 @@
-<p>todo</p>
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expectedRegex="/TYPO3     /"><![CDATA[
+	<f:format.padding padLength="10">TYPO3</f:format.padding>
+]]></vht:highlight>
+
+<vht:highlight expected="TYPO3-=-=-"><![CDATA[
+	<f:format.padding padLength="10" padString="-=">TYPO3</f:format.padding>
+]]></vht:highlight>

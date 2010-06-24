@@ -1,1 +1,6 @@
-<p>todo</p>
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expectedRegex="/first line<br \/>\s*second line/"><![CDATA[
+	<f:format.nl2br>first line
+		second line
+	</f:format.nl2br>
+]]></vht:highlight>

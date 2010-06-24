@@ -1,5 +1,8 @@
-<h2><![CDATA[&lt;f:alias map="{name: testVariables.user1.firstName}"&gt;Name: {name}&lt;/f:alias&gt;]]></h2>
-<f:alias map="{name: testVariables.user1.firstName}">Name: {name}</f:alias>
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="Name: Ingmar"><![CDATA[
+	<f:alias map="{name: testVariables.user1.firstName}">Name: {name}</f:alias>
+]]></vht:highlight>
 
-<h2><![CDATA[&lt;f:alias map="{firstName: testVariables.user2.firstName, user: testVariables.user2}"&gt;{user.lastName}, {firstName}&lt;/f:alias&gt;]]></h2>
-<f:alias map="{firstName: testVariables.user2.firstName, user: testVariables.user2}">{user.lastName}, {firstName}</f:alias>
+<vht:highlight expected="Kurfürst, Sebastian"><![CDATA[
+	<f:alias map="{firstName: testVariables.user2.firstName, user: testVariables.user2}">{user.lastName}, {firstName}</f:alias>
+]]></vht:highlight>

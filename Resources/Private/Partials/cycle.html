@@ -1,17 +1,11 @@
-<h2><![CDATA[&lt;f:for each=&quot;{0:1, 1:2, 2:3, 3:4}&quot; as=&quot;foo&quot;&gt;
-	&lt;f:cycle values=&quot;{0: \'foo\', 1: \'bar\', 2: \'baz\'}&quot; as=&quot;cycle&quot;&gt;{cycle}&lt;/f:cycle&gt;
-&lt;/f:for&gt;]]></h2>
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expectedRegex="/foo\n\s*bar\n\s*baz\n\s*foo/"><![CDATA[
 <f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo">
 	<f:cycle values="{0: 'foo', 1: 'bar', 2: 'baz'}" as="cycle">{cycle}</f:cycle>
 </f:for>
+]]></vht:highlight>
 
-<h2><![CDATA[&lt;ul&gt;
-	&lt;f:for each=&quot;{testVariables.fruits}&quot; as=&quot;fruit&quot;&gt;
-		&lt;f:cycle values=&quot;{0: \'odd\', 1: \'even\'}&quot; as=&quot;zebraClass&quot;&gt;
-			&lt;li class=&quot;{zebraClass}&quot;&gt;{fruit.name}&lt;/li&gt;
-		&lt;/f:cycle&gt;
-	&lt;/f:for&gt;
-&lt;/ul&gt;]]></h2>
+<vht:highlight expectedRegex="/<ul>\n\s*<li class=&quot;odd&quot;>blackberry<\/li>\n\s*<li class=&quot;even&quot;>orange<\/li>\n\s*<li class=&quot;odd&quot;>cranberry<\/li>\n\s*<li class=&quot;even&quot;>pear<\/li>\n\s*<li class=&quot;odd&quot;>lemon<\/li>\n\s*<li class=&quot;even&quot;>grape<\/li>\n\s*<li class=&quot;odd&quot;>apple<\/li>\n\s*<\/ul>/"><![CDATA[
 <ul>
 	<f:for each="{testVariables.fruits}" as="fruit">
 		<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
@@ -19,3 +13,4 @@
 		</f:cycle>
 	</f:for>
 </ul>
+]]></vht:highlight>

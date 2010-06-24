@@ -1,4 +1,8 @@
-<h2><![CDATA[&lt;f:flashMessages class=&quot;flashMessages&quot; /&gt;]]></h2>
-<f:flashMessages class="flashMessages" />
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expectedRegex="/<ul class=&quot;flashMessages&quot;><li>Some dummy flash message at \d\d:\d\d:\d\d<\/li><li>Another dummy flash message.<\/li><\/ul>/"><![CDATA[
+	<f:flashMessages class="flashMessages" />
+]]></vht:highlight>
 
-<f:link.action action="flashMessages">refresh</f:link.action>
+<vht:highlight expected=""><![CDATA[
+	<f:flashMessages class="alreadyRendered" />
+]]></vht:highlight>

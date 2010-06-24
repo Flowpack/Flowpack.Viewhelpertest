@@ -51,3 +51,15 @@ li.even {
 hr {
 	clear:both;
 }
+.failure {
+	background: #df9d9d;
+}
+.failure h2 {
+	background: #dfb2b2;
+}
+.success {
+	background: #d4ffc4;
+}
+.success h2 {
+	background: #dcffd0;
+}

@@ -1,24 +1,15 @@
-<h2><![CDATA[&lt;ul&gt;
-	&lt;f:groupedFor each="{testVariables.fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType"&gt;
-		&lt;li&gt;
-			&lt;strong&gt;{fruitType}:&lt;/strong&gt;
-			&lt;ul&gt;
-				&lt;f:for each="{fruitsOfThisType}" as="fruit" key="index"&gt;
-					&lt;li&gt;Fruit #{index}: {fruit.name}&lt;/li&gt;
-				&lt;/f:for&gt;
-			&lt;/ul&gt;
-		&lt;/li&gt;
-	&lt;/f:groupedFor&gt;
-&lt;/ul&gt;]]></h2>
-<ul>
-	<f:groupedFor each="{testVariables.fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType">
-		<li>
-			<strong>{fruitType}:</strong>
-			<ul>
-				<f:for each="{fruitsOfThisType}" as="fruit" key="index">
-					<li>Fruit #{index}: {fruit.name}</li>
-				</f:for>
-			</ul>
-		</li>
-	</f:groupedFor>
-</ul>
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expectedRegex="/<ul>\n\s*<li>\n\s*<strong>berry:<\/strong>\n\s*<ul>\n\s*<li>Fruit #0: blackberry<\/li>\n\s*<li>Fruit #2: cranberry<\/li>\n\s*<li>Fruit #5: grape<\/li>\n\s*<\/ul>\n\s*<\/li>\n\s*<li>\n\s*<strong>citrus fruit:<\/strong>\n\s*<ul>\n\s*<li>Fruit #1: orange<\/li>\n\s*<li>Fruit #4: lemon<\/li>\n\s*<\/ul>\n\s*<\/li>\n\s*<li>\n\s*<strong>core:<\/strong>\n\s*<ul>\n\s*<li>Fruit #3: pear<\/li>\n\s*<li>Fruit #6: apple<\/li>\n\s*<\/ul>\n\s*<\/li>\n\s*<\/ul>/"><![CDATA[
+	<ul>
+		<f:groupedFor each="{testVariables.fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType">
+			<li>
+				<strong>{fruitType}:</strong>
+				<ul>
+					<f:for each="{fruitsOfThisType}" as="fruit" key="index">
+						<li>Fruit #{index}: {fruit.name}</li>
+					</f:for>
+				</ul>
+			</li>
+		</f:groupedFor>
+	</ul>
+]]></vht:highlight>

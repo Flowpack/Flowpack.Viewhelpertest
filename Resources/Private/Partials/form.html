@@ -1,73 +1,100 @@
-<h2><![CDATA[&lt;f:form /&gt;]]></h2>
-<f:form />
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expectedRegex="/<form action=&quot;viewhelpertest\/standard\/&quot; method=&quot;post&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>.*/"><![CDATA[
+	<f:form />
+]]></vht:highlight>
 
-<h2><![CDATA[&lt;f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'foo'}" method="GET"&gt;]]></h2>
-<f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'foo'}" method="GET">
+<vht:highlight expectedRegex="/<form enctype=&quot;multipart\/form-data&quot; onreset=&quot;void\(0\)&quot; onsubmit=&quot;void\(0\)&quot; action=&quot;https?:\/\/.*&quot; method=&quot;post&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>.*/"><![CDATA[
+	<f:form enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="someController" package="somePackage" subpackage="someSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
+]]></vht:highlight>
 
+<vht:highlight expectedRegex="/<form title=&quot;someTitleAttribute&quot; method=&quot;get&quot; name=&quot;foo&quot; id=&quot;bar&quot; action=&quot;viewhelpertest\/standard\/foo&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>.*/"><![CDATA[
+	<f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'someTitleAttribute'}" method="GET" />
+]]></vht:highlight>
+
+<f:form>
 	<h1>form.select</h1>
-	<h2><![CDATA[&lt;f:form.select value="{testVariables.selected}" name="mySelect" options="{testVariables.array}" multiple="multiple" size="5"&gt;&lt;select&gt;&lt;option&gt;###dummy###&lt;/option&gt;&lt;/select&gt;&lt;/f:form.select&gt;]]></h2>
-	<f:form.select value="{testVariables.selected}" name="mySelect" options="{testVariables.array}" multiple="multiple" size="5"><select><option>###dummy###</option></select></f:form.select>
+	<vht:highlight><![CDATA[
+		<f:form.select value="{testVariables.selected}" name="mySelect" options="{testVariables.array}" multiple="multiple" size="5"><select><option>###dummy###</option></select></f:form.select>
+	]]></vht:highlight>
 
-	<h2><![CDATA[&lt;f:form.select value="2" name="mySelect2" options="{testVariables.users}" optionValueField="id" optionLabelField="lastName"&gt;&lt;select&gt;&lt;option&gt;###dummy###&lt;/option&gt;&lt;/select&gt;&lt;/f:form.select&gt;]]></h2>
-	<f:form.select value="2" name="mySelect2" options="{testVariables.users}" optionValueField="id" optionLabelField="lastName"><select><option>###dummy###</option></select></f:form.select>
+	<vht:highlight><![CDATA[
+		<f:form.select value="2" name="mySelect2" options="{testVariables.users}" optionValueField="id" optionLabelField="lastName"><select><option>###dummy###</option></select></f:form.select>
+	]]></vht:highlight>
 
-	<h2><![CDATA[&lt;f:form.select value="{0:1, 1:3}" name="mySelect3" options="{testVariables.users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName"&gt;
-	[dummy]
-&lt;/f:form.select&gt;]]></h2>
-	<f:form.select value="{0:1, 1:3}" name="mySelect3" options="{testVariables.users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName">
-		[dummy]
-	</f:form.select>
+	<vht:highlight><![CDATA[
+		<f:form.select value="{0:1, 1:3}" name="mySelect3" options="{testVariables.users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName">
+			[dummy]
+		</f:form.select>
+	]]></vht:highlight>
+
+	<vht:highlight><![CDATA[
+		<f:form.select selectAllByDefault="true" name="mySelect3" options="{testVariables.users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName">
+			[dummy]
+		</f:form.select>
+	]]></vht:highlight>
 
 	<h1>form.textarea</h1>
-	<h2><![CDATA[&lt;f:form.textarea value="{testVariables.text}" name="myTextArea" rows="5" cols="10"&gt;&lt;textarea&gt;###dummy###&lt;/textarea&gt;&lt;/f:form.textarea&gt;]]></h2>
-	<f:form.textarea value="{testVariables.text}" name="myTextArea" rows="5" cols="10"><textarea>###dummy###</textarea></f:form.textarea>
+	<vht:highlight><![CDATA[
+		<f:form.textarea value="{testVariables.text}" name="myTextArea" rows="5" cols="10"><textarea>###dummy###</textarea></f:form.textarea>
+	]]></vht:highlight>
 
-	<h2><![CDATA[&lt;f:form.textarea value="Some 'Test'" rows="4" cols="18" /&gt;</h2>]]>
-	<f:form.textarea value="Some 'Test'" rows="4" cols="18" />
+	<vht:highlight><![CDATA[
+		<f:form.textarea value="Some 'Test'" rows="4" cols="18" />
+	]]></vht:highlight>
 
 	<h1>form.textbox</h1>
-	<h2><![CDATA[&lt;f:form.textbox value="other value" name="myTextBox"&gt;&lt;input type="text" value="###dummy###" /&gt;&lt;/f:form.textbox&gt;]]></h2>
-	<f:form.textbox value="other value" name="myTextBox"><input type="text" value="###dummy###" /></f:form.textbox>
+	<vht:highlight><![CDATA[
+		<f:form.textbox value="other value" name="myTextBox"><input type="text" value="###dummy###" /></f:form.textbox>
+	]]></vht:highlight>
 
 	<h1>form.submit</h1>
-	<h2><![CDATA[&lt;f:form.submit name="myName" value="myValue"&gt;&lt;button&gt;###dummy###&lt;/button&gt;&lt;/f:form.submit&gt;]]></h2>
-	<f:form.submit name="myName" value="myValue"><button>###dummy###</button></f:form.submit>
+	<vht:highlight><![CDATA[
+		<f:form.submit name="myName" value="myValue"><button>###dummy###</button></f:form.submit>
+	]]></vht:highlight>
 
 	<h1>form.upload</h1>
-	<h2><![CDATA[&lt;f:form.upload name="myName"&gt;&lt;input type="file" /&gt;&lt;/f:form.upload&gt;]]></h2>
-	<f:form.upload name="myName"><input type="file" /></f:form.upload>
+	<vht:highlight><![CDATA[
+		<f:form.upload name="myName"><input type="file" /></f:form.upload>
+	]]></vht:highlight>
 
 	<h1>form.hidden</h1>
-	<h2><![CDATA[&lt;f:form.hidden name="hiddenName" value="hiddenValue"&gt;HIDDEN&lt;/f:form.hidden&gt;]]></h2>
-	<f:form.hidden name="hiddenName" value="hiddenValue">HIDDEN</f:form.hidden>
+	<vht:highlight><![CDATA[
+		<f:form.hidden name="hiddenName" value="hiddenValue">HIDDEN</f:form.hidden>
+	]]></vht:highlight>
 
 	<h1>form.submit</h1>
-	<h2><![CDATA[&lt;f:form.submit value="submit form" /&gt;]]></h2>
-	<f:form.submit value="submit form" />
+	<vht:highlight><![CDATA[
+		<f:form.submit value="submit form" />
+	]]></vht:highlight>
 </f:form>
 
 <h1>form (bound to object)</h1>
 <f:if condition="{testVariables.userDomainObject}">
 	<f:then>
-		<h2><![CDATA[&lt;f:form name="someUser" object="{testVariables.userDomainObject}"&gt;]]></h2>
 		<f:form name="someUser" object="{testVariables.userDomainObject}">
-			<h2><![CDATA[&lt;f:form.textbox property="firstName" /&gt;]]></h2>
-			<f:form.textbox property="firstName" />
+			<vht:highlight><![CDATA[
+				<f:form.textbox property="firstName" />
+			]]></vht:highlight>
 
-			<h2><![CDATA[&lt;f:form.textbox property="lastName" /&gt;]]></h2>
-			<f:form.textbox property="lastName" />
+			<vht:highlight><![CDATA[
+				<f:form.textbox property="lastName" />
+			]]></vht:highlight>
 
-			<h2><![CDATA[&lt;f:form.checkbox property="newsletter" value="1" /&gt;]]></h2>
-			<f:form.checkbox property="newsletter" value="1" />
+			<vht:highlight><![CDATA[
+				<f:form.checkbox property="newsletter" value="1" />
+			]]></vht:highlight>
 
-			<h2><![CDATA[&lt;f:form.checkbox property="newsletter" value="1" checked="false" /&gt;]]></h2>
-			<f:form.checkbox property="newsletter" value="1" checked="false" />
+			<vht:highlight><![CDATA[
+				<f:form.checkbox property="newsletter" value="1" checked="false" />
+			]]></vht:highlight>
 
-			<h2><![CDATA[&lt;label&gt;&lt;f:form.checkbox property="interests" value="TYPO3" /&gt; TYPO3&lt;/label&gt;&lt;label&gt;&lt;f:form.checkbox property="interests" value="Snowboarding" /&gt; Snowboarding&lt;/label&gt;&lt;label&gt;&lt;f:form.checkbox property="interests" value="Commerce" /&gt; Commerce&lt;/label&gt;]]></h2>
-			<label><f:form.checkbox property="interests" value="TYPO3" /> TYPO3</label><label><f:form.checkbox property="interests" value="Snowboarding" /> Snowboarding</label><label><f:form.checkbox property="interests" value="Commerce" /> Commerce</label>
+			<vht:highlight><![CDATA[
+				<label><f:form.checkbox property="interests" value="TYPO3" /> TYPO3</label><label><f:form.checkbox property="interests" value="Snowboarding" /> Snowboarding</label><label><f:form.checkbox property="interests" value="Commerce" /> Commerce</label>
+			]]></vht:highlight>
 
-			<h2><![CDATA[&lt;label&gt;&lt;f:form.radio property="newsletter" value="TYPO3" /&gt; YES&lt;/label&gt;&lt;label&gt;&lt;f:form.radio property="newsletter" value="0" /&gt; NO&lt;/label&gt;]]></h2>
-			<label><f:form.radio property="newsletter" value="TYPO3" /> YES</label><label><f:form.radio property="newsletter" value="0" /> NO</label>
+			<vht:highlight><![CDATA[
+				<label><f:form.radio property="newsletter" value="TYPO3" /> YES</label><label><f:form.radio property="newsletter" value="0" /> NO</label>
+			]]></vht:highlight>
 		</f:form>
 	</f:then>
 	<f:else>

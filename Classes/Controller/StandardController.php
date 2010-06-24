@@ -39,7 +39,7 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	/**
 	 * @var array
 	 */
-	protected $allowedPartials = array('alias', 'base', 'cycle', 'escape', 'flashMessages', 'for', 'form', 'form.withFieldsInPartial', 'format.crop', 'format.currency', 'format.date', 'format.nl2br', 'format.number', 'format.padding', 'format.printf', 'groupedFor', 'if', 'raw', 'link.action', 'link.email', 'link.external', 'security.ifAccess', 'security.ifAuthenticated', 'security.ifHasRole', 'uri.action', 'uri.email', 'uri.external', 'uri.resource');
+	protected $allowedPartials = array('alias', 'base', 'cycle', 'debug', 'escape', 'flashMessages', 'for', 'form', 'form.withFieldsInPartial', 'format.crop', 'format.currency', 'format.date', 'format.nl2br', 'format.number', 'format.padding', 'format.printf', 'groupedFor', 'if', 'raw', 'link.action', 'link.email', 'link.external', 'security.ifAccess', 'security.ifAuthenticated', 'security.ifHasRole', 'uri.action', 'uri.email', 'uri.external', 'uri.resource');
 
 	/**
 	 * @param array $selectedPartials
@@ -53,6 +53,10 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 		}
 		$this->view->assign('allowedPartials', $this->allowedPartials);
 		$this->view->assign('selectedPartials', $selectedPartials);
+		if (in_array('flashMessages', $selectedPartials)) {
+			$this->flashMessageContainer->add('Some dummy flash message at ' . date('H:i:s'));
+			$this->flashMessageContainer->add('Another dummy flash message.');
+		}
 
 		$user1 = new User(1, 'Ingmar', 'Schlecht', TRUE);
 		$user2 = new User(3, 'Sebastian', 'Kurfürst', FALSE);
@@ -82,7 +86,6 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	public function setupAction() {
 		$this->userRepository->removeAll();
 
-
 		$user = $this->objectFactory->create('F3\Viewhelpertest\Domain\Model\User');
 		$user->setFirstName('Kasper');
 		$user->setLastName('Skårhøj');
@@ -93,12 +96,6 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 		$user->setRole($role);
 		$this->userRepository->add($user);
 		$this->redirect('index', NULL, NULL, array('selectedPartials' => array('form')));
-	}
-
-	public function flashMessagesAction() {
-		$this->flashMessageContainer->add('Some dummy flash message at ' . date('H:i:s'));
-		$this->flashMessageContainer->add('Another dummy flash message.');
-		$this->redirect('index', NULL, NULL, array('selectedPartials' => array('flashMessages')));
 	}
 
 	/**

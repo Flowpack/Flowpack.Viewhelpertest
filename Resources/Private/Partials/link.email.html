@@ -1,2 +1,8 @@
-<h2><![CDATA[&lt;f:link.email email="foo@bar.com" /&gt;]]></h2>
-<f:link.email email="foo@bar.com" />
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="<a href=&quot;mailto:foo@bar.com&quot;>foo@bar.com</a>"><![CDATA[
+	<f:link.email email="foo@bar.com" />
+]]></vht:highlight>
+
+<vht:highlight expected="<a href=&quot;mailto:foo@bar.com&quot;>custom link text</a>"><![CDATA[
+	<f:link.email email="foo@bar.com">custom link text</f:link.email>
+]]></vht:highlight>
