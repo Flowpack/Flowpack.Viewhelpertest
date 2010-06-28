@@ -1,0 +1,13 @@
+<f:section name="mySection">
+	<ul>
+		<f:for each="{myMenu}" as="menuItem">
+		<li>
+			{menuItem.text}
+			<f:if condition="{menuItem.subItems}">
+				<f:render section="mySection" arguments="{myMenu: menuItem.subItems}" />
+			</f:if>
+		</li>
+		</f:for>
+	</ul>
+</f:section>
+<f:render section="mySection" arguments="{myMenu: testVariables.menu}" />

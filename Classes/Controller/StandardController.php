@@ -39,7 +39,7 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	/**
 	 * @var array
 	 */
-	protected $allowedPartials = array('alias', 'base', 'cycle', 'debug', 'escape', 'flashMessages', 'for', 'form', 'form.withFieldsInPartial', 'format.crop', 'format.currency', 'format.date', 'format.nl2br', 'format.number', 'format.padding', 'format.printf', 'groupedFor', 'if', 'raw', 'link.action', 'link.email', 'link.external', 'security.ifAccess', 'security.ifAuthenticated', 'security.ifHasRole', 'uri.action', 'uri.email', 'uri.external', 'uri.resource');
+	protected $allowedPartials = array('alias', 'base', 'cycle', 'debug', 'escape', 'flashMessages', 'for', 'form', 'form.withFieldsInPartial', 'format.crop', 'format.currency', 'format.date', 'format.nl2br', 'format.number', 'format.padding', 'format.printf', 'groupedFor', 'if', 'raw', 'link.action', 'link.email', 'link.external', 'section', 'security.ifAccess', 'security.ifAuthenticated', 'security.ifHasRole', 'uri.action', 'uri.email', 'uri.external', 'uri.resource');
 
 	/**
 	 * @param array $selectedPartials
@@ -75,7 +75,9 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 			'users' => array($user1, $user2, $user3),
 			'userDomainObject' => $userDomainObject,
 			'date' => new \DateTime(),
-			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>'
+			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>',
+			'boolean' => array('true' => TRUE, 'false' => FALSE),
+			'number' => array('zero' => 0, 'one' => 1, 'minusOne' => -1),
 		);
 		$this->view->assign('testVariables', $testVariables);
 	}

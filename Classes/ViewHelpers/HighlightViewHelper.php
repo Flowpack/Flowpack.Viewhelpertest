@@ -61,6 +61,7 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 	 */
 	public function setRenderingContext(\F3\Fluid\Core\Rendering\RenderingContext $renderingContext) {
 		$this->renderingContext = $renderingContext;
+		parent::setRenderingContext($renderingContext);
 	}
 
 	/**

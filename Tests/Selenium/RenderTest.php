@@ -81,5 +81,14 @@ class RenderTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
 
 		$this->assertText('variableInOriginalTemplate', 'This variable is set from within the controller.');
 	}
+
+	/**
+	 * @test
+	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 */
+	public function recursiveSectionsWorks() {
+		$this->navigateToControllerAndAction('Render', 'recursiveSections');
+		$this->assertText('//html', 'Item 1 Item 1.1 Item 1.1.1 Item 1.2 Item 2');
+	}
 }
 ?>

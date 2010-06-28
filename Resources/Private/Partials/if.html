@@ -1,4 +1,17 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
+<h2>Boolean Values</h2>
+If a boolean value is given, that is directly used.
+
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition="{testVariables.boolean.true}">satisfied condition!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="{testVariables.boolean.false}">should not be displayed!</f:if>
+]]></vht:highlight>
+
+
+<h2>Strings</h2>
 <vht:highlight expected="satisfied condition!"><![CDATA[
 	<f:if condition="true">satisfied condition!</f:if>
 ]]></vht:highlight>
@@ -7,6 +20,38 @@
 	<f:if condition="FALSE">should not be displayed!!</f:if>
 ]]></vht:highlight>
 
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<h2>Numeric Strings (should behave exactly like numbers)</h2>
+
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition="1">satisfied condition!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="0">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="-1">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<h2>Numbers</h2>
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition="{testVariables.number.one}">satisfied condition!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="{testVariables.number.zero}">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="{testVariables.number.minusOne}">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<h2>more</h2>
 <vht:highlight expected="Else part!"><![CDATA[
 	<f:if condition="false">
 		<f:then>

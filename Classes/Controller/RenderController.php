@@ -31,6 +31,7 @@ namespace F3\Viewhelpertest\Controller;
 class RenderController extends \F3\FLOW3\MVC\Controller\ActionController {
 
 	public function optionalSectionsAction() {
+		// TODO
 	}
 
 	public function renderSectionInLayoutUsesTemplateVariablesAction() {
@@ -51,6 +52,23 @@ class RenderController extends \F3\FLOW3\MVC\Controller\ActionController {
 
 	public function renderSectionInsideTemplateNeedsArgumentsExplicitelyAction() {
 		$this->view->assign('variable', 'This variable is set from within the controller.');
+	}
+	public function recursiveSectionsAction() {
+		$this->view->assign('testVariables', array('menu' => array(
+			array(
+				'text' => 'Item 1',
+				'subItems' => array(
+					array(
+						'text' => 'Item 1.1',
+						'subItems' => array(
+							array('text' => 'Item 1.1.1')
+						)
+					),
+					array('text' => 'Item 1.2')
+				)
+			),
+			array('text' => 'Item 2'),
+		)));
 	}
 }
 ?>
