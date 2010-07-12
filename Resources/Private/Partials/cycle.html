@@ -4,8 +4,14 @@
 	<f:cycle values="{0: 'foo', 1: 'bar', 2: 'baz'}" as="cycle">{cycle}</f:cycle>
 </f:for>
 ]]></vht:highlight>
+<!-- The following code is missing in the below regular expression at the end:
 
-<vht:highlight expectedRegex="/<ul>\n\s*<li class=&quot;odd&quot;>blackberry<\/li>\n\s*<li class=&quot;even&quot;>orange<\/li>\n\s*<li class=&quot;odd&quot;>cranberry<\/li>\n\s*<li class=&quot;even&quot;>pear<\/li>\n\s*<li class=&quot;odd&quot;>lemon<\/li>\n\s*<li class=&quot;even&quot;>grape<\/li>\n\s*<li class=&quot;odd&quot;>apple<\/li>\n\s*<\/ul>/"><![CDATA[
+<li class=&quot;odd&quot;>apple<\/li>\n\s*</ul>
+
+However, adding this code will crash PHP / PCRE under some circumstances...
+
+-->
+<vht:highlight expectedRegex="/<ul>\n\s*<li class=&quot;odd&quot;>blackberry<\/li>\n\s*<li class=&quot;even&quot;>orange<\/li>\n\s*<li class=&quot;odd&quot;>cranberry<\/li>\n\s*<li class=&quot;even&quot;>pear<\/li>\n\s*<li class=&quot;odd&quot;>lemon<\/li>\s*<li class=&quot;even&quot;>grape<\/li>/"><![CDATA[
 <ul>
 	<f:for each="{testVariables.fruits}" as="fruit">
 		<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">

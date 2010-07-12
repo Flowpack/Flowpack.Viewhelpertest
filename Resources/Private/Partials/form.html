@@ -2,8 +2,12 @@
 <vht:highlight expectedRegex="/<form action=&quot;viewhelpertest\/standard\/&quot; method=&quot;post&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>.*/"><![CDATA[
 	<f:form />
 ]]></vht:highlight>
+<!-- In the below regular expression, the following code is missing at the end:
 
-<vht:highlight expectedRegex="/<form enctype=&quot;multipart\/form-data&quot; onreset=&quot;void\(0\)&quot; onsubmit=&quot;void\(0\)&quot; action=&quot;https?:\/\/.*&quot; method=&quot;post&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>.*/"><![CDATA[
+<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>
+
+However, we cannot include it as PCRE provokes some fatal error then under some configurations :-/ -->
+<vht:highlight expectedRegex="/<form enctype=&quot;multipart\/form-data&quot; onreset=&quot;void\(0\)&quot; onsubmit=&quot;void\(0\)&quot; action=&quot;https?:\/\/(.*?)&quot; method=&quot;post&quot;>\n\s*/"><![CDATA[
 	<f:form enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="someController" package="somePackage" subpackage="someSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
 ]]></vht:highlight>
 
