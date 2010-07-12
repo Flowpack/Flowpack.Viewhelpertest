@@ -1,7 +1,7 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expected="You are not in this role"><![CDATA[
-	<f:security.ifHasRole role="someNonExistingRole">
+<vht:highlight expected="You are in this role"><![CDATA[
+	<f:security.ifHasRole role="TestRole">
 		<f:then>You are in this role</f:then>
-		<f:else>You are not in this role</f:else>
+		<f:else>You are in this role</f:else>
 	</f:security.ifHasRole>
 ]]></vht:highlight>

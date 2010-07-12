@@ -1,8 +1,12 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
 <vht:highlight expectedRegex="/https?:\/\/.+\/_Resources\/Static\/Packages\/Viewhelpertest\/typo3_logo.png/"><![CDATA[
-	<f:uri.resource path="typo3_logo.png" />
+	{f:uri.resource(path:'typo3_logo.png')}
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/https?:\/\/.+\/_Resources\/Static\/Packages\/FLOW3\/MVC\/StandardView_Package.png/"><![CDATA[
-	{f:uri.resource(path: 'MVC/StandardView_Package.png', package: 'FLOW3')}
+<vht:highlight expected="<a href=&quot;mailto:foo@bar.com&quot;>custom link text</a>"><![CDATA[
+	<f:link.email email="foo@bar.com">custom link text</f:link.email>
+]]></vht:highlight>
+
+<vht:highlight expectedRegex="/https?:\/\/.+\/_Resources\/Static\/Packages\/Viewhelpertest\/NonExistingResource/"><![CDATA[
+	{f:uri.resource(path:'NonExistingResource')}
 ]]></vht:highlight>

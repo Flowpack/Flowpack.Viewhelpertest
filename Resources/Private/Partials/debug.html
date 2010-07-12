@@ -1,8 +1,8 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expectedRegex="/<div class=&quot;F3-FLOW3-Error-Debugger-VarDump&quot;>\n\s*<div class=&quot;F3-FLOW3-Error-Debugger-VarDump-Top&quot;>\n\s*FLOW3 Variable Dump\n\s*.*/"><![CDATA[
+<vht:highlight><![CDATA[
 	<f:debug>{testVariables.array}</f:debug>
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/<div class=&quot;F3-FLOW3-Error-Debugger-VarDump&quot;>\n\s*<div class=&quot;F3-FLOW3-Error-Debugger-VarDump-Top&quot;>\n\s*Custom title\n\s*.*/"><![CDATA[
+<vht:highlight expectedRegex="/.*Custom title.*/"><![CDATA[
 	<f:debug title="Custom title">{testVariables.user1}</f:debug>
 ]]></vht:highlight>

@@ -11,93 +11,37 @@
 	<f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'someTitleAttribute'}" method="GET" />
 ]]></vht:highlight>
 
-<f:form>
-	<h1>form.select</h1>
+<h1>form (bound to object)</h1>
+<f:form name="someUser" object="{testVariables.userDomainObject}">
 	<vht:highlight><![CDATA[
-		<f:form.select value="{testVariables.selected}" name="mySelect" options="{testVariables.array}" multiple="multiple" size="5"><select><option>###dummy###</option></select></f:form.select>
+		<f:form.textbox property="firstName" />
 	]]></vht:highlight>
 
 	<vht:highlight><![CDATA[
-		<f:form.select value="2" name="mySelect2" options="{testVariables.users}" optionValueField="id" optionLabelField="lastName"><select><option>###dummy###</option></select></f:form.select>
+		<f:form.textbox property="lastName" />
 	]]></vht:highlight>
 
 	<vht:highlight><![CDATA[
-		<f:form.select value="{0:1, 1:3}" name="mySelect3" options="{testVariables.users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName">
-			[dummy]
-		</f:form.select>
+		<f:form.checkbox property="newsletter" value="1" />
 	]]></vht:highlight>
 
 	<vht:highlight><![CDATA[
-		<f:form.select selectAllByDefault="true" name="mySelect3" options="{testVariables.users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName">
-			[dummy]
-		</f:form.select>
-	]]></vht:highlight>
-
-	<h1>form.textarea</h1>
-	<vht:highlight><![CDATA[
-		<f:form.textarea value="{testVariables.text}" name="myTextArea" rows="5" cols="10"><textarea>###dummy###</textarea></f:form.textarea>
+		<f:form.checkbox property="newsletter" value="1" checked="false" />
 	]]></vht:highlight>
 
 	<vht:highlight><![CDATA[
-		<f:form.textarea value="Some 'Test'" rows="4" cols="18" />
+		<label><f:form.checkbox property="interests" value="TYPO3" /> TYPO3</label><label><f:form.checkbox property="interests" value="Snowboarding" /> Snowboarding</label><label><f:form.checkbox property="interests" value="Commerce" /> Commerce</label>
 	]]></vht:highlight>
 
-	<h1>form.textbox</h1>
 	<vht:highlight><![CDATA[
-		<f:form.textbox value="other value" name="myTextBox"><input type="text" value="###dummy###" /></f:form.textbox>
-	]]></vht:highlight>
-
-	<h1>form.submit</h1>
-	<vht:highlight><![CDATA[
-		<f:form.submit name="myName" value="myValue"><button>###dummy###</button></f:form.submit>
-	]]></vht:highlight>
-
-	<h1>form.upload</h1>
-	<vht:highlight><![CDATA[
-		<f:form.upload name="myName"><input type="file" /></f:form.upload>
-	]]></vht:highlight>
-
-	<h1>form.hidden</h1>
-	<vht:highlight><![CDATA[
-		<f:form.hidden name="hiddenName" value="hiddenValue">HIDDEN</f:form.hidden>
-	]]></vht:highlight>
-
-	<h1>form.submit</h1>
-	<vht:highlight><![CDATA[
-		<f:form.submit value="submit form" />
+		<label><f:form.radio property="newsletter" value="TYPO3" /> YES</label><label><f:form.radio property="newsletter" value="0" /> NO</label>
 	]]></vht:highlight>
 </f:form>
 
 <h1>form (bound to object)</h1>
-<f:if condition="{testVariables.userDomainObject}">
-	<f:then>
-		<f:form name="someUser" object="{testVariables.userDomainObject}">
-			<vht:highlight><![CDATA[
-				<f:form.textbox property="firstName" />
-			]]></vht:highlight>
-
-			<vht:highlight><![CDATA[
-				<f:form.textbox property="lastName" />
-			]]></vht:highlight>
-
-			<vht:highlight><![CDATA[
-				<f:form.checkbox property="newsletter" value="1" />
-			]]></vht:highlight>
-
-			<vht:highlight><![CDATA[
-				<f:form.checkbox property="newsletter" value="1" checked="false" />
-			]]></vht:highlight>
-
-			<vht:highlight><![CDATA[
-				<label><f:form.checkbox property="interests" value="TYPO3" /> TYPO3</label><label><f:form.checkbox property="interests" value="Snowboarding" /> Snowboarding</label><label><f:form.checkbox property="interests" value="Commerce" /> Commerce</label>
-			]]></vht:highlight>
-
-			<vht:highlight><![CDATA[
-				<label><f:form.radio property="newsletter" value="TYPO3" /> YES</label><label><f:form.radio property="newsletter" value="0" /> NO</label>
-			]]></vht:highlight>
-		</f:form>
-	</f:then>
-	<f:else>
-		<p>No Dummy data available. <f:link.action action="setup">Create dummy data</f:link.action>.</p>
-	</f:else>
-</f:if>
+<p>It is also possible to put the form fields in a partial. This allows for greater re-use between different forms. In the textboxes below, you should find the strings "Ingmar" and "Schlecht":</p>
+<vht:highlight><![CDATA[
+	<f:form name="user1" object="{testVariables.user1}">
+	<f:render partial="form._name" />
+</f:form>
+]]></vht:highlight>

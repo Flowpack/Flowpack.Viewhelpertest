@@ -1,0 +1,13 @@
+resources:
+  methods:
+    F3_Viewhelpertest_AllowedMethods: 'method(F3\Viewhelpertest\Controller\StandardController->allowedAction())'
+    F3_Viewhelpertest_DeniedMethods: 'method(F3\Viewhelpertest\Controller\StandardController->deniedAction())'
+
+roles:
+  TestRole: []
+
+acls:
+  TestRole:
+    methods:
+      F3_Viewhelpertest_AllowedMethods: GRANT
+      F3_Viewhelpertest_DeniedMethods: DENY

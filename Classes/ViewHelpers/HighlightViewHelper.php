@@ -75,6 +75,9 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 		$this->templateParser = $templateParser;
 	}
 
+	//PLACEHOLDER
+	// Here, the backporter can insert a constructor method, which is needed for Fluid v4.
+
 	/**
 	 * @param string $expected
 	 * @param string $expectedRegex
@@ -85,16 +88,25 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 		$source = trim($this->renderChildren());
 		$parsedTemplate = $this->templateParser->parse($source);
 		$renderedSource = $parsedTemplate->render($this->renderingContext);
+		$title = '';
+		$className = '';
 		if ($expected !== NULL && trim($renderedSource) === html_entity_decode($expected)) {
+			$title = 'successfully compared the rendered result with &quot;' . htmlspecialchars($expected) . '&quot;';
 			$className = 'success';
 		} elseif ($expectedRegex !== NULL && preg_match(html_entity_decode($expectedRegex), $renderedSource) === 1) {
+			$title = 'successfully compared the rendered result with RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
 			$className = 'success';
 		} elseif ($expected === NULL && $expectedRegex === NULL) {
 			$className = 'default';
 		} else {
 			$className = 'failure';
+			if ($expected !== NULL) {
+				$title = 'expected &quot;' . htmlspecialchars(html_entity_decode($expected)) . '&quot;';
+			} else {
+				$title = 'expected RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
+			}
 		}
-		return '<div class="' . $className . '">
+		return '<div title="' . $title . '" class="' . $className . '">
 			<h2>' . htmlspecialchars($source) . '</h2>
 			<div>' . $renderedSource . '</div>
 		</div>';

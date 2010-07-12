@@ -43,11 +43,6 @@ class User {
 	 * @var string
 	 */
 	protected $lastName;
-	
-	/**
-	 * @var F3\Viewhelpertest\Domain\Model\Role
-	 */
-	protected $role;
 
 	/**
 	 * @var boolean
@@ -59,6 +54,20 @@ class User {
 	 */
 	protected $interests = array();
 
+	/**
+	 * @param string $firstName
+	 * @param string $lastName
+	 * @param boolean $newsletter
+	 * @param array $interests
+	 */
+	public function __construct($firstName = '', $lastName = '', $newsletter = FALSE, array $interests = NULL) {
+		$this->firstName = $firstName;
+		$this->lastName = $lastName;
+		$this->newsletter = (boolean)$newsletter;
+		if ($interests !== NULL) {
+			$this->interests = $interests;
+		}
+	}
 	/**
 	 * @param string $firstName
 	 * @return void
@@ -113,20 +122,6 @@ class User {
 	 */
 	public function getInterests() {
 		return $this->interests;
-	}
-	
-	/**
-	 * @return F3\Viewhelpertest\Domain\Model\Role
-	 */
-	public function getRole() {
-		return $this->role;
-	}
-	
-	/**
-	 * @param F3\Viewhelpertest\Domain\Model\Role $role
-	 */
-	public function setRole(\F3\Viewhelpertest\Domain\Model\Role $role) {
-		$this->role = $role;
 	}
 }
 ?>

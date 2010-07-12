@@ -32,36 +32,71 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 
 	/**
 	 * @inject
-	 * @var \F3\Viewhelpertest\Domain\Repository\UserRepository
+	 * @var \F3\FLOW3\Security\Authentication\AuthenticationManagerInterface
 	 */
-	protected $userRepository;
+	protected $authenticationManager;
 
 	/**
-	 * @var array
+	 * @inject
+	 * @var F3\FLOW3\Security\Context
 	 */
-	protected $allowedPartials = array('alias', 'base', 'cycle', 'debug', 'escape', 'flashMessages', 'for', 'form', 'form.withFieldsInPartial', 'format.crop', 'format.currency', 'format.date', 'format.nl2br', 'format.number', 'format.padding', 'format.printf', 'groupedFor', 'if', 'raw', 'link.action', 'link.email', 'link.external', 'section', 'security.ifAccess', 'security.ifAuthenticated', 'security.ifHasRole', 'uri.action', 'uri.email', 'uri.external', 'uri.resource');
+	protected $securityContext;
 
 	/**
 	 * @param array $selectedPartials
 	 * @return void
 	 */
 	public function indexAction(array $selectedPartials = array()) {
+		$allowedPartials = $this->settings['includeViewHelpers'];
 		if (isset($selectedPartials[0]) && strlen($selectedPartials[0]) === 0) {
-			$selectedPartials = $this->allowedPartials;
+			$selectedPartials = $allowedPartials;
 		} else {
-			$selectedPartials = array_intersect($this->allowedPartials, $selectedPartials);
+			$selectedPartials = array_intersect($allowedPartials, $selectedPartials);
 		}
-		$this->view->assign('allowedPartials', $this->allowedPartials);
+		$this->view->assign('allowedPartials', $allowedPartials);
 		$this->view->assign('selectedPartials', $selectedPartials);
 		if (in_array('flashMessages', $selectedPartials)) {
 			$this->flashMessageContainer->add('Some dummy flash message at ' . date('H:i:s'));
 			$this->flashMessageContainer->add('Another dummy flash message.');
 		}
+		if (in_array('security.ifAccess', $selectedPartials) || in_array('security.ifAuthenticated', $selectedPartials) || in_array('security.ifHasRole', $selectedPartials)) {
+			$this->loginTestuser();
+		}
 
+		$this->view->assign('testVariables', $this->createTestVariables());
+	}
+
+	/**
+	 * @return void
+	 */
+	public function allowedAction() {
+	}
+	public function deniedAction() {
+	}
+
+	protected function loginTestuser() {
+		$account = $this->objectManager->create('F3\FLOW3\Security\Account');
+		$roles = array(
+			$this->objectManager->create('F3\FLOW3\Security\Policy\Role', 'TestRole'),
+		);
+		$account->setAuthenticationProviderName('DefaultProvider');
+		$account->setRoles($roles);
+
+		$authenticationTokens = $this->securityContext->getAuthenticationTokensOfType('F3\FLOW3\Security\Authentication\Token\UsernamePassword');
+		if (count($authenticationTokens) === 1) {
+			$authenticationTokens[0]->setAccount($account);
+			$authenticationTokens[0]->setAuthenticationStatus(\F3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+		}
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function createTestVariables() {
 		$user1 = new User(1, 'Ingmar', 'Schlecht', TRUE);
 		$user2 = new User(3, 'Sebastian', 'Kurfürst', FALSE);
 		$user3 = new User(2, 'Robert', 'Lemke', TRUE);
-		$userDomainObject = $this->userRepository->getOne();
+		$userDomainObject = new \F3\Viewhelpertest\Domain\Model\User('Kasper', 'Skårhøj', TRUE, array('TYPO3', 'Snowboarding', 'Architecture'));
 		$testVariables = array(
 			'text' => 'this is some text with newlines' . chr(10) . 'and special characters: äöüß',
 			'array' => array('a', 'b', 'c', 'd', 'e'),
@@ -76,48 +111,16 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 			'userDomainObject' => $userDomainObject,
 			'date' => new \DateTime(),
 			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>',
+			'stdClass1' => new \stdClass(),
+			'stdClass2' => new \stdClass(),
+			'integer' => 1,
+			'float' => 1.1,
+			'string' => 'foo',
+			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>',
 			'boolean' => array('true' => TRUE, 'false' => FALSE),
 			'number' => array('zero' => 0, 'one' => 1, 'minusOne' => -1),
 		);
-		$this->view->assign('testVariables', $testVariables);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function setupAction() {
-		$this->userRepository->removeAll();
-
-		$user = $this->objectFactory->create('F3\Viewhelpertest\Domain\Model\User');
-		$user->setFirstName('Kasper');
-		$user->setLastName('Skårhøj');
-		$user->setNewsletter(TRUE);
-		$user->setInterests(array('TYPO3', 'Snowboarding', 'Architecture'));
-		$role = $this->objectFactory->create('F3\Viewhelpertest\Domain\Model\Role');
-		$role->setName('Friendly Ghost');
-		$user->setRole($role);
-		$this->userRepository->add($user);
-		$this->redirect('index', NULL, NULL, array('selectedPartials' => array('form')));
-	}
-
-	/**
-	 * @param \F3\Viewhelpertest\Domain\Model\User $user
-	 * @return void
-	 */
-	public function validateAction(\F3\Viewhelpertest\Domain\Model\User $user) {
-		var_dump($user);
-	}
-
-	/**
-	 * Save the updated user
-	 *
-	 * @param F3\Viewhelpertest\Domain\Model\User $user The user to save
-	 * @return void
-	 */
-	public function saveAction(\F3\Viewhelpertest\Domain\Model\User $user) {
-		$this->userRepository->update($user);
-		//return "Hallo";
-		$this->redirect('index');
+		return $testVariables;
 	}
 }
 
