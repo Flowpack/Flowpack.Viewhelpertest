@@ -1,3 +1,3 @@
 
 Viewhelpertest:
-  includeViewHelpers: [alias, base, cycle, debug, escape, flashMessages, for, form, form.hidden, form.select, form.submit, form.textarea, form.textbox, form.upload, format.crop, format.currency, format.date, format.nl2br, format.number, format.padding, format.printf, groupedFor, if, raw, link.action, link.email, link.external, section, security.ifAccess, security.ifAuthenticated, security.ifHasRole, uri.action, uri.email, uri.external, uri.resource]
+  includeViewHelpers: [alias, base, cycle, debug, escape, flashMessages, for, form, form.checkbox, form.hidden, form.select, form.submit, form.textarea, form.textbox, form.upload, format.crop, format.currency, format.date, format.nl2br, format.number, format.padding, format.printf, groupedFor, if, raw, link.action, link.email, link.external, section, security.ifAccess, security.ifAuthenticated, security.ifHasRole, uri.action, uri.email, uri.external, uri.resource]

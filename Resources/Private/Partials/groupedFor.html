@@ -1,12 +1,5 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<!-- The following code is missing in the below regular expression at the end:
-
-\n\s*<ul>\n\s*<li>Fruit #1: orange<\/li>\n\s*<li>Fruit #4: lemon<\/li>\n\s*<\/ul>\n\s*<\/li>\n\s*<li>\n\s*<strong>core:<\/strong>\n\s*<ul>\n\s*<li>Fruit #3: pear<\/li>\n\s*<li>Fruit #6: apple<\/li>\n\s*<\/ul>\n\s*<\/li>\n\s*<\/ul>
-
-However, adding this code will crash PHP / PCRE under some circumstances...
-
--->
-<vht:highlight expectedRegex="/<ul>\n\s*<li>\n\s*<strong>berry:<\/strong>\n\s*<ul>\n\s*<li>Fruit #0: blackberry<\/li>\n\s*<li>Fruit #2: cranberry<\/li>\n\s*<li>Fruit #5: grape<\/li>\n\s*<\/ul>\n\s*<\/li>\n\s*<li>\n\s*<strong>citrus fruit:<\/strong>/"><![CDATA[
+<vht:highlight expected="<ul>\n\t\t\n\t\t\t<li>\n\t\t\t\t<strong>berry:</strong>\n\t\t\t\t<ul>\n\t\t\t\t\t\n\t\t\t\t\t\t<li>Fruit #0: blackberry</li>\n\t\t\t\t\t\n\t\t\t\t\t\t<li>Fruit #2: cranberry</li>\n\t\t\t\t\t\n\t\t\t\t\t\t<li>Fruit #5: grape</li>\n\t\t\t\t\t\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t\n\t\t\t<li>\n\t\t\t\t<strong>citrus fruit:</strong>\n\t\t\t\t<ul>\n\t\t\t\t\t\n\t\t\t\t\t\t<li>Fruit #1: orange</li>\n\t\t\t\t\t\n\t\t\t\t\t\t<li>Fruit #4: lemon</li>\n\t\t\t\t\t\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t\n\t\t\t<li>\n\t\t\t\t<strong>core:</strong>\n\t\t\t\t<ul>\n\t\t\t\t\t\n\t\t\t\t\t\t<li>Fruit #3: pear</li>\n\t\t\t\t\t\n\t\t\t\t\t\t<li>Fruit #6: apple</li>\n\t\t\t\t\t\n\t\t\t\t</ul>\n\t\t\t</li>\n\t\t\n\t</ul>"><![CDATA[
 	<ul>
 		<f:groupedFor each="{testVariables.fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType">
 			<li>

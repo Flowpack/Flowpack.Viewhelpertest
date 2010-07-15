@@ -6,10 +6,13 @@ If a boolean value is given, that is directly used.
 	<f:if condition="{testVariables.boolean.true}">satisfied condition!</f:if>
 ]]></vht:highlight>
 
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	{f:if(condition: testVariables.boolean.true, then: 'satisfied condition!')}
+]]></vht:highlight>
+
 <vht:highlight expected=""><![CDATA[
 	<f:if condition="{testVariables.boolean.false}">should not be displayed!</f:if>
 ]]></vht:highlight>
-
 
 <h2>Strings</h2>
 <vht:highlight expected="satisfied condition!"><![CDATA[

@@ -1,7 +1,8 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expectedRegex="/<form action=&quot;viewhelpertest\/standard\/&quot; method=&quot;post&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>.*/"><![CDATA[
+<vht:highlight expectedRegex="/^<form action=&quot;viewhelpertest\/standard\/&quot; method=&quot;post&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[subpackageKey\]&quot; value=&quot;&quot; \/>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[controllerName\]&quot; value=&quot;Standard&quot; \/>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[actionName\]&quot; value=&quot;index&quot; \/>\n\s*<input type=&quot;hidden&quot; name=&quot;__hmac&quot; value=&quot;[^&quot;]+&quot; \/><\/form>$/"><![CDATA[
 	<f:form />
 ]]></vht:highlight>
+
 <!-- In the below regular expression, the following code is missing at the end:
 
 <input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>
@@ -11,40 +12,40 @@ However, we cannot include it as PCRE provokes some fatal error then under some 
 	<f:form enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="someController" package="somePackage" subpackage="someSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/<form title=&quot;someTitleAttribute&quot; method=&quot;get&quot; name=&quot;foo&quot; id=&quot;bar&quot; action=&quot;viewhelpertest\/standard\/foo&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>.*/"><![CDATA[
+<vht:highlight expectedRegex="/^<form title=&quot;someTitleAttribute&quot; method=&quot;get&quot; name=&quot;foo&quot; id=&quot;bar&quot; action=&quot;viewhelpertest\/standard\/foo&quot;>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[subpackageKey\]&quot; value=&quot;&quot; \/>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[controllerName\]&quot; value=&quot;Standard&quot; \/>\n\s*<input type=&quot;hidden&quot; name=&quot;__referrer\[actionName\]&quot; value=&quot;index&quot; \/>\n\s*<input type=&quot;hidden&quot; name=&quot;__hmac&quot; value=&quot;[^&quot;]+&quot; \/><\/form>$/"><![CDATA[
 	<f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'someTitleAttribute'}" method="GET" />
 ]]></vht:highlight>
 
 <h1>form (bound to object)</h1>
 <f:form name="someUser" object="{testVariables.userDomainObject}">
-	<vht:highlight><![CDATA[
+	<vht:highlight expectedRegex="/^<input type=&quot;text&quot; name=&quot;someUser\[firstName\]&quot; value=&quot;Kasper&quot; \/>$/"><![CDATA[
 		<f:form.textbox property="firstName" />
 	]]></vht:highlight>
 
-	<vht:highlight><![CDATA[
+	<vht:highlight expectedRegex="/^<input type=&quot;text&quot; name=&quot;someUser\[lastName\]&quot; value=&quot;Skårhøj&quot; \/>$/"><![CDATA[
 		<f:form.textbox property="lastName" />
 	]]></vht:highlight>
 
-	<vht:highlight><![CDATA[
+	<vht:highlight expectedRegex="/^<input type=&quot;checkbox&quot; name=&quot;someUser\[newsletter\]&quot; value=&quot;1&quot; checked=&quot;checked&quot; \/>$/"><![CDATA[
 		<f:form.checkbox property="newsletter" value="1" />
 	]]></vht:highlight>
 
-	<vht:highlight><![CDATA[
+	<vht:highlight expectedRegex="/^<input type=&quot;checkbox&quot; name=&quot;someUser\[newsletter\]&quot; value=&quot;1&quot; \/>$/"><![CDATA[
 		<f:form.checkbox property="newsletter" value="1" checked="false" />
 	]]></vht:highlight>
 
-	<vht:highlight><![CDATA[
+	<vht:highlight expectedRegex="/^<label><input type=&quot;checkbox&quot; name=&quot;someUser\[interests\]\[\]&quot; value=&quot;TYPO3&quot; checked=&quot;checked&quot; \/> TYPO3<\/label><label><input type=&quot;checkbox&quot; name=&quot;someUser\[interests\]\[\]&quot; value=&quot;Snowboarding&quot; checked=&quot;checked&quot; \/> Snowboarding<\/label><label><input type=&quot;checkbox&quot; name=&quot;someUser\[interests\]\[\]&quot; value=&quot;Commerce&quot; \/> Commerce<\/label>$/"><![CDATA[
 		<label><f:form.checkbox property="interests" value="TYPO3" /> TYPO3</label><label><f:form.checkbox property="interests" value="Snowboarding" /> Snowboarding</label><label><f:form.checkbox property="interests" value="Commerce" /> Commerce</label>
 	]]></vht:highlight>
 
-	<vht:highlight><![CDATA[
-		<label><f:form.radio property="newsletter" value="TYPO3" /> YES</label><label><f:form.radio property="newsletter" value="0" /> NO</label>
+	<vht:highlight expectedRegex="/^<label><input type=&quot;radio&quot; name=&quot;someUser\[newsletter\]&quot; value=&quot;1&quot; checked=&quot;checked&quot; \/> YES<\/label><label><input type=&quot;radio&quot; name=&quot;someUser\[newsletter\]&quot; value=&quot;0&quot; \/> NO<\/label>$/"><![CDATA[
+		<label><f:form.radio property="newsletter" value="1" /> YES</label><label><f:form.radio property="newsletter" value="0" /> NO</label>
 	]]></vht:highlight>
 </f:form>
 
-<h1>form (bound to object)</h1>
+<h1>form (fields in partial)</h1>
 <p>It is also possible to put the form fields in a partial. This allows for greater re-use between different forms. In the textboxes below, you should find the strings "Ingmar" and "Schlecht":</p>
-<vht:highlight><![CDATA[
+<vht:highlight expectedRegex="/<dt>First name:<\/dt>\n\s*<dd><input type=&quot;text&quot; name=&quot;user1\[firstName\]&quot; value=&quot;Ingmar&quot; \/><\/dd>\n\s*<dt>Last name:<\/dt>\n\s*<dd><input type=&quot;text&quot; name=&quot;user1\[lastName\]&quot; value=&quot;Schlecht&quot; \/><\/dd>/"><![CDATA[
 	<f:form name="user1" object="{testVariables.user1}">
 	<f:render partial="form._name" />
 </f:form>

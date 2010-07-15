@@ -1,4 +1,8 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight><![CDATA[
+<vht:highlight expected="<input type=&quot;text&quot; name=&quot;myTextBox&quot; value=&quot;&quot; />"><![CDATA[
+	<f:form.textbox name="myTextBox" />
+]]></vht:highlight>
+
+<vht:highlight expected="<input type=&quot;text&quot; name=&quot;myTextBox&quot; value=&quot;other value&quot; />"><![CDATA[
 	<f:form.textbox value="other value" name="myTextBox"><input type="text" value="###dummy###" /></f:form.textbox>
 ]]></vht:highlight>

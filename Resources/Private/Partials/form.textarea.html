@@ -1,8 +1,8 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight><![CDATA[
-	<f:form.textarea value="{testVariables.text}" name="myTextArea" rows="5" cols="10"><textarea>###dummy###</textarea></f:form.textarea>
+<vht:highlight expected="<textarea rows=&quot;4&quot; cols=&quot;18&quot; name=&quot;&quot;>Some 'Test'</textarea>"><![CDATA[
+	<f:form.textarea value="Some 'Test'" rows="4" cols="18" />
 ]]></vht:highlight>
 
-<vht:highlight><![CDATA[
-	<f:form.textarea value="Some 'Test'" rows="4" cols="18" />
+<vht:highlight expected="<textarea rows=&quot;5&quot; cols=&quot;10&quot; name=&quot;myTextArea&quot;>this is some text with newlines\nand special characters: äöüß</textarea>"><![CDATA[
+	<f:form.textarea value="{testVariables.text}" name="myTextArea" rows="5" cols="10"><textarea>###dummy###</textarea></f:form.textarea>
 ]]></vht:highlight>

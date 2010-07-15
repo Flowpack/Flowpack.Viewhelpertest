@@ -1,4 +1,8 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight><![CDATA[
-	<f:form.hidden name="hiddenName" value="hiddenValue">HIDDEN</f:form.hidden>
+<vht:highlight expected="<input type=&quot;hidden&quot; name=&quot;hiddenName&quot; value=&quot;hiddenValue&quot; />"><![CDATA[
+	<f:form.hidden name="hiddenName" value="hiddenValue" />
+]]></vht:highlight>
+
+<vht:highlight expected="<input title=&quot;foo&quot; type=&quot;hidden&quot; name=&quot;hiddenName&quot; value=&quot;hiddenValue&quot; />"><![CDATA[
+	<f:form.hidden title="foo" name="hiddenName" value="hiddenValue">Hidden Field preview</f:form.hidden>
 ]]></vht:highlight>

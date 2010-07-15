@@ -1,4 +1,8 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight><![CDATA[
-	<f:form.upload name="myName"><input type="file" /></f:form.upload>
+<vht:highlight expected="<input type=&quot;file&quot; name=&quot;myName&quot; />"><![CDATA[
+	<f:form.upload name="myName" />
+]]></vht:highlight>
+
+<vht:highlight expected="<input disabled=&quot;disabled&quot; type=&quot;file&quot; name=&quot;myName&quot; />"><![CDATA[
+	<f:form.upload name="myName" disabled="disabled"><input type="file" /></f:form.upload>
 ]]></vht:highlight>

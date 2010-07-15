@@ -55,16 +55,6 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 	}
 
 	/**
-	 * Sets the rendering context which needs to be passed on to child nodes
-	 *
-	 * @param F3\Fluid\Core\Rendering\RenderingContextInterface $renderingContext the renderingcontext to use
-	 */
-	public function setRenderingContext(\F3\Fluid\Core\Rendering\RenderingContextInterface $renderingContext) {
-		$this->renderingContext = $renderingContext;
-		parent::setRenderingContext($renderingContext);
-	}
-
-	/**
 	 * Inject the template parser
 	 *
 	 * @param \F3\Fluid\Core\Parser\TemplateParser $templateParser The template parser
@@ -87,14 +77,21 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 	public function render($expected = NULL, $expectedRegex = NULL) {
 		$source = trim($this->renderChildren());
 		$parsedTemplate = $this->templateParser->parse($source);
-		$renderedSource = $parsedTemplate->render($this->renderingContext);
+		$renderedSource = $parsedTemplate->render($this->getRenderingContext());
 		$title = '';
 		$className = '';
+		if ($expected !== NULL) {
+			$replacement = array(
+				'\n' => "\n",
+				'\t' => "\t"
+			);
+			$expected = strtr($expected, $replacement);
+		}
 		if ($expected !== NULL && trim($renderedSource) === html_entity_decode($expected)) {
-			$title = 'successfully compared the rendered result with &quot;' . htmlspecialchars($expected) . '&quot;';
+			$title = 'successfully compared the rendered result with &quot;' . htmlspecialchars(html_entity_decode($expected)) . '&quot;';
 			$className = 'success';
 		} elseif ($expectedRegex !== NULL && preg_match(html_entity_decode($expectedRegex), $renderedSource) === 1) {
-			$title = 'successfully compared the rendered result with RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
+			$title = 'successfully compared the rendered result with RegEx &quot;' . htmlspecialchars(html_entity_decode($expectedRegex)) . '&quot;';
 			$className = 'success';
 		} elseif ($expected === NULL && $expectedRegex === NULL) {
 			$className = 'default';
