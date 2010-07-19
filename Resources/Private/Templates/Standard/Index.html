@@ -4,7 +4,7 @@
 		<f:if condition="{selectedPartials}">
 			<f:for each="{selectedPartials}" as="partial">
 				<div id="f-fluid-{partial}">
-					<h1>{partial}</h1>
+					<h1><f:link.action arguments="{selectedPartials: {0: partial}}">{partial}</f:link.action></h1>
 					<f:render partial="{partial}" arguments="{settings: settings, testVariables: testVariables}" />
 				</div>
 			</f:for>

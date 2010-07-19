@@ -1,13 +1,13 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expectedRegex="/\d\d\d\d-\d\d-\d\d/"><![CDATA[
+<vht:highlight expectedRegex="/^\d\d\d\d-\d\d-\d\d$/"><![CDATA[
 	<f:format.date>{testVariables.date}</f:format.date>
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/\d\d:\d\d/"><![CDATA[
+<vht:highlight expectedRegex="/^\d\d:\d\d$/"><![CDATA[
 	<f:format.date format="H:i">{testVariables.date}</f:format.date>
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/\d\d.\d\d.\d\d\d\d - \d\d:\d\d:\d\d/"><![CDATA[
+<vht:highlight expectedRegex="/^\d\d.\d\d.\d\d\d\d - \d\d:\d\d:\d\d$/"><![CDATA[
 	<f:format.date format="d.m.Y - H:i:s">+1 week 2 days 4 hours 2 seconds</f:format.date>
 ]]></vht:highlight>
 
