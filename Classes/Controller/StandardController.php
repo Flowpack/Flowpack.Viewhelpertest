@@ -93,10 +93,13 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	 * @return array
 	 */
 	protected function createTestVariables() {
-		$user1 = new User(1, 'Ingmar', 'Schlecht', TRUE);
-		$user2 = new User(3, 'Sebastian', 'Kurfürst', FALSE);
-		$user3 = new User(2, 'Robert', 'Lemke', TRUE);
-		$userDomainObject = new \F3\Viewhelpertest\Domain\Model\User('Kasper', 'Skårhøj', TRUE, array('TYPO3', 'Snowboarding', 'Architecture'));
+		$user1 = new \F3\Viewhelpertest\Domain\Model\User(1, 'Ingmar', 'Schlecht', TRUE);
+		$user2 = new \F3\Viewhelpertest\Domain\Model\User(2, 'Sebastian', 'Kurfürst', FALSE);
+		$user3 = new \F3\Viewhelpertest\Domain\Model\User(3, 'Robert', 'Lemke', TRUE);
+		$user4 = new \F3\Viewhelpertest\Domain\Model\User(4, 'Kasper', 'Skårhøj', TRUE, array('TYPO3', 'Snowboarding', 'Architecture'));
+		$invoice1 = new \F3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('1980-12-13'), $user1);
+		$invoice2 = new \F3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-01'), $user2);
+		$invoice3 = new \F3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-04'), $user1);
 		$testVariables = array(
 			'text' => 'this is some text with newlines' . chr(10) . 'and special characters: äöüß',
 			'array' => array('a', 'b', 'c', 'd', 'e'),
@@ -107,8 +110,8 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 			'user1' => $user1,
 			'user2' => $user2,
 			'user3' => $user3,
-			'users' => array($user1, $user2, $user3),
-			'userDomainObject' => $userDomainObject,
+			'user4' => $user4,
+			'users' => array($user1, $user2, $user3, $user4),
 			'date' => new \DateTime(),
 			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>',
 			'stdClass1' => new \stdClass(),
@@ -119,37 +122,9 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>',
 			'boolean' => array('true' => TRUE, 'false' => FALSE),
 			'number' => array('zero' => 0, 'one' => 1, 'minusOne' => -1),
+			'invoices' => new \ArrayObject(array('invoice1' => $invoice1, 'invoice2' => $invoice2, 'invoice3' => $invoice3)),
 		);
 		return $testVariables;
-	}
-}
-
-class User {
-	protected $id;
-	protected $firstName;
-	protected $lastName;
-	protected $newsletter;
-
-	public function __construct($id, $firstName, $lastName, $newsletter) {
-		$this->id = $id;
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-		$this->newsletter = $newsletter;
-	}
-	public function getId() {
-		return $this->id;
-	}
-	public function getFirstName() {
-		return $this->firstName;
-	}
-	public function getLastName() {
-		return $this->lastName;
-	}
-	public function getNewsletter() {
-		return $this->newsletter;
-	}
-	public function __toString() {
-		return $this->firstName . ' ' . $this->lastName;
 	}
 }
 ?>

@@ -1,0 +1,8 @@
+{namespace vht=F3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="5"><![CDATA[
+	<f:count subject="{testVariables.array}" />
+]]></vht:highlight>
+
+<vht:highlight expected="4"><![CDATA[
+	{f:count(subject: testVariables.users)}
+]]></vht:highlight>

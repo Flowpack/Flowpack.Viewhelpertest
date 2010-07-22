@@ -16,12 +16,6 @@ namespace F3\Viewhelpertest\Domain\Model;
  *                                                                        */
 
 /**
- * @package Viewhelpertest
- * @subpackage Domain
- * @version $Id$
- */
-
-/**
  * A User
  *
  * @package Viewhelpertest
@@ -33,6 +27,11 @@ namespace F3\Viewhelpertest\Domain\Model;
  * @entity
  */
 class User {
+
+	/**
+	 * @var integer
+	 */
+	protected $id;
 
 	/**
 	 * @var string
@@ -55,19 +54,12 @@ class User {
 	protected $interests = array();
 
 	/**
-	 * @param string $firstName
-	 * @param string $lastName
-	 * @param boolean $newsletter
-	 * @param array $interests
+	 * @return integer
 	 */
-	public function __construct($firstName = '', $lastName = '', $newsletter = FALSE, array $interests = NULL) {
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-		$this->newsletter = (boolean)$newsletter;
-		if ($interests !== NULL) {
-			$this->interests = $interests;
-		}
+	public function getId() {
+		return $this->id;
 	}
+
 	/**
 	 * @param string $firstName
 	 * @return void
@@ -122,6 +114,30 @@ class User {
 	 */
 	public function getInterests() {
 		return $this->interests;
+	}
+
+	/**
+	 * @param integer $id
+	 * @param string $firstName
+	 * @param string $lastName
+	 * @param boolean $newsletter
+	 * @param array $interests
+	 */
+	public function __construct($id, $firstName = '', $lastName = '', $newsletter = FALSE, array $interests = NULL) {
+		$this->id = $id;
+		$this->firstName = $firstName;
+		$this->lastName = $lastName;
+		$this->newsletter = (boolean)$newsletter;
+		if ($interests !== NULL) {
+			$this->interests = $interests;
+		}
+	}
+
+	/**
+	 * @return string
+	 */
+	public function __toString() {
+		return sprintf('%s %s', $this->firstName, $this->lastName);
 	}
 }
 ?>

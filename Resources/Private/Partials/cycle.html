@@ -14,3 +14,22 @@
 	</f:for>
 </ul>
 ]]></vht:highlight>
+
+<vht:highlight expected="<ul>\n\t\n\t\t\n\t\t\t<li class=&quot;odd&quot;>\n\t\t\t\t<strong>Ingmar Schlecht:</strong>\n\t\t\t\t<ol>\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<li class=&quot;odd&quot;>invoice1 (1980-12-13)</li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<li class=&quot;even&quot;>invoice3 (2010-07-04)</li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t</ol>\n\t\t\t</li>\n\t\t\n\t\n\t\t\n\t\t\t<li class=&quot;even&quot;>\n\t\t\t\t<strong>Sebastian Kurfürst:</strong>\n\t\t\t\t<ol>\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<li class=&quot;odd&quot;>invoice2 (2010-07-01)</li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t</ol>\n\t\t\t</li>\n\t\t\n\t\n</ul>"><![CDATA[
+<ul>
+	<f:groupedFor each="{testVariables.invoices}" as="invoices" groupBy="customer" groupKey="customer">
+		<f:cycle values="{0: 'odd', 1: 'even'}" as="customerZebraClass">
+			<li class="{customerZebraClass}">
+				<strong>{customer.firstName} {customer.lastName}:</strong>
+				<ol>
+					<f:for each="{invoices}" as="invoice" key="invoiceTitle">
+						<f:cycle values="{0: 'odd', 1: 'even'}" as="invoiceZebraClass">
+							<li class="{invoiceZebraClass}">{invoiceTitle} ({invoice.date -> f:format.date(format: 'Y-m-d')})</li>
+						</f:cycle>
+					</f:for>
+				</ol>
+			</li>
+		</f:cycle>
+	</f:groupedFor>
+</ul>
+]]></vht:highlight>

@@ -3,10 +3,18 @@
 	<f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo">{foo}</f:for>
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/^<ul>\n\s*<li>fruit1: apple<\/li>\n\s*<li>fruit2: pear<\/li>\n\s*<li>fruit3: banana<\/li>\n\s*<li>fruit4: cherry<\/li>\n\s*<\/ul>$/"><![CDATA[
-	<ul>
-		<f:for each="{fruit1: 'apple', fruit2: 'pear', fruit3: 'banana', fruit4: 'cherry'}" as="fruit" key="label">
-			<li>{label}: {fruit}</li>
-		</f:for>
-	</ul>
+<vht:highlight expected="<ul>\n\t\n\t\t<li>fruit1: apple</li>\n\t\n\t\t<li>fruit2: pear</li>\n\t\n\t\t<li>fruit3: banana</li>\n\t\n\t\t<li>fruit4: cherry</li>\n\t\n</ul>"><![CDATA[
+<ul>
+	<f:for each="{fruit1: 'apple', fruit2: 'pear', fruit3: 'banana', fruit4: 'cherry'}" as="fruit" key="label">
+		<li>{label}: {fruit}</li>
+	</f:for>
+</ul>
+]]></vht:highlight>
+
+<vht:highlight expected="<ul>\n\t\n\t\t<li>invoice1 (Schlecht, Ingmar)</li>\n\t\n\t\t<li>invoice2 (Kurfürst, Sebastian)</li>\n\t\n\t\t<li>invoice3 (Schlecht, Ingmar)</li>\n\t\n</ul>"><![CDATA[
+<ul>
+	<f:for each="{testVariables.invoices}" as="invoice" key="invoiceTitle">
+		<li>{invoiceTitle} ({invoice.customer.lastName}, {invoice.customer.firstName})</li>
+	</f:for>
+</ul>
 ]]></vht:highlight>
