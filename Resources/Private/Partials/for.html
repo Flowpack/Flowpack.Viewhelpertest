@@ -18,3 +18,19 @@
 	</f:for>
 </ul>
 ]]></vht:highlight>
+
+<vht:highlight expected="<ul>\n\t\n\t\t<li>\n\t\t\tIndex: 0\n\t\t\tCycle: 1\n\t\t\tTotal: 4\n\t\t\tEven:  no\n\t\t\tOdd:   yes\n\t\t\tFirst: yes\n\t\t\tLast:  no\n\t\t</li>\n\t\n\t\t<li>\n\t\t\tIndex: 1\n\t\t\tCycle: 2\n\t\t\tTotal: 4\n\t\t\tEven:  yes\n\t\t\tOdd:   no\n\t\t\tFirst: no\n\t\t\tLast:  no\n\t\t</li>\n\t\n\t\t<li>\n\t\t\tIndex: 2\n\t\t\tCycle: 3\n\t\t\tTotal: 4\n\t\t\tEven:  no\n\t\t\tOdd:   yes\n\t\t\tFirst: no\n\t\t\tLast:  no\n\t\t</li>\n\t\n\t\t<li>\n\t\t\tIndex: 3\n\t\t\tCycle: 4\n\t\t\tTotal: 4\n\t\t\tEven:  yes\n\t\t\tOdd:   no\n\t\t\tFirst: no\n\t\t\tLast:  yes\n\t\t</li>\n\t\n</ul>"><![CDATA[
+<ul>
+	<f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo" iteration="fooIterator">
+		<li>
+			Index: {fooIterator.index}
+			Cycle: {fooIterator.cycle}
+			Total: {fooIterator.total}
+			Even:  {f:if(condition: fooIterator.isEven, then: 'yes', else: 'no')}
+			Odd:   {f:if(condition: fooIterator.isOdd, then: 'yes', else: 'no')}
+			First: {f:if(condition: fooIterator.isFirst, then: 'yes', else: 'no')}
+			Last:  {f:if(condition: fooIterator.isLast, then: 'yes', else: 'no')}
+		</li>
+	</f:for>
+</ul>
+]]></vht:highlight>

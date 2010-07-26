@@ -16,16 +16,8 @@ namespace F3\Viewhelpertest\Controller;
  *                                                                        */
 
 /**
- * @package Viewhelpertest
- * @subpackage Controller
- * @version $Id: StandardController.php 4596 2010-06-18 09:13:48Z sebastian $
- */
-/**
  * Viewhelpertest Default Controller
  *
- * @package Viewhelpertest
- * @subpackage Controller
- * @version $Id: StandardController.php 4596 2010-06-18 09:13:48Z sebastian $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class RenderController extends \F3\FLOW3\MVC\Controller\ActionController {

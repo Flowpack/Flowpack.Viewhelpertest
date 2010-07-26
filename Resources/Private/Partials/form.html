@@ -47,6 +47,13 @@ However, we cannot include it as PCRE provokes some fatal error then under some 
 	]]></vht:highlight>
 </f:form>
 
+<p>&quot;objectName&quot; argument overrules &quot;name&quot; attribute:</p>
+<f:form name="formName" objectName="someUser" object="{testVariables.user4}">
+	<vht:highlight expected="<input type=&quot;text&quot; name=&quot;someUser[firstName]&quot; value=&quot;Kasper&quot; />"><![CDATA[
+		<f:form.textbox property="firstName" />
+	]]></vht:highlight>
+</f:form>
+
 <h1>form (fields in partial)</h1>
 <p>It is also possible to put the form fields in a partial. This allows for greater re-use between different forms. In the textboxes below, you should find the strings "Ingmar" and "Schlecht":</p>
 <vht:highlight expectedRegex="/<dt>First name:<\/dt>\n\s*<dd><input type=&quot;text&quot; name=&quot;user1\[firstName\]&quot; value=&quot;Ingmar&quot; \/><\/dd>\n\s*<dt>Last name:<\/dt>\n\s*<dd><input type=&quot;text&quot; name=&quot;user1\[lastName\]&quot; value=&quot;Schlecht&quot; \/><\/dd>/"><![CDATA[

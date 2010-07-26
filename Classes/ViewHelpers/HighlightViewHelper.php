@@ -23,8 +23,6 @@ namespace F3\Viewhelpertest\ViewHelpers;
  *                                                                        */
 
 /**
- *
- * @version $Id$
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @api
  * @scope prototype
@@ -36,11 +34,6 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 	 * @var array
 	 */
 	protected $childNodes = array();
-
-	/**
-	 * @var F3\Fluid\Core\Rendering\RenderingContextInterface
-	 */
-	protected $renderingContext;
 
 	/**
 	 * Setter for ChildNodes - as defined in ChildNodeAccessInterface
@@ -55,20 +48,6 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 	}
 
 	/**
-	 * Inject the template parser
-	 *
-	 * @param \F3\Fluid\Core\Parser\TemplateParser $templateParser The template parser
-	 * @return void
-	 * @author Bastian Waidelich <bastian@typo3.org>
-	 */
-	public function injectTemplateParser(\F3\Fluid\Core\Parser\TemplateParser $templateParser) {
-		$this->templateParser = $templateParser;
-	}
-
-	//PLACEHOLDER
-	// Here, the backporter can insert a constructor method, which is needed for Fluid v4.
-
-	/**
 	 * @param string $expected
 	 * @param string $expectedRegex
 	 * @return string
@@ -76,7 +55,8 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 	 */
 	public function render($expected = NULL, $expectedRegex = NULL) {
 		$source = trim($this->renderChildren());
-		$parsedTemplate = $this->templateParser->parse($source);
+		$templateParser = $this->viewHelperVariableContainer->getView()->getTemplateParser();
+		$parsedTemplate = $templateParser->parse($source);
 		$renderedSource = $parsedTemplate->render($this->getRenderingContext());
 		$title = '';
 		$className = '';

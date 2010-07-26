@@ -16,16 +16,8 @@ namespace F3\Viewhelpertest\Controller;
  *                                                                        */
 
 /**
- * @package Viewhelpertest
- * @subpackage Controller
- * @version $Id$
- */
-/**
  * Viewhelpertest Default Controller
  *
- * @package Viewhelpertest
- * @subpackage Controller
- * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
@@ -101,7 +93,7 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 		$invoice2 = new \F3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-01'), $user2);
 		$invoice3 = new \F3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-04'), $user1);
 		$testVariables = array(
-			'text' => 'this is some text with newlines' . chr(10) . 'and special characters: äöüß',
+			'text' => 'this is some text with newlines' . chr(10) . 'and special characters: äöüß <script>alert(\'this should never be executed!!\')</script>',
 			'array' => array('a', 'b', 'c', 'd', 'e'),
 			'fruits' => array(array('name' => 'blackberry', 'type' => 'berry'), array('name' => 'orange', 'type' => 'citrus fruit'), array('name' => 'cranberry', 'type' => 'berry'), array('name' => 'pear', 'type' => 'core'), array('name' => 'lemon', 'type' => 'citrus fruit'), array('name' => 'grape', 'type' => 'berry'), array('name' => 'apple', 'type' => 'core')),
 			'emptyArray' => array(),
