@@ -1,12 +1,21 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expected="<input type=&quot;hidden&quot; name=&quot;foo&quot; value=&quot;&quot; /><input type=&quot;checkbox&quot; name=&quot;foo&quot; value=&quot;Bar&quot; />"><![CDATA[
+<vht:expected>
+	<input type="hidden" name="foo" value="" /><input type="checkbox" name="foo" value="Bar" />
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form.checkbox name="foo" value="Bar" />
 ]]></vht:highlight>
 
-<vht:highlight expected="<input type=&quot;hidden&quot; name=&quot;bars&quot; value=&quot;&quot; /><input type=&quot;checkbox&quot; name=&quot;bars[]&quot; value=&quot;Baz&quot; />"><![CDATA[
+<vht:expected>
+	<input type="hidden" name="bars" value="" /><input type="checkbox" name="bars[]" value="Baz" />
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form.checkbox name="bars[]" value="Baz" />
 ]]></vht:highlight>
 
-<vht:highlight expected="<input disabled=&quot;disabled&quot; type=&quot;checkbox&quot; name=&quot;foo&quot; value=&quot;Bar&quot; checked=&quot;checked&quot; />"><![CDATA[
+<vht:expected>
+	<input disabled="disabled" type="checkbox" name="foo" value="Bar" checked="checked" />
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form.checkbox name="foo" value="Bar" checked="true" disabled="disabled">Checkbox Preview</f:form.checkbox>
 ]]></vht:highlight>

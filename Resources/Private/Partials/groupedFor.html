@@ -1,5 +1,32 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expected="<ul>\n\t\n\t\t<li>\n\t\t\t<strong>berry:</strong>\n\t\t\t<ul>\n\t\t\t\t\n\t\t\t\t\t<li>Fruit #0: blackberry</li>\n\t\t\t\t\n\t\t\t\t\t<li>Fruit #2: cranberry</li>\n\t\t\t\t\n\t\t\t\t\t<li>Fruit #5: grape</li>\n\t\t\t\t\n\t\t\t</ul>\n\t\t</li>\n\t\n\t\t<li>\n\t\t\t<strong>citrus fruit:</strong>\n\t\t\t<ul>\n\t\t\t\t\n\t\t\t\t\t<li>Fruit #1: orange</li>\n\t\t\t\t\n\t\t\t\t\t<li>Fruit #4: lemon</li>\n\t\t\t\t\n\t\t\t</ul>\n\t\t</li>\n\t\n\t\t<li>\n\t\t\t<strong>core:</strong>\n\t\t\t<ul>\n\t\t\t\t\n\t\t\t\t\t<li>Fruit #3: pear</li>\n\t\t\t\t\n\t\t\t\t\t<li>Fruit #6: apple</li>\n\t\t\t\t\n\t\t\t</ul>\n\t\t</li>\n\t\n</ul>"><![CDATA[
+<vht:expected regex="true">
+~<ul>
+\s*	<li>
+\s*		<strong>berry:</strong>
+\s*		<ul>
+\s*			<li>Fruit #0: blackberry</li>
+\s*			<li>Fruit #2: cranberry</li>
+\s*			<li>Fruit #5: grape</li>
+\s*	</ul>
+\s*	</li>
+\s*	<li>
+\s*		<strong>citrus fruit:</strong>
+\s*		<ul>
+\s*			<li>Fruit #1: orange</li>
+\s*			<li>Fruit #4: lemon</li>
+\s*		</ul>
+\s*	</li>
+\s*	<li>
+\s*		<strong>core:</strong>
+\s*		<ul>
+\s*			<li>Fruit #3: pear</li>
+\s*			<li>Fruit #6: apple</li>
+\s*		</ul>
+\s*	</li>
+\s*</ul>~
+</vht:expected>
+
+<vht:highlight><![CDATA[
 <ul>
 	<f:groupedFor each="{testVariables.fruits}" as="fruitsOfThisType" groupBy="type" groupKey="fruitType">
 		<li>
@@ -14,7 +41,25 @@
 </ul>
 ]]></vht:highlight>
 
-<vht:highlight expected="<ul>\n\t\n\t\t<li>\n\t\t\t<strong>Ingmar Schlecht:</strong>\n\t\t\t<ol>\n\t\t\t\t\n\t\t\t\t\t<li>invoice1 (1980-12-13)</li>\n\t\t\t\t\n\t\t\t\t\t<li>invoice3 (2010-07-04)</li>\n\t\t\t\t\n\t\t\t</ol>\n\t\t</li>\n\t\n\t\t<li>\n\t\t\t<strong>Sebastian Kurfürst:</strong>\n\t\t\t<ol>\n\t\t\t\t\n\t\t\t\t\t<li>invoice2 (2010-07-01)</li>\n\t\t\t\t\n\t\t\t</ol>\n\t\t</li>\n\t\n</ul>"><![CDATA[
+
+<vht:expected regex="true">
+~<ul>
+\s*	<li>
+\s*		<strong>Ingmar Schlecht:</strong>
+\s*		<ol>
+\s*			<li>invoice1 \(1980-12-13\)</li>
+\s*			<li>invoice3 \(2010-07-04\)</li>
+\s*		</ol>
+\s*	</li>
+\s*	<li>
+\s*		<strong>Sebastian Kurfürst:</strong>
+\s*		<ol>
+\s*			<li>invoice2 \(2010-07-01\)</li>
+\s*		</ol>
+\s*	</li>
+\s*</ul>~
+</vht:expected>
+<vht:highlight><![CDATA[
 <ul>
 	<f:groupedFor each="{testVariables.invoices}" as="invoices" groupBy="customer" groupKey="customer">
 		<li>

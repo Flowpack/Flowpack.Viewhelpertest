@@ -3,6 +3,9 @@
 	<f:link.action action="someAction">action link</f:link.action>
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/^<a href=&quot;.+\/othercontroller\/someaction\?foo=bar&amp;amp;tx_myextension_myplugin%5Baction%5D=overruled&amp;amp;baz=test&amp;amp;%40subpackage=mysubpackage&quot;>action link<\/a>$/"><![CDATA[
+<vht:expected regex="true">
+	#^<a href=".+/othercontroller/someaction\?foo=bar&amp;tx_myextension_myplugin%5Baction%5D=overruled&amp;baz=test&amp;%40subpackage=mysubpackage">action link</a>$#
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:link.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" additionalParams="{foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}}">action link</f:link.action>
 ]]></vht:highlight>

@@ -26,17 +26,20 @@
 <vht:expected regex="true">
 	/^<form enctype="multipart\/form-data" onreset="void\(0\)" onsubmit="void\(0\)" action="https?:\/\/(.*?)" method="post">\n<div style="display: none">\n<input type="hidden" name="__referrer\[packageKey\]" value="Viewhelpertest" \/>/
 </vht:expected>
-
 <vht:highlight><![CDATA[
 	<f:form enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="someController" package="somePackage" subpackage="someSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
 ]]></vht:highlight>
 
 
-<vht:highlight expectedRegex="/^<form title=&quot;someTitleAttribute&quot; method=&quot;get&quot; name=&quot;foo&quot; id=&quot;bar&quot; action=&quot;viewhelpertest\/standard\/foo&quot;>\n<div style=&quot;display: none&quot;>\n<input type=&quot;hidden&quot; name=&quot;__referrer\[packageKey\]&quot; value=&quot;Viewhelpertest&quot; \/>\n<input type=&quot;hidden&quot; name=&quot;__referrer\[subpackageKey\]&quot; value=&quot;&quot; \/>\n<input type=&quot;hidden&quot; name=&quot;__referrer\[controllerName\]&quot; value=&quot;Standard&quot; \/>\n<input type=&quot;hidden&quot; name=&quot;__referrer\[actionName\]&quot; value=&quot;index&quot; \/>\n<input type=&quot;hidden&quot; name=&quot;__hmac&quot; value=&quot;[^&quot;]+&quot; \/>\n<\/div>\n<\/form>$/"><![CDATA[
+<vht:expected regex="true">
+	/^<form title="someTitleAttribute" method="get" name="foo" id="bar" action="viewhelpertest\/standard\/foo">\n<div style="display: none">\n<input type="hidden" name="__referrer\[packageKey\]" value="Viewhelpertest" \/>\n<input type="hidden" name="__referrer\[subpackageKey\]" value="" \/>\n<input type="hidden" name="__referrer\[controllerName\]" value="Standard" \/>\n<input type="hidden" name="__referrer\[actionName\]" value="index" \/>\n<input type="hidden" name="__hmac" value="[^"]+" \/>\n<\/div>\n<\/form>$/
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form name="foo" action="foo" id="bar" additionalAttributes="{title: 'someTitleAttribute'}" method="GET" />
 ]]></vht:highlight>
 
 <h1>form (bound to object)</h1>
+
 <f:form name="someUser" object="{testVariables.user4}">
 	<vht:highlight expected="<input type=&quot;text&quot; name=&quot;someUser[firstName]&quot; value=&quot;Kasper&quot; />"><![CDATA[
 		<f:form.textbox property="firstName" />
@@ -46,19 +49,29 @@
 		<f:form.textbox property="lastName" />
 	]]></vht:highlight>
 
-	<vht:highlight expected="<input type=&quot;hidden&quot; name=&quot;someUser[newsletter]&quot; value=&quot;&quot; /><input type=&quot;checkbox&quot; name=&quot;someUser[newsletter]&quot; value=&quot;1&quot; checked=&quot;checked&quot; />"><![CDATA[
+	<vht:expected>
+		<input type="hidden" name="someUser[newsletter]" value="" /><input type="checkbox" name="someUser[newsletter]" value="1" checked="checked" />
+	</vht:expected>
+	<vht:highlight><![CDATA[
 		<f:form.checkbox property="newsletter" value="1" />
 	]]></vht:highlight>
+
 
 	<vht:highlight expected="<input type=&quot;checkbox&quot; name=&quot;someUser[newsletter]&quot; value=&quot;1&quot; />"><![CDATA[
 		<f:form.checkbox property="newsletter" value="1" checked="false" />
 	]]></vht:highlight>
 
-	<vht:highlight expected="<label><input type=&quot;hidden&quot; name=&quot;someUser[interests]&quot; value=&quot;&quot; /><input type=&quot;checkbox&quot; name=&quot;someUser[interests][]&quot; value=&quot;TYPO3&quot; checked=&quot;checked&quot; /> TYPO3</label><label><input type=&quot;checkbox&quot; name=&quot;someUser[interests][]&quot; value=&quot;Snowboarding&quot; checked=&quot;checked&quot; /> Snowboarding</label><label><input type=&quot;checkbox&quot; name=&quot;someUser[interests][]&quot; value=&quot;Commerce&quot; /> Commerce</label>"><![CDATA[
+	<vht:expected>
+		<label><input type="hidden" name="someUser[interests]" value="" /><input type="checkbox" name="someUser[interests][]" value="TYPO3" checked="checked" /> TYPO3</label><label><input type="checkbox" name="someUser[interests][]" value="Snowboarding" checked="checked" /> Snowboarding</label><label><input type="checkbox" name="someUser[interests][]" value="Commerce" /> Commerce</label>
+	</vht:expected>
+	<vht:highlight><![CDATA[
 		<label><f:form.checkbox property="interests" value="TYPO3" /> TYPO3</label><label><f:form.checkbox property="interests" value="Snowboarding" /> Snowboarding</label><label><f:form.checkbox property="interests" value="Commerce" /> Commerce</label>
 	]]></vht:highlight>
 
-	<vht:highlight expected="<label><input type=&quot;radio&quot; name=&quot;someUser[newsletter]&quot; value=&quot;1&quot; checked=&quot;checked&quot; /> YES</label><label><input type=&quot;radio&quot; name=&quot;someUser[newsletter]&quot; value=&quot;0&quot; /> NO</label>"><![CDATA[
+	<vht:expected>
+		<label><input type="radio" name="someUser[newsletter]" value="1" checked="checked" /> YES</label><label><input type="radio" name="someUser[newsletter]" value="0" /> NO</label>
+	</vht:expected>
+	<vht:highlight><![CDATA[
 		<label><f:form.radio property="newsletter" value="1" /> YES</label><label><f:form.radio property="newsletter" value="0" /> NO</label>
 	]]></vht:highlight>
 </f:form>
@@ -72,7 +85,10 @@
 
 <h1>form (fields in partial)</h1>
 <p>It is also possible to put the form fields in a partial. This allows for greater re-use between different forms. In the textboxes below, you should find the strings "Ingmar" and "Schlecht":</p>
-<vht:highlight expectedRegex="/<dt>First name:<\/dt>\n\s*<dd><input type=&quot;text&quot; name=&quot;user1\[firstName\]&quot; value=&quot;Ingmar&quot; \/><\/dd>\n\s*<dt>Last name:<\/dt>\n\s*<dd><input type=&quot;text&quot; name=&quot;user1\[lastName\]&quot; value=&quot;Schlecht&quot; \/><\/dd>/"><![CDATA[
+<vht:expected regex="true">
+	/<dt>First name:<\/dt>\n\s*<dd><input type="text" name="user1\[firstName\]" value="Ingmar" \/><\/dd>\n\s*<dt>Last name:<\/dt>\n\s*<dd><input type="text" name="user1\[lastName\]" value="Schlecht" \/><\/dd>/
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form name="user1" object="{testVariables.user1}">
 	<f:render partial="form._name" />
 </f:form>

@@ -1,19 +1,48 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expected="<input type=&quot;hidden&quot; name=&quot;mySelect&quot; value=&quot;&quot; /><select multiple=&quot;multiple&quot; size=&quot;5&quot; name=&quot;mySelect[]&quot;><option value=&quot;0&quot;>a</option>\n<option value=&quot;1&quot;>b</option>\n<option value=&quot;2&quot; selected=&quot;selected&quot;>c</option>\n<option value=&quot;3&quot; selected=&quot;selected&quot;>d</option>\n<option value=&quot;4&quot;>e</option>\n</select>"><![CDATA[
+<vht:expected>
+	<input type="hidden" name="mySelect" value="" /><select multiple="multiple" size="5" name="mySelect[]"><option value="0">a</option>
+<option value="1">b</option>
+<option value="2" selected="selected">c</option>
+<option value="3" selected="selected">d</option>
+<option value="4">e</option>
+</select>
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form.select value="{testVariables.selected}" name="mySelect" options="{testVariables.array}" multiple="multiple" size="5"><select><option>###dummy###</option></select></f:form.select>
 ]]></vht:highlight>
 
-<vht:highlight expected="<select name=&quot;mySelect2&quot;><option value=&quot;1&quot;>Schlecht</option>\n<option value=&quot;2&quot;>Kurfürst</option>\n<option value=&quot;3&quot; selected=&quot;selected&quot;>Lemke</option>\n<option value=&quot;4&quot;>Skårhøj</option>\n</select>"><![CDATA[
+<vht:expected>
+	<select name="mySelect2"><option value="1">Schlecht</option>
+<option value="2">Kurfürst</option>
+<option value="3" selected="selected">Lemke</option>
+<option value="4">Skårhøj</option>
+</select>
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form.select value="3" name="mySelect2" options="{testVariables.users}" optionValueField="id" optionLabelField="lastName"><select><option>###dummy###</option></select></f:form.select>
 ]]></vht:highlight>
 
-<vht:highlight expected="<input type=&quot;hidden&quot; name=&quot;mySelect3&quot; value=&quot;&quot; /><select multiple=&quot;multiple&quot; size=&quot;5&quot; name=&quot;mySelect3[]&quot;><option value=&quot;1&quot; selected=&quot;selected&quot;>Ingmar</option>\n<option value=&quot;2&quot;>Sebastian</option>\n<option value=&quot;3&quot;>Robert</option>\n<option value=&quot;4&quot; selected=&quot;selected&quot;>Kasper</option>\n</select>"><![CDATA[
+<vht:expected>
+	<input type="hidden" name="mySelect3" value="" /><select multiple="multiple" size="5" name="mySelect3[]"><option value="1" selected="selected">Ingmar</option>
+<option value="2">Sebastian</option>
+<option value="3">Robert</option>
+<option value="4" selected="selected">Kasper</option>
+</select>
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form.select value="{0:1, 1:4}" name="mySelect3" options="{testVariables.users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName">
 	[dummy]
 </f:form.select>
 ]]></vht:highlight>
 
-<vht:highlight expected="<input type=&quot;hidden&quot; name=&quot;mySelect4[prefix]&quot; value=&quot;&quot; /><select multiple=&quot;multiple&quot; size=&quot;5&quot; name=&quot;mySelect4[prefix][]&quot;><option value=&quot;1&quot; selected=&quot;selected&quot;>Ingmar</option>\n<option value=&quot;2&quot; selected=&quot;selected&quot;>Sebastian</option>\n<option value=&quot;3&quot; selected=&quot;selected&quot;>Robert</option>\n<option value=&quot;4&quot; selected=&quot;selected&quot;>Kasper</option>\n</select>"><![CDATA[
+<vht:expected>
+	<input type="hidden" name="mySelect4[prefix]" value="" /><select multiple="multiple" size="5" name="mySelect4[prefix][]"><option value="1" selected="selected">Ingmar</option>
+<option value="2" selected="selected">Sebastian</option>
+<option value="3" selected="selected">Robert</option>
+<option value="4" selected="selected">Kasper</option>
+</select>
+</vht:expected>
+<vht:highlight><![CDATA[
 	<f:form.select selectAllByDefault="true" name="mySelect4[prefix]" options="{testVariables.users}" multiple="multiple" size="5" optionValueField="id" optionLabelField="firstName">
 	[dummy]
 </f:form.select>
