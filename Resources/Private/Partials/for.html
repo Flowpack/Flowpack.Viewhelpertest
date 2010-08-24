@@ -3,7 +3,15 @@
 	<f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo">{foo}</f:for>
 ]]></vht:highlight>
 
-<vht:highlight expected="<ul>\n\t\n\t\t<li>fruit1: apple</li>\n\t\n\t\t<li>fruit2: pear</li>\n\t\n\t\t<li>fruit3: banana</li>\n\t\n\t\t<li>fruit4: cherry</li>\n\t\n</ul>"><![CDATA[
+<vht:expected regex="true">
+#^<ul>
+\s*	<li>fruit1: apple</li>
+\s*	<li>fruit2: pear</li>
+\s*	<li>fruit3: banana</li>
+\s*	<li>fruit4: cherry</li>
+\s*</ul>$#
+</vht:expected>
+<vht:highlight><![CDATA[
 <ul>
 	<f:for each="{fruit1: 'apple', fruit2: 'pear', fruit3: 'banana', fruit4: 'cherry'}" as="fruit" key="label">
 		<li>{label}: {fruit}</li>
@@ -11,7 +19,14 @@
 </ul>
 ]]></vht:highlight>
 
-<vht:highlight expected="<ul>\n\t\n\t\t<li>invoice1 (Schlecht, Ingmar)</li>\n\t\n\t\t<li>invoice2 (Kurfürst, Sebastian)</li>\n\t\n\t\t<li>invoice3 (Schlecht, Ingmar)</li>\n\t\n</ul>"><![CDATA[
+<vht:expected regex="true">
+#^<ul>
+\s*	<li>invoice1 \(Schlecht, Ingmar\)</li>
+\s*	<li>invoice2 \(Kurfürst, Sebastian\)</li>
+\s*	<li>invoice3 \(Schlecht, Ingmar\)</li>
+\s*</ul>$#
+</vht:expected>
+<vht:highlight><![CDATA[
 <ul>
 	<f:for each="{testVariables.invoices}" as="invoice" key="invoiceTitle">
 		<li>{invoiceTitle} ({invoice.customer.lastName}, {invoice.customer.firstName})</li>
@@ -19,7 +34,48 @@
 </ul>
 ]]></vht:highlight>
 
-<vht:highlight expected="<ul>\n\t\n\t\t<li>\n\t\t\tIndex: 0\n\t\t\tCycle: 1\n\t\t\tTotal: 4\n\t\t\tEven:  no\n\t\t\tOdd:   yes\n\t\t\tFirst: yes\n\t\t\tLast:  no\n\t\t</li>\n\t\n\t\t<li>\n\t\t\tIndex: 1\n\t\t\tCycle: 2\n\t\t\tTotal: 4\n\t\t\tEven:  yes\n\t\t\tOdd:   no\n\t\t\tFirst: no\n\t\t\tLast:  no\n\t\t</li>\n\t\n\t\t<li>\n\t\t\tIndex: 2\n\t\t\tCycle: 3\n\t\t\tTotal: 4\n\t\t\tEven:  no\n\t\t\tOdd:   yes\n\t\t\tFirst: no\n\t\t\tLast:  no\n\t\t</li>\n\t\n\t\t<li>\n\t\t\tIndex: 3\n\t\t\tCycle: 4\n\t\t\tTotal: 4\n\t\t\tEven:  yes\n\t\t\tOdd:   no\n\t\t\tFirst: no\n\t\t\tLast:  yes\n\t\t</li>\n\t\n</ul>"><![CDATA[
+
+<vht:expected regex="true">
+#^<ul>
+\s*	<li>
+\s*		Index: 0
+\s*		Cycle: 1
+\s*		Total: 4
+\s*		Even:  no
+\s*		Odd:   yes
+\s*		First: yes
+\s*		Last:  no
+\s*	</li>
+\s*	<li>
+\s*		Index: 1
+\s*		Cycle: 2
+\s*		Total: 4
+\s*		Even:  yes
+\s*		Odd:   no
+\s*		First: no
+\s*		Last:  no
+\s*	</li>
+\s*	<li>
+\s*		Index: 2
+\s*		Cycle: 3
+\s*		Total: 4
+\s*		Even:  no
+\s*		Odd:   yes
+\s*		First: no
+\s*		Last:  no
+\s*	</li>
+\s*	<li>
+\s*		Index: 3
+\s*		Cycle: 4
+\s*		Total: 4
+\s*		Even:  yes
+\s*		Odd:   no
+\s*		First: no
+\s*		Last:  yes
+\s*	</li>
+\s*</ul>$#
+</vht:expected>
+<vht:highlight><![CDATA[
 <ul>
 	<f:for each="{0:1, 1:2, 2:3, 3:4}" as="foo" iteration="fooIterator">
 		<li>

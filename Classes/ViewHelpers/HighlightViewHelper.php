@@ -66,24 +66,41 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 				'\t' => "\t"
 			);
 			$expected = strtr($expected, $replacement);
+			$expected = html_entity_decode($expected);
 		}
-		if ($expected !== NULL && trim($renderedSource) === html_entity_decode($expected)) {
-			$title = 'successfully compared the rendered result with &quot;' . htmlspecialchars(html_entity_decode($expected)) . '&quot;';
+		if ($expectedRegex !== NULL) {
+			$expectedRegex = html_entity_decode($expectedRegex);
+		}
+
+		if ($expected === NULL && $expectedRegex === NULL && $this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source')) {
+			$isRegex = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex');
+			if ($isRegex) {
+				$expectedRegex = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
+			} else {
+				$expected = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
+			}
+
+			$this->viewHelperVariableContainer->remove('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
+			$this->viewHelperVariableContainer->remove('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex');
+		}
+		if ($expected !== NULL && trim($renderedSource) === $expected) {
+			$title = 'successfully compared the rendered result with &quot;' . htmlspecialchars($expected) . '&quot;';
 			$className = 'success';
-		} elseif ($expectedRegex !== NULL && preg_match(html_entity_decode($expectedRegex), $renderedSource) === 1) {
-			$title = 'successfully compared the rendered result with RegEx &quot;' . htmlspecialchars(html_entity_decode($expectedRegex)) . '&quot;';
+		} elseif ($expectedRegex !== NULL && preg_match($expectedRegex, $renderedSource) === 1) {
+			$title = 'successfully compared the rendered result with RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
 			$className = 'success';
 		} elseif ($expected === NULL && $expectedRegex === NULL) {
 			$className = 'default';
 		} else {
 			$className = 'failure';
 			if ($expected !== NULL) {
-				$title = 'expected &quot;' . htmlspecialchars(html_entity_decode($expected)) . '&quot;';
+				$title = 'expected &quot;' . htmlspecialchars($expected) . '&quot;';
 			} else {
 				$title = 'expected RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
 			}
 		}
-		return '<div title="' . $title . '" class="' . $className . '">
+		return '<div class="' . $className . '">
+			<h3>' . $title . '</h3>
 			<h2>' . htmlspecialchars($source) . '</h2>
 			<div>' . $renderedSource . '</div>
 		</div>';
