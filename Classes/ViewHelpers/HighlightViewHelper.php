@@ -30,21 +30,28 @@ namespace F3\Viewhelpertest\ViewHelpers;
 class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper implements \F3\Fluid\Core\ViewHelper\Facets\ChildNodeAccessInterface {
 
 	/**
-	 * An array of \F3\Fluid\Core\Parser\SyntaxTree\AbstractNode
-	 * @var array
+	 * @var F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper
 	 */
-	protected $childNodes = array();
+	protected $templateView;
 
 	/**
-	 * Setter for ChildNodes - as defined in ChildNodeAccessInterface
-	 *
-	 * @param array $childNodes Child nodes of this syntax tree node
+	 * @param \F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView
 	 * @return void
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
-	 * @api
+	 */
+	public function injectTemplateView(\F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView) {
+		$this->templateView = $templateView;
+	}
+
+	/**
+	 * We only need to implement this method because we want to call $this->getRenderingContext(), and for that, we need
+	 * to implement ChildNodeAccessInterface, which in turn requires this method to exist.
+	 *
+	 * @param array $childNodes
+	 * @return void
+	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
 	public function setChildNodes(array $childNodes) {
-		$this->childNodes = $childNodes;
 	}
 
 	/**
@@ -52,12 +59,19 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 	 * @param string $expectedRegex
 	 * @return string
 	 * @author Bastian Waidelich <bastian@typo3.org>
+	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
 	public function render($expected = NULL, $expectedRegex = NULL) {
 		$source = trim($this->renderChildren());
-		$templateParser = $this->viewHelperVariableContainer->getView()->getTemplateParser();
-		$parsedTemplate = $templateParser->parse($source);
-		$renderedSource = $parsedTemplate->render($this->getRenderingContext());
+		$this->templateView->setTemplateSource($source);
+		$this->templateView->setControllerContext($this->getRenderingContext()->getControllerContext());
+		$this->templateView->setViewHelperVariableContainer($this->viewHelperVariableContainer);
+
+		$this->templateView->assign('testVariables', $this->templateVariableContainer->get('testVariables'));
+		$this->templateView->assign('settings', $this->templateVariableContainer->get('settings'));
+
+		$renderedSource = $this->templateView->render();
+
 		$title = '';
 		$className = '';
 		if ($expected !== NULL) {
