@@ -29,6 +29,16 @@ namespace F3\Viewhelpertest\Domain\Model;
 class Invoice {
 
 	/**
+	 * @identity
+	 * This ID is only for the ORM.
+	 *
+	 * @var integer
+	 * @Id
+	 * @GeneratedValue
+	 */
+	protected $id;
+
+	/**
 	 * @var \DateTime
 	 */
 	protected $date;

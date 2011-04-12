@@ -29,7 +29,11 @@ namespace F3\Viewhelpertest\Domain\Model;
 class User {
 
 	/**
+	 * @identity
+	 * This ID is only for the ORM.
+	 *
 	 * @var integer
+	 * @Id
 	 */
 	protected $id;
 
