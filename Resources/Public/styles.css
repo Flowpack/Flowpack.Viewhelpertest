@@ -1,3 +1,5 @@
+/** View Helper Tests **/
+
 .viewhelpertest {
 	margin: 20px;
 	padding: 0;
@@ -35,25 +37,6 @@
 .viewhelpertest li.even {
 	background: #eee;
 }
-
-.viewhelpertest .renderTest .explanation div {
-	float: left;
-	height: 20px;
-}
-.viewhelpertest .renderTest .layout {
-	background-color: #FFB5B5;
-	margin: 5px;
-	padding: 5px;
-}
-
-.viewhelpertest .renderTest .content {
-	background-color: #71C05D;
-	margin: 5px;
-	padding: 5px;
-}
-.viewhelpertest .renderTest .variableOutput {
-	font-weight: bold;
-}
 .viewhelpertest hr {
 	clear: both;
 }
@@ -68,4 +51,32 @@
 }
 .viewhelpertest .success h2 {
 	background: #dcffd0;
+}
+
+/** Rendering Tests **/
+.renderTest .explanation div {
+	float: left;
+	height: 20px;
+}
+.renderTest .layout {
+	background-color: #fff8c1;
+	margin: 5px;
+	padding: 5px;
+}
+
+.renderTest .content {
+	background-color: #ffd070;
+	margin: 5px;
+	padding: 5px;
+}
+.renderTest .variableOutput {
+	font-weight: bold;
+}
+
+.renderTest .variableOutput.expected-notEmpty {
+	background-color:#00eb00;
+}
+
+.renderTest .variableOutput.expected-empty {
+	background-color:#ff0000;
 }

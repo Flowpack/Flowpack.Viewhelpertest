@@ -35,15 +35,18 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	protected $securityContext;
 
 	/**
-	 * @param array $selectedPartials
+	 * @param string $selectedPartial
 	 * @return void
 	 */
-	public function indexAction(array $selectedPartials = array()) {
+	public function indexAction($selectedPartial = NULL) {
 		$allowedPartials = $this->settings['includeViewHelpers'];
-		if (isset($selectedPartials[0]) && strlen($selectedPartials[0]) === 0) {
+
+		if ($selectedPartial === 'all') {
 			$selectedPartials = $allowedPartials;
+		} elseif (in_array($selectedPartial, $allowedPartials)) {
+			$selectedPartials = array($selectedPartial);
 		} else {
-			$selectedPartials = array_intersect($allowedPartials, $selectedPartials);
+			$selectedPartials = array();
 		}
 		$this->view->assign('allowedPartials', $allowedPartials);
 		$this->view->assign('selectedPartials', $selectedPartials);
