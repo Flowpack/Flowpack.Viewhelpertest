@@ -116,7 +116,7 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 			'string' => 'foo',
 			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>',
 			'boolean' => array('true' => TRUE, 'false' => FALSE),
-			'number' => array('zero' => 0, 'one' => 1, 'minusOne' => -1),
+			'number' => array('zero' => 0, 'one' => 1, 'minusOne' => -1, 'onePointOne' => 1.1, 'minusOnePointOne' => -1.1),
 			'invoices' => new \ArrayObject(array('invoice1' => $invoice1, 'invoice2' => $invoice2, 'invoice3' => $invoice3)),
 		);
 		return $testVariables;

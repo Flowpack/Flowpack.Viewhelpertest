@@ -1,4 +1,6 @@
-/** View Helper Tests **/
+/*******************************
+ *      View Helper Tests      *
+ *******************************/
 
 .viewhelpertest {
 	margin: 20px;
@@ -8,11 +10,13 @@
 	font: 11px arial;
 }
 
+/* Styling of ViewHelper name headline */
 .viewhelpertest h1 {
 	margin: 10px 0 0 0;
 	padding: 5px 0 0 0;
-	border-top: 1px dotted #ccc;
-	font: 19px arial;
+	border-top: 5px dotted #ccc;
+	font: 30px arial;
+	font-weight: bold
 }
 .viewhelpertest h1 a {
 	color: #000;
@@ -22,16 +26,42 @@
 	text-decoration: underline;
 }
 
+/* Styling of Sub-Headline (Testcase group) */
 .viewhelpertest h2 {
+	font: 20px;
+	font-weight: bold;
+}
+
+.viewhelpertest h3 {
+	font: 12px;
+	font-weight: bold;
+}
+/* Testcase Rendering */
+.viewhelpertest .testcase h3 {
+}
+
+.viewhelpertest .testcase .input {
 	margin: 12px 0 5px 0;
 	padding: 5px;
 	border: 1px solid #ddd;
-	background: #efefef;
 	color: #333;
 	font-weight: normal;
-	white-space: pre;
 	font: 11px monospace;
 	overflow: auto;
+	white-space: pre;
+}
+
+.viewhelpertest .testcase.failure {
+	background: #df9d9d;
+}
+.viewhelpertest .testcase.failure .input {
+	background: #dfb2b2;
+}
+.viewhelpertest .testcase.success {
+	background: #d4ffc4;
+}
+.viewhelpertest .testcase.success .input {
+	background: #dcffd0;
 }
 
 .viewhelpertest li.even {
@@ -40,20 +70,11 @@
 .viewhelpertest hr {
 	clear: both;
 }
-.viewhelpertest .failure {
-	background: #df9d9d;
-}
-.viewhelpertest .failure h2 {
-	background: #dfb2b2;
-}
-.viewhelpertest .success {
-	background: #d4ffc4;
-}
-.viewhelpertest .success h2 {
-	background: #dcffd0;
-}
 
-/** Rendering Tests **/
+
+/*******************************
+ *      Rendering Tests        *
+ *******************************/
 .renderTest .explanation div {
 	float: left;
 	height: 20px;

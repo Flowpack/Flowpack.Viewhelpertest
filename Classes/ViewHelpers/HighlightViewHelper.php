@@ -113,10 +113,10 @@ class HighlightViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper i
 				$title = 'expected RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
 			}
 		}
-		return '<div class="' . $className . '">
+		return '<div class="testcase ' . $className . '">
 			<h3>' . $title . '</h3>
-			<h2>' . htmlspecialchars($source) . '</h2>
-			<div>' . $renderedSource . '</div>
+			<div class="input">' . htmlspecialchars($source) . '</div>
+			<div class="output">' . $renderedSource . '</div>
 		</div>';
 	}
 }

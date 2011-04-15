@@ -1,22 +1,33 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
-<h2>Boolean Values</h2>
+
+<h2>Condition Expression Tests</h2>
+
+<h3>Simple Type - Boolean Values</h3>
+
 If a boolean value is given, that is directly used.
 
 <vht:highlight expected="satisfied condition!"><![CDATA[
 	<f:if condition="{testVariables.boolean.true}">satisfied condition!</f:if>
 ]]></vht:highlight>
 
-<vht:highlight expected="satisfied condition!"><![CDATA[
-	{f:if(condition: testVariables.boolean.true, then: 'satisfied condition!')}
-]]></vht:highlight>
-
 <vht:highlight expected=""><![CDATA[
 	<f:if condition="{testVariables.boolean.false}">should not be displayed!</f:if>
 ]]></vht:highlight>
 
-<h2>Strings</h2>
+<h3>Simple Type - Strings</h3>
+
+Strings evaluate all to TRUE, except the empty string and "FALSE" (in all camelizations)
+
 <vht:highlight expected="satisfied condition!"><![CDATA[
 	<f:if condition="true">satisfied condition!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition="anArbitary String containing FaLsE">satisfied condition!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition=" FALSE ">satisfied condition!</f:if>
 ]]></vht:highlight>
 
 <vht:highlight expected=""><![CDATA[
@@ -24,26 +35,21 @@ If a boolean value is given, that is directly used.
 ]]></vht:highlight>
 
 <vht:highlight expected=""><![CDATA[
+	<f:if condition="FaLsE">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
 	<f:if condition="">should not be displayed!!</f:if>
 ]]></vht:highlight>
 
-<h2>Numeric Strings (should behave exactly like numbers)</h2>
+<h3>Simple Type - Integers and Floats</h3>
 
-<vht:highlight expected="satisfied condition!"><![CDATA[
-	<f:if condition="1">satisfied condition!</f:if>
-]]></vht:highlight>
-
-<vht:highlight expected=""><![CDATA[
-	<f:if condition="0">should not be displayed!!</f:if>
-]]></vht:highlight>
-
-<vht:highlight expected=""><![CDATA[
-	<f:if condition="-1">should not be displayed!!</f:if>
-]]></vht:highlight>
-
-<h2>Numbers</h2>
 <vht:highlight expected="satisfied condition!"><![CDATA[
 	<f:if condition="{testVariables.number.one}">satisfied condition!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition="{testVariables.number.onePointOne}">satisfied condition!</f:if>
 ]]></vht:highlight>
 
 <vht:highlight expected=""><![CDATA[
@@ -54,30 +60,33 @@ If a boolean value is given, that is directly used.
 	<f:if condition="{testVariables.number.minusOne}">should not be displayed!!</f:if>
 ]]></vht:highlight>
 
-<h2>more</h2>
-<vht:highlight expected="Else part!"><![CDATA[
-	<f:if condition="false">
-		<f:then>
-			Then part!
-		</f:then>
-		<f:else>
-			Else part!
-		</f:else>
-	</f:if>
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="{testVariables.number.minusOnePointOne}">should not be displayed!!</f:if>
 ]]></vht:highlight>
 
-<vht:highlight expected="Then part!"><![CDATA[
-	<f:if condition="{testVariables.user2}">
-		<f:then>
-			Then part!
-		</f:then>
-		<f:else>
-			Else part!
-		</f:else>
-	</f:if>
+<h3>Simple Type - Integer and Float Strings (should behave exactly like numbers)</h3>
+
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition="1">satisfied condition!</f:if>
 ]]></vht:highlight>
 
-<h2>Comparisons</h2>
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	<f:if condition="1.1">satisfied condition!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="0">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="-1">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="-1.1">should not be displayed!!</f:if>
+]]></vht:highlight>
+
+<h2>Arithmetic Comparisons</h2>
 
 <vht:highlight expected="Else part!"><![CDATA[
 	<f:if condition="{testVariables.number.minusOne} > -1">
@@ -108,5 +117,158 @@ If a boolean value is given, that is directly used.
 		<f:else>
 			Else part!
 		</f:else>
+	</f:if>
+]]></vht:highlight>
+
+<h2>If / Then / Else Logic</h2>
+
+<h3>No then/else</h3>
+
+<vht:highlight expected="Condition true!"><![CDATA[
+	<f:if condition="true">
+		Condition true!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="false">
+		Condition true!
+	</f:if>
+]]></vht:highlight>
+
+<h3>then</h3>
+
+<vht:highlight expected="Then part!"><![CDATA[
+	<f:if condition="true">
+		Some code which should not be shown, as there is a "then" part
+		<f:then>
+			Then part!
+		</f:then>
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="false">
+		Some code which should not be shown, as there is a "then" part
+		<f:then>
+			Then part!
+		</f:then>
+	</f:if>
+]]></vht:highlight>
+
+<h3>then/else</h3>
+
+<vht:highlight expected="Then part!"><![CDATA[
+	<f:if condition="true">
+		<f:then>
+			Then part!
+		</f:then>
+		<f:else>
+			Else part!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+
+<vht:highlight expected="Else part!"><![CDATA[
+	<f:if condition="false">
+		<f:then>
+			Then part!
+		</f:then>
+		<f:else>
+			Else part!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<h3>else</h3>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="true">
+		<f:else>
+			Else part!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="Else part!"><![CDATA[
+	<f:if condition="false">
+		<f:else>
+			Else part!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<h2>Inline Syntax Logic</h2>
+
+<h3>No then/else</h3>
+
+<vht:highlight expected=""><![CDATA[
+	{f:if(condition: 'true')}
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	{f:if(condition: 'false')}
+]]></vht:highlight>
+
+<h3>Then</h3>
+
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	{f:if(condition: 'true', then: 'satisfied condition!')}
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	{f:if(condition: 'false', then: 'satisfied condition!')}
+]]></vht:highlight>
+
+<h3>Then/else</h3>
+
+<vht:highlight expected="satisfied condition!"><![CDATA[
+	{f:if(condition: 'true', then: 'satisfied condition!', else: 'else part')}
+]]></vht:highlight>
+
+<vht:highlight expected="else part"><![CDATA[
+	{f:if(condition: 'false', then: 'satisfied condition!', else: 'else part')}
+]]></vht:highlight>
+
+<h3>Else</h3>
+
+<vht:highlight expected=""><![CDATA[
+	{f:if(condition: 'true', else: 'else part')}
+]]></vht:highlight>
+
+<vht:highlight expected="else part"><![CDATA[
+	{f:if(condition: 'false', else: 'else part')}
+]]></vht:highlight>
+
+<h2>Check overrides of then / else</h2>
+
+Sub-ViewHelpers should be <b>overridden</b> by direct then/else arguments.
+
+<vht:highlight expected="inline then"><![CDATA[
+	<f:if condition="true" then="inline then" else="inline else">
+		<f:then>
+			Then part!
+		</f:then>
+		<f:else>
+			Else part!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="inline else"><![CDATA[
+	<f:if condition="false" then="inline then" else="inline else">
+		<f:then>
+			Then part!
+		</f:then>
+		<f:else>
+			Else part!
+		</f:else>
+		Some code which should not be shown!
 	</f:if>
 ]]></vht:highlight>

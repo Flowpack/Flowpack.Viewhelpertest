@@ -40,6 +40,9 @@ class ViewHelperTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
 		$result = $this->sendWebRequest('Standard', 'Viewhelpertest', 'index', array('selectedPartial' => 'all'));
 
+		if (strpos($result, '___VIEWHELPERTEST_EXECUTED___') === FALSE) {
+			$this->fail('It seems that the tests were not executed!');
+		}
 		$resultsWithFailures = \PHPUnit_Util_XML::cssSelect('.failure', TRUE, $result);
 
 		$errors = array();
