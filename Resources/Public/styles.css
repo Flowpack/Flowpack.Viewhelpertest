@@ -28,16 +28,21 @@
 
 /* Styling of Sub-Headline (Testcase group) */
 .viewhelpertest h2 {
-	font: 20px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
 .viewhelpertest h3 {
-	font: 12px;
+	font-size: 12px;
 	font-weight: bold;
 }
 /* Testcase Rendering */
 .viewhelpertest .testcase h3 {
+}
+
+.viewhelpertest .testcase h3 a {
+	color: #ccc;
+	font-size:60%;
 }
 
 .viewhelpertest .testcase .input {
@@ -71,6 +76,17 @@
 	clear: both;
 }
 
+.viewhelpertest table.crossProduct td.success {
+	background: #d4ffc4;
+}
+
+.viewhelpertest table.crossProduct td.failure {
+	background: #df9d9d;
+}
+.viewhelpertest table.crossProduct .numberOfTests {
+	font-size:60%;
+	color: #333;
+}
 
 /*******************************
  *      Rendering Tests        *

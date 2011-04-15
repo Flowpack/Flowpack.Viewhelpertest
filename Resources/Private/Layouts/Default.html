@@ -6,6 +6,9 @@
 <title>Fluid - Viewhelpertest</title>
 <f:base />
 <link href="{f:uri.resource(path: 'styles.css')}" rel="stylesheet" type="text/css" />
+{namespace ext=F3\ExtJS\ViewHelpers}
+<ext:include/>
+<script type="text/javascript" src="{f:uri.resource(path: 'javascript.js')}"></script>
 </head>
 <body>
 <f:render section="content" />

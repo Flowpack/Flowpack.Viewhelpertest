@@ -27,19 +27,44 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-class ExpectedViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper {
+abstract class AbstractSubTemplateRenderingViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper implements \F3\Fluid\Core\ViewHelper\Facets\ChildNodeAccessInterface {
 
 	/**
-	 * @param boolean $regex
+	 * @var F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper
+	 */
+	protected $templateView;
+
+	/**
+	 * @param \F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView
 	 * @return void
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
-	public function render($regex = FALSE) {
-		$source = trim($this->renderChildren());
-		$this->viewHelperVariableContainer->addOrUpdate('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source', $source);
-		$this->viewHelperVariableContainer->addOrUpdate('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex', $regex);
+	public function injectTemplateView(\F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView) {
+		$this->templateView = $templateView;
+	}
+
+	/**
+	 * We only need to implement this method because we want to call $this->getRenderingContext(), and for that, we need
+	 * to implement ChildNodeAccessInterface, which in turn requires this method to exist.
+	 *
+	 * @param array $childNodes
+	 * @return void
+	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 */
+	public function setChildNodes(array $childNodes) {
+	}
+
+
+	protected function renderSource($source) {
+		$this->templateView->setTemplateSource($source);
+		$this->templateView->setControllerContext($this->getRenderingContext()->getControllerContext());
+		$this->templateView->setViewHelperVariableContainer($this->viewHelperVariableContainer);
+
+		$this->templateView->assign('testVariables', $this->templateVariableContainer->get('testVariables'));
+		$this->templateView->assign('settings', $this->templateVariableContainer->get('settings'));
+
+		return $this->templateView->render();
 	}
 }
-
 
 ?>

@@ -1,6 +1,8 @@
 {namespace vht=F3\Viewhelpertest\ViewHelpers}
 
-<h2>Condition Expression Tests</h2>
+<h2>Simple Condition Expressions</h2>
+
+This test part should especially specify edge cases, and cover each case at least once.
 
 <h3>Simple Type - Boolean Values</h3>
 
@@ -86,7 +88,152 @@ Strings evaluate all to TRUE, except the empty string and "FALSE" (in all cameli
 	<f:if condition="-1.1">should not be displayed!!</f:if>
 ]]></vht:highlight>
 
-<h2>Arithmetic Comparisons</h2>
+<h2>Complex Comparisons</h2>
+TODO: Strings, and Boolean literal values, and NULL literal value
+<f:alias map="{values: {
+	IntegerPositive: {
+		literal: '1',
+		objectAccess: 'testVariables.number.one'
+	},
+	IntegerNegative: {
+		literal: '-1',
+		objectAccess: 'testVariables.number.minusOne'
+	},
+	IntegerZero: {
+		literal: '0',
+		objectAccess: 'testVariables.number.zero'
+	},
+	FloatPositive: {
+		literal: '1.1',
+		objectAccess: 'testVariables.number.onePointOne'
+	},
+	FloatNegative: {
+		literal: '-1.1',
+		objectAccess: 'testVariables.number.minusOnePointOne'
+	},
+	Object: {
+		objectAccess: 'testVariables.user1'
+	},
+	Array: {
+		objectAccess: 'testVariables.fruits'
+	}
+}}">
+
+<h3>== comparator</h3>
+<vht:crossProduct values="{values}" expected="
+               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
+IntegerPositive;    1          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+IntegerNegative;    0          ;    1          ;    0          ;    0          ;    0          ;    0          ;    0
+IntegerZero    ;    0          ;    0          ;    1          ;    0          ;    0          ;    0          ;    0
+FloatPositive  ;    0          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
+FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    1          ;    0          ;    0
+Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    1          ;    0
+Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    1
+"
+matrixMode="symmetric"
+>
+	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '=='}" />
+</vht:crossProduct>
+
+<h3>!= comparator</h3>
+<vht:crossProduct values="{values}" expected="
+               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
+IntegerPositive;    0          ;    1          ;    1          ;    1          ;    1          ;    1          ;    1
+IntegerNegative;    0          ;    0          ;    1          ;    1          ;    1          ;    1          ;    1
+IntegerZero    ;    0          ;    0          ;    0          ;    1          ;    1          ;    1          ;    1
+FloatPositive  ;    0          ;    0          ;    0          ;    0          ;    1          ;    1          ;    1
+FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    0          ;    1          ;    1
+Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    1
+Array          ;    1          ;    1          ;    1          ;    1          ;    1          ;    1          ;    0
+"
+matrixMode="symmetric"
+>
+	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '!='}" />
+</vht:crossProduct>
+
+<h3>% comparator</h3>
+TODO: specify
+
+<h3>&gt;= comparator</h3>
+
+<vht:crossProduct values="{values}" expected="
+               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
+IntegerPositive;    1          ;    1          ;    1          ;    0          ;    1          ;    0          ;    0
+IntegerNegative;    0          ;    1          ;    0          ;    0          ;    1          ;    0          ;    0
+IntegerZero    ;    0          ;    1          ;    1          ;    0          ;    1          ;    0          ;    0
+FloatPositive  ;    1          ;    1          ;    1          ;    1          ;    1          ;    0          ;    0
+FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    1          ;    0          ;    0
+Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+"
+>
+	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '>='}" />
+</vht:crossProduct>
+
+<h3>&gt; comparator</h3>
+
+<vht:crossProduct values="{values}" expected="
+               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
+IntegerPositive;    0          ;    1          ;    1          ;    0          ;    1          ;    0          ;    0
+IntegerNegative;    0          ;    0          ;    0          ;    0          ;    1          ;    0          ;    0
+IntegerZero    ;    0          ;    1          ;    0          ;    0          ;    1          ;    0          ;    0
+FloatPositive  ;    1          ;    1          ;    1          ;    0          ;    1          ;    0          ;    0
+FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+"
+>
+	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '>'}" />
+</vht:crossProduct>
+
+<h3>&lt;= comparator</h3>
+
+<vht:crossProduct values="{values}" expected="
+               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
+IntegerPositive;    1          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
+IntegerNegative;    1          ;    1          ;    1          ;    1          ;    0          ;    0          ;    0
+IntegerZero    ;    1          ;    0          ;    1          ;    1          ;    0          ;    0          ;    0
+FloatPositive  ;    0          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
+FloatNegative  ;    1          ;    1          ;    1          ;    1          ;    1          ;    0          ;    0
+Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+"
+>
+	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '<='}" />
+</vht:crossProduct>
+
+<h3>< comparator</h3>
+
+<vht:crossProduct values="{values}" expected="
+               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
+IntegerPositive;    0          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
+IntegerNegative;    1          ;    0          ;    1          ;    1          ;    0          ;    0          ;    0
+IntegerZero    ;    1          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
+FloatPositive  ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+FloatNegative  ;    1          ;    1          ;    1          ;    1          ;    0          ;    0          ;    0
+Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+"
+>
+	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '<'}" />
+</vht:crossProduct>
+
+
+</f:alias>
+
+<b>TODO: Formulate and throw exceptions at Invalid comparison strings (more than one comparator, ...)</b>
+
+<vht:highlight expected="Else part!"><![CDATA[
+	<f:if condition="-1 != -1">
+		<f:then>
+			Then part!
+		</f:then>
+		<f:else>
+			Else part!
+		</f:else>
+	</f:if>
+]]></vht:highlight>
+
 
 <vht:highlight expected="Else part!"><![CDATA[
 	<f:if condition="{testVariables.number.minusOne} > -1">
