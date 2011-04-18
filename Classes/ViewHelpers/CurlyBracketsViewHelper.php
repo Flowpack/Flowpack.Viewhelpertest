@@ -27,17 +27,14 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-class ExpectedViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper {
+class CurlyBracketsViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
-	 * @param boolean $regex
 	 * @return void
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
-	public function render($regex = FALSE) {
-		$source = trim($this->renderChildren());
-		$this->viewHelperVariableContainer->addOrUpdate('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source', $source);
-		$this->viewHelperVariableContainer->addOrUpdate('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex', $regex);
+	public function render() {
+		return '{' . $this->renderChildren() . '}';
 	}
 }
 

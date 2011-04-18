@@ -29,6 +29,8 @@ namespace F3\Viewhelpertest\ViewHelpers;
  */
 class HighlightViewHelper extends AbstractSubTemplateRenderingViewHelper {
 
+	protected static $executionCount = 0;
+
 	/**
 	 * @param string $expected
 	 * @param string $expectedRegex
@@ -37,6 +39,13 @@ class HighlightViewHelper extends AbstractSubTemplateRenderingViewHelper {
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
 	public function render($expected = NULL, $expectedRegex = NULL) {
+		self::$executionCount++;
+
+		if ($this->controllerContext->getRequest()->hasArgument('singleTestcase')
+			&& $this->controllerContext->getRequest()->getArgument('singleTestcase') != self::$executionCount) {
+				return '';
+		}
+
 		$source = trim($this->renderChildren());
 		$renderedSource = $this->renderSource($source);
 
@@ -81,8 +90,29 @@ class HighlightViewHelper extends AbstractSubTemplateRenderingViewHelper {
 				$title = 'expected RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
 			}
 		}
+
+		if ($this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
+			$results = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
+		} else {
+			$results = array(
+				'total' => 0,
+				'failures' => 0
+			);
+		}
+		
+		$results['total']++;
+
+		if ($className === 'failure') {
+			$results['failures']++;
+		}
+		$this->viewHelperVariableContainer->addOrUpdate('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results', $results);
+
+		$uriToThisTest = $this->controllerContext->getUriBuilder()
+				->reset()
+				->setAddQueryString(TRUE)
+				->uriFor(NULL, array('singleTestcase' => self::$executionCount));
 		return '<div class="testcase ' . $className . '">
-			<h3>' . $title . '</h3>
+			<h3>' . $title . '<a href="' . $uriToThisTest . '">Show only this test</a></h3>
 			<div class="input">' . htmlspecialchars($source) . '</div>
 			<div class="output">' . $renderedSource . '</div>
 		</div>';

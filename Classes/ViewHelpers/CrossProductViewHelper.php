@@ -32,83 +32,172 @@ class CrossProductViewHelper extends AbstractSubTemplateRenderingViewHelper {
 	/**
 	 * @param array $values,
 	 * @param string $expected
+	 * @param string $matrixMode
 	 * @return void
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
-	public function render($values, $expected=NULL) {
+	public function render($values, $expected=NULL, $matrixMode=NULL) {
+		if ($matrixMode !== NULL && $matrixMode !== 'outputRaw' && $matrixMode !== 'symmetric') {
+			throw new \Exception('TODO: Matrix mode must be either "outputRaw" or "symmetric"');
+		}
+		$variableNames = array_keys($values);
+
 		if ($expected === NULL) {
-			return $this->renderHelper($values);
+			return $this->renderHelper($variableNames);
+		}
+		if ($matrixMode === 'outputRaw') {
+			$expectedResultsTable = $this->parseExpectedResults($expected);
+			return $this->renderHelper($variableNames, $expectedResultsTable);
 		}
 
-		// parse expected string
+		$expectedResultsTable = $this->parseExpectedResults($expected);
+		$this->sanityCheckExpectedResultsArray($expectedResultsTable);
+
+
+
+
+		$output = '<table class="crossProduct">';
+		$output .= '<tr><th> </th>';
+
+		foreach ($variableNames as $variableName) {
+			$output .= '<th>' . $variableName . '</th>';
+		}
+
+		$output .= '</tr>';
+		// TODO: add header column
+		for ($i=1; $i <= count($variableNames); $i++) {
+			$rowVariableName = $variableNames[$i-1];
+			$output .= '<tr>';
+			$output .= '<th>' . $rowVariableName . '</th>';
+			for ($j=1; $j <= count($variableNames); $j++) {
+				$columnVariableName = $variableNames[$j-1];
+				if ($i > $j && $matrixMode==='symmetric') {
+					$expectedResult = trim($expectedResultsTable[$j][$i]);
+				} else {
+					$expectedResult = trim($expectedResultsTable[$i][$j]);
+				}
+				
+				if ($this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
+					$this->viewHelperVariableContainer->remove('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
+				}
+
+				$this->templateVariableContainer->add('rowValue', $values[$rowVariableName]);
+				$this->templateVariableContainer->add('columnValue', $values[$columnVariableName]);
+				$this->templateVariableContainer->add('expectedResult', $expectedResult);
+				$testExecutionHtml = $this->renderChildren();
+				$this->templateVariableContainer->remove('rowValue');
+				$this->templateVariableContainer->remove('columnValue');
+				$this->templateVariableContainer->remove('expectedResult');
+
+				$status = 'default';
+				if ($this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
+					$results = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
+					if ($results['failures'] > 0) {
+						$status = 'failure';
+					} elseif ($results['total'] > 0) {
+						$status = 'success';
+					}
+				}
+
+				$output .= '<td class="' . $status . '" ext:qtip="' . htmlspecialchars($testExecutionHtml) . '">' . $expectedResult . ' <span class="numberOfTests">(' . $results['total'] . ' Tests)</span></td>';
+
+			}
+			$output .= '</tr>';
+		}
+		$output .= '</table>';
+		return $output;
+	}
+
+	protected function parseExpectedResults($expected) {
+			// parse expected string
 		$expected = trim($expected);
 		$lines = explode(chr(10), $expected);
 		$numberOfLines = count($lines);
 		foreach ($lines as $key => $line) {
 			$lines[$key] = explode(';', $line);
 			if (count($lines[$key]) !== $numberOfLines) {
-				throw new \Exception('The matrix must be symmetrical!');
+				throw new \Exception('The matrix must be quadratic!');
 			}
 		}
+		return $lines;
+	}
+
+	protected function sanityCheckExpectedResultsArray($lines) {
+
 		// Sanity check: First line must contain all columns in correct order
-		$variableNames = array_keys($values);
+		$variableNames = array_keys($this->arguments['values']);
+
 		if (count($variableNames) !== count($lines[0]) - 1) {
-			throw new \Exception('Number of columns not correct');
+			throw new \Exception('Number of columns not correct. There are ' . count($variableNames) . ' variables but ' . (count($lines[0]) - 1) . ' columns. Use matrixMode="outputRaw" for correcting.');
 		}
 		for ($i=1; $i < count($lines[0]); $i++) {
 			if ($variableNames[$i-1] != trim($lines[0][$i])) {
-				throw new \Exception('TODO: Header line not correct, ');
+				throw new \Exception('TODO: Header line not correct,  Use matrixMode="outputRaw" for correcting.');
 			}
 		}
 		// Sanity check: Column headers must have the right order and be correct
 		if (count($variableNames) !== count($lines) - 1) {
-			throw new \Exception('Number of rows not correct');
+			throw new \Exception('Number of rows not correct.  Use matrixMode="outputRaw" for correcting.');
 		}
 
 		for ($i=1; $i < count($lines); $i++) {
 			if ($variableNames[$i-1] != trim($lines[$i][0])) {
-				throw new \Exception('TODO: header column not correct, ');
-			}
-		}
-
-		for ($i=1; $i <= count($variableNames); $i++) {
-			$rowVariableName = $variableNames[$i-1];
-			for ($j=1; $j <= count($variableNames); $j++) {
-				$columnVariableName = $variableNames[$j-1];
-				$expectedResult = trim($lines[$i][$j]);
-				
-				/*$this->templateVariableContainer->add('row', $values[$rowVariableName]);
-				$this->templateVariableContainer->add('column', $values[$columnVariableName]);
-				$this->templateVariableContainer->add('expected', $expectedResult);
-				$result = $this->renderChildren();
-				$this->templateVariableContainer->remove('row');
-				$this->templateVariableContainer->remove('column');
-				$this->templateVariableContainer->remove('expected');*/
+				throw new \Exception('TODO: header column not correct.  Use matrixMode="outputRaw" for correcting. ');
 			}
 		}
 	}
-
-	protected function renderHelper($values) {
+	protected function renderHelper($variableNames, $inputValues = NULL) {
 		$output = '';
 
-		$longestKeyLength = 0;
-		foreach ($values as $key => $v) {
-			if (strlen($key) > $longestKeyLength) {
-				$longestKeyLength = strlen($key);
+		$lengthOfLongestVariable = 0;
+		foreach ($variableNames as $variableName) {
+			if (strlen($variableName) > $lengthOfLongestVariable) {
+				$lengthOfLongestVariable = strlen($variableName);
 			}
 		}
 
-		// Header line
-		$output .= str_repeat(' ', $longestKeyLength);
-		foreach ($values as $key => $value) {
-			$output .= ';' . str_pad($key, $longestKeyLength);
+			// Header line
+		$output .= str_repeat(' ', $lengthOfLongestVariable);
+		foreach ($variableNames as $variableName) {
+			$output .= ';' . str_pad($variableName, $lengthOfLongestVariable);
 		}
 		$output .= chr(10);
 
-		foreach ($values as $key => $value) {
-			$output .= rtrim(str_pad($key, $longestKeyLength) . ';' . str_repeat(str_pad('    0', $longestKeyLength) . ';', count($values)), ';').  chr(10);
+
+		foreach ($variableNames as $rowVariableName) {
+			$output .= str_pad($rowVariableName, $lengthOfLongestVariable);
+			foreach ($variableNames as $columnVariableName) {
+				$value = $this->findExistingValueInTable($rowVariableName, $columnVariableName, $inputValues);
+				$output .= ';' . str_pad('    ' . $value, $lengthOfLongestVariable);
+			}
+			$output .= chr(10);
 		}
 		return '<pre>' . $output . '</pre>';
+	}
+
+	protected function findExistingValueInTable($rowVariableName, $columnVariableName, $inputValues) {
+		if (!is_array($inputValues)) return 'X';
+
+		$row = NULL;
+		for ($i=1; $i < count($inputValues); $i++) {
+			if (trim($inputValues[$i][0]) === $rowVariableName) {
+				$row = $i;
+				break;
+			}
+		}
+		$column = NULL;
+		for ($i=1; $i < count($inputValues[0]); $i++) {
+			if (trim($inputValues[0][$i]) === $columnVariableName) {
+				$column = $i;
+				break;
+			}
+		}
+		if ($row === NULL || $column === NULL) {
+			return 'X';
+		} else {
+			return trim($inputValues[$row][$column]);
+		}
+
 	}
 }
 ?>
