@@ -4,8 +4,8 @@
 ]]></vht:highlight>
 
 <vht:expected regex="true">
-	#^<a href=".+/othercontroller/someaction\?foo=bar&amp;tx_myextension_myplugin%5Baction%5D=overruled&amp;baz=test&amp;%40subpackage=mysubpackage">action link</a>$#
+	#^<a href=".+/some/someaction\?foo=bar&amp;tx_myextension_myplugin%5Baction%5D=overruled&amp;baz=test&amp;%40subpackage=somesubpackage">action link</a>$#
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:link.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" additionalParams="{foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}}">action link</f:link.action>
+	<f:link.action action="someAction" controller="Some" package="Viewhelpertest" subpackage="SomeSubpackage" arguments="{foo: 'bar', baz: 'test'}" additionalParams="{foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}}">action link</f:link.action>
 ]]></vht:highlight>

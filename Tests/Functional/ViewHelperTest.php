@@ -40,10 +40,27 @@ class ViewHelperTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
 		$result = $this->sendWebRequest('Standard', 'Viewhelpertest', 'index', array('selectedPartial' => 'all'));
 
+		$resultsWithFailures = \PHPUnit_Util_XML::cssSelect('.failure', TRUE, $result);
+		$successfulResultList = \PHPUnit_Util_XML::cssSelect('.success', TRUE, $result);
+
+		$numberOfSuccessfulTests = 0;
+		if (is_array($successfulResultList)) {
+			$numberOfSuccessfulTests = count($successfulResultList);
+		}
+
+		$numberOfFailedTests = 0;
+		if (is_array($resultsWithFailures)) {
+			$numberOfFailedTests = count($resultsWithFailures);
+		}
+
+		// Outputting some statistics for the Jenkins Measurement Plots plugin:
+		// https://wiki.jenkins-ci.org/display/JENKINS/Measurement+Plots+Plugin
+		echo '<measurement><name>Number of successful ViewHelper Tests</name><value>' . $numberOfSuccessfulTests . '</value></measurement>';
+		echo '<measurement><name>Number of failed ViewHelper Tests</name><value>' . $numberOfFailedTests . '</value></measurement>';
+
 		if (strpos($result, '___VIEWHELPERTEST_EXECUTED___') === FALSE) {
 			$this->fail('It seems that the tests were not executed!');
 		}
-		$resultsWithFailures = \PHPUnit_Util_XML::cssSelect('.failure', TRUE, $result);
 
 		$errors = array();
 		if (is_array($resultsWithFailures) && count($resultsWithFailures) > 0) {

@@ -6,7 +6,7 @@ This test part should especially specify edge cases, and cover each case at leas
 
 <h3>Simple Type - Boolean Values</h3>
 
-If a boolean value is given, that is directly used.
+<div class="specification">If a boolean value is given, that is directly used.</div>
 
 <vht:highlight expected="satisfied condition!"><![CDATA[
 	<f:if condition="{testVariables.boolean.true}">satisfied condition!</f:if>
@@ -18,7 +18,7 @@ If a boolean value is given, that is directly used.
 
 <h3>Simple Type - Strings</h3>
 
-Strings evaluate all to TRUE, except the empty string and "FALSE" (in all camelizations)
+<div class="specification">Strings evaluate all to TRUE, except the empty string and "FALSE" (in all camelizations)</div>
 
 <vht:highlight expected="satisfied condition!"><![CDATA[
 	<f:if condition="true">satisfied condition!</f:if>
@@ -45,6 +45,8 @@ Strings evaluate all to TRUE, except the empty string and "FALSE" (in all cameli
 ]]></vht:highlight>
 
 <h3>Simple Type - Integers and Floats</h3>
+
+<div class="specification">All positive numbers evaluate to TRUE; zero or negative numbers evaluate to FALSE.</div>
 
 <vht:highlight expected="satisfied condition!"><![CDATA[
 	<f:if condition="{testVariables.number.one}">satisfied condition!</f:if>
@@ -89,7 +91,24 @@ Strings evaluate all to TRUE, except the empty string and "FALSE" (in all cameli
 ]]></vht:highlight>
 
 <h2>Complex Comparisons</h2>
+
 TODO: Strings, and Boolean literal values, and NULL literal value
+
+<ul class="specification">
+	<li>
+		The == and != operators are comparing the Object Identity using === and !==, when one of the two operands are objects.
+		Else, == and != are used.
+	</li>
+	<li>
+		For arithmetic comparisons (%, >, >=, <, <=), some special rules apply:
+		<ul>
+			<li>arrays are only comparable with arrays, else the comparison yields FALSE</li>
+			<li>objects are only comparable with objects, else the comparison yields FALSE</li>
+			<li>the comparison is FALSE when two types are not comparable according to the table <a href="http://php.net/manual/en/language.operators.comparison.php">Comparison with various types</a>.</li>
+		</ul>
+	</li>
+</ul>
+
 <f:alias map="{values: {
 	IntegerPositive: {
 		literal: '1',
@@ -163,8 +182,8 @@ IntegerNegative;    0          ;    1          ;    0          ;    0          ;
 IntegerZero    ;    0          ;    1          ;    1          ;    0          ;    1          ;    0          ;    0
 FloatPositive  ;    1          ;    1          ;    1          ;    1          ;    1          ;    0          ;    0
 FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    1          ;    0          ;    0
-Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
-Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    1          ;    0
+Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    1
 "
 >
 	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '>='}" />
@@ -195,8 +214,8 @@ IntegerNegative;    1          ;    1          ;    1          ;    1          ;
 IntegerZero    ;    1          ;    0          ;    1          ;    1          ;    0          ;    0          ;    0
 FloatPositive  ;    0          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
 FloatNegative  ;    1          ;    1          ;    1          ;    1          ;    1          ;    0          ;    0
-Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
-Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
+Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    1          ;    0
+Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    1
 "
 >
 	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '<='}" />

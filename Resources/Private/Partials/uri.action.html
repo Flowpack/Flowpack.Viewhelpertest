@@ -3,6 +3,6 @@
 	<f:uri.action action="someAction" />
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/^mypackage\/othercontroller\/someaction\?foo=bar&tx_myextension_myplugin%5Baction%5D=overruled&baz=test&%40subpackage=mysubpackage$/"><![CDATA[
-	<f:uri.action action="someAction" controller="otherController" package="myPackage" subpackage="mySubpackage" arguments="{foo: 'bar', baz: 'test'}" additionalParams="{foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}}" />
+<vht:highlight expectedRegex="/^viewhelpertest\/some\/someaction\?foo=bar&tx_myextension_myplugin%5Baction%5D=overruled&baz=test&%40subpackage=somesubpackage$/"><![CDATA[
+	<f:uri.action action="someAction" controller="Some" package="Viewhelpertest" subpackage="SomeSubpackage" arguments="{foo: 'bar', baz: 'test'}" additionalParams="{foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}}" />
 ]]></vht:highlight>
