@@ -62,6 +62,8 @@ class ViewHelperTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 			$this->fail('It seems that the tests were not executed!');
 		}
 
+		$this->writeResultToFile($result);
+
 		$errors = array();
 		if (is_array($resultsWithFailures) && count($resultsWithFailures) > 0) {
 			foreach ($resultsWithFailures as $singleFailureDomElement) {
@@ -73,6 +75,29 @@ class ViewHelperTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 				$this->fail('Some failures occured: ' . implode("\n\n==================\n\n", $errors));
 			}
 		}
+	}
+
+	/**
+	 * Write the Viewhelpertest-Result to a file (Build/Reports/Viewhelpertest.html)
+	 *
+	 * @param string $result
+	 * @return void
+	 */
+	protected function writeResultToFile($result) {
+		$newHeader =' -->';
+		$newHeader .= '<style>' . file_get_contents(FLOW3_PATH_ROOT . 'Packages/Application/Viewhelpertest/Resources/Public/styles.css') . '</style>';
+		$newHeader .= '<link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css" />
+			<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"> </script>
+			<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all.js"> </script>';
+
+		$newHeader .= '<script type="text/javascript">' . file_get_contents(FLOW3_PATH_ROOT . 'Packages/Application/Viewhelpertest/Resources/Public/javascript.js') . '</script>';
+
+		$newHeader .= '<!--';
+
+
+		$result = preg_replace('/BEGIN_HEADERS.*?END_HEADERS/s', $newHeader, $result);
+
+		file_put_contents(FLOW3_PATH_ROOT . 'Build/Reports/Viewhelpertest.html', $result);
 	}
 }
 ?>
