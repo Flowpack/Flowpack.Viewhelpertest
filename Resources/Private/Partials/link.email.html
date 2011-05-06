@@ -6,3 +6,8 @@
 <vht:highlight expected="<a href=&quot;mailto:foo@bar.com&quot;>custom link text</a>"><![CDATA[
 	<f:link.email email="foo@bar.com">custom link text</f:link.email>
 ]]></vht:highlight>
+
+<div class="specification">Links with no content should not have a self-closing tag. <a href="http://forge.typo3.org/issues/12777">Bug</a></div>
+<vht:highlight expected="<a href=&quot;mailto:&quot;></a>"><![CDATA[
+	<f:link.email email=""></f:link.email>
+]]></vht:highlight>

@@ -2,3 +2,8 @@
 <vht:highlight expected="<a href=&quot;http://www.typo3.org&quot;>TYPO3</a>"><![CDATA[
 	<f:link.external uri="http://www.typo3.org">TYPO3</f:link.external>
 ]]></vht:highlight>
+
+<div class="specification">Links with no content should not have a self-closing tag. <a href="http://forge.typo3.org/issues/12777">Bug</a></div>
+<vht:highlight expected="<a href=&quot;http://www.typo3.org&quot;></a>"><![CDATA[
+	<f:link.external uri="http://www.typo3.org"></f:link.external>
+]]></vht:highlight>

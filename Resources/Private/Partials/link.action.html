@@ -9,3 +9,9 @@
 <vht:highlight><![CDATA[
 	<f:link.action action="someAction" controller="Some" package="Viewhelpertest" subpackage="SomeSubpackage" arguments="{foo: 'bar', baz: 'test'}" additionalParams="{foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}}">action link</f:link.action>
 ]]></vht:highlight>
+
+
+<div class="specification">Links with no content should not have a self-closing tag. <a href="http://forge.typo3.org/issues/12777">Bug</a></div>
+<vht:highlight expectedRegex="/^<a href=&quot;.+\/standard\/someaction&quot;><\/a>$/"><![CDATA[
+	<f:link.action action="someAction"></f:link.action>
+]]></vht:highlight>
