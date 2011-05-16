@@ -2,10 +2,10 @@
 <vht:expected regex="true">
 #^<form action="viewhelpertest/standard/" method="post">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[packageKey\]" value="Viewhelpertest" />
-\s*<input type="hidden" name="__referrer\[subpackageKey\]" value="" />
-\s*<input type="hidden" name="__referrer\[controllerName\]" value="Standard" />
-\s*<input type="hidden" name="__referrer\[actionName\]" value="index" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
+\s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
+\s*<input type="hidden" name="__referrer\[@action\]" value="index" />
 \s*<input type="hidden" name="__referrer\[arguments\]" value="[^"]*" />
 \s*</div>
 \s*</form>$#
@@ -18,10 +18,10 @@
 <vht:expected regex="true">
 #^<form method="get" action="custom\/relative\/uri">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[packageKey\]" value="Viewhelpertest" />
-\s*<input type="hidden" name="__referrer\[subpackageKey\]" value="" />
-\s*<input type="hidden" name="__referrer\[controllerName\]" value="Standard" />
-\s*<input type="hidden" name="__referrer\[actionName\]" value="index" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
+\s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
+\s*<input type="hidden" name="__referrer\[@action\]" value="index" />
 \s*<input type="hidden" name="__referrer\[arguments\]" value="[^"]*" />
 \s*</div>
 \s*</form>$#
@@ -32,7 +32,7 @@
 
 
 <vht:expected regex="true">
-/<form enctype="multipart\/form-data" onreset="void\(0\)" onsubmit="void\(0\)" action="https?:\/\/(.*?)" method="post">\n<div style="display: none">\n<input type="hidden" name="__referrer\[packageKey\]" value="Viewhelpertest" \/>/
+/<form enctype="multipart\/form-data" onreset="void\(0\)" onsubmit="void\(0\)" action="https?:\/\/(.*?)" method="post">\n<div style="display: none">\n<input type="hidden" name="__referrer\[@package\]" value="Viewhelpertest" \/>/
 </vht:expected>
 <vht:highlight><![CDATA[
 	<f:form enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="Some" package="Viewhelpertest" subpackage="SomeSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
@@ -42,10 +42,10 @@
 <vht:expected regex="true">
 #^<form title="someTitleAttribute" method="get" name="foo" id="bar" action="viewhelpertest/standard/foo">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[packageKey\]" value="Viewhelpertest" />
-\s*<input type="hidden" name="__referrer\[subpackageKey\]" value="" />
-\s*<input type="hidden" name="__referrer\[controllerName\]" value="Standard" />
-\s*<input type="hidden" name="__referrer\[actionName\]" value="index" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
+\s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
+\s*<input type="hidden" name="__referrer\[@action\]" value="index" />
 \s*<input type="hidden" name="__referrer\[arguments\]" value="[^"]*" />
 \s*</div>
 \s*</form>$#
