@@ -27,7 +27,7 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-class CrossProductViewHelper extends AbstractSubTemplateRenderingViewHelper {
+class CrossProductViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubTemplateRenderingViewHelper {
 
 	/**
 	 * @param array $values,
@@ -76,7 +76,7 @@ class CrossProductViewHelper extends AbstractSubTemplateRenderingViewHelper {
 				} else {
 					$expectedResult = trim($expectedResultsTable[$i][$j]);
 				}
-				
+
 				if ($this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
 					$this->viewHelperVariableContainer->remove('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
 				}

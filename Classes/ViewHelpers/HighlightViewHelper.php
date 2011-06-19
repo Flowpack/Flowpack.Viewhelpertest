@@ -27,7 +27,7 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-class HighlightViewHelper extends AbstractSubTemplateRenderingViewHelper {
+class HighlightViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubTemplateRenderingViewHelper {
 
 	protected static $executionCount = 0;
 
@@ -99,7 +99,7 @@ class HighlightViewHelper extends AbstractSubTemplateRenderingViewHelper {
 				'failures' => 0
 			);
 		}
-		
+
 		$results['total']++;
 
 		if ($className === 'failure') {
