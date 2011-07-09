@@ -1,10 +1,10 @@
-{namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expected="Some special chars: &amp;quot;&amp;lt;Ääöüß"><![CDATA[
-	<f:escape>Some special chars: "<Ääöüß</f:escape>
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="Some special chars: &amp;quot;&amp;lt;√Ñ√§√∂√º√ü"><![CDATA[
+	<f:escape>Some special chars: "<√Ñ√§√∂√º√ü</f:escape>
 ]]></vht:highlight>
 
-<vht:highlight expected="Some special chars: &amp;quot;&amp;lt;äöü"><![CDATA[
-	<f:escape type="entities" encoding="GB2312">Some special chars: "<äöü</f:escape>
+<vht:highlight expected="Some special chars: &amp;quot;&amp;lt;"><![CDATA[
+	<f:escape type="entities" encoding="GB2312">Some special chars: "<</f:escape>
 ]]></vht:highlight>
 
 <vht:highlight expected="someUrl%2Fwith%2Fslashes%20and%20spaces"><![CDATA[

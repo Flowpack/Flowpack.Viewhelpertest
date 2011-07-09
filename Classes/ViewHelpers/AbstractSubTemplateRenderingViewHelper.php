@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\ViewHelpers;
+namespace TYPO3\Viewhelpertest\ViewHelpers;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Viewhelpertest".             *
@@ -27,19 +27,19 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-abstract class AbstractSubTemplateRenderingViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper implements \F3\Fluid\Core\ViewHelper\Facets\ChildNodeAccessInterface {
+abstract class AbstractSubTemplateRenderingViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper implements \TYPO3\Fluid\Core\ViewHelper\Facets\ChildNodeAccessInterface {
 
 	/**
-	 * @var F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper
+	 * @var TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper
 	 */
 	protected $templateView;
 
 	/**
-	 * @param \F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView
+	 * @param \TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView
 	 * @return void
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
-	public function injectTemplateView(\F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView) {
+	public function injectTemplateView(\TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView) {
 		$this->templateView = $templateView;
 	}
 
@@ -49,7 +49,7 @@ abstract class AbstractSubTemplateRenderingViewHelper extends \F3\Fluid\Core\Vie
 	 *
 	 * @param array $childNodes
 	 * @return void
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function setChildNodes(array $childNodes) {
 	}

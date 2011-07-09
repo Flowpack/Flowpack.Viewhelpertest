@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\ViewHelpers;
+namespace TYPO3\Viewhelpertest\ViewHelpers;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Viewhelpertest".             *
@@ -27,7 +27,7 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-class CrossProductViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubTemplateRenderingViewHelper {
+class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubTemplateRenderingViewHelper {
 
 	/**
 	 * @param array $values,
@@ -77,8 +77,8 @@ class CrossProductViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubT
 					$expectedResult = trim($expectedResultsTable[$i][$j]);
 				}
 
-				if ($this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
-					$this->viewHelperVariableContainer->remove('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
+				if ($this->viewHelperVariableContainer->exists('TYPO3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
+					$this->viewHelperVariableContainer->remove('TYPO3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
 				}
 
 				$this->templateVariableContainer->add('rowValue', $values[$rowVariableName]);
@@ -90,8 +90,8 @@ class CrossProductViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubT
 				$this->templateVariableContainer->remove('expectedResult');
 
 				$status = 'default';
-				if ($this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
-					$results = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
+				if ($this->viewHelperVariableContainer->exists('TYPO3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
+					$results = $this->viewHelperVariableContainer->get('TYPO3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
 					if ($results['failures'] > 0) {
 						$status = 'failure';
 					} elseif ($results['total'] > 0) {

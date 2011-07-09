@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\Controller;
+namespace TYPO3\Viewhelpertest\Controller;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -20,17 +20,17 @@ namespace F3\Viewhelpertest\Controller;
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
+class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 
 	/**
 	 * @inject
-	 * @var \F3\FLOW3\Security\Authentication\AuthenticationManagerInterface
+	 * @var \TYPO3\FLOW3\Security\Authentication\AuthenticationManagerInterface
 	 */
 	protected $authenticationManager;
 
 	/**
 	 * @inject
-	 * @var F3\FLOW3\Security\Context
+	 * @var TYPO3\FLOW3\Security\Context
 	 */
 	protected $securityContext;
 
@@ -70,17 +70,17 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	}
 
 	protected function loginTestuser() {
-		$account = $this->objectManager->create('F3\FLOW3\Security\Account');
+		$account = $this->objectManager->create('TYPO3\FLOW3\Security\Account');
 		$roles = array(
-			$this->objectManager->create('F3\FLOW3\Security\Policy\Role', 'TestRole'),
+			$this->objectManager->create('TYPO3\FLOW3\Security\Policy\Role', 'TestRole'),
 		);
 		$account->setAuthenticationProviderName('DefaultProvider');
 		$account->setRoles($roles);
 
-		$authenticationTokens = $this->securityContext->getAuthenticationTokensOfType('F3\FLOW3\Security\Authentication\Token\UsernamePassword');
+		$authenticationTokens = $this->securityContext->getAuthenticationTokensOfType('TYPO3\FLOW3\Security\Authentication\Token\UsernamePassword');
 		if (count($authenticationTokens) === 1) {
 			$authenticationTokens[0]->setAccount($account);
-			$authenticationTokens[0]->setAuthenticationStatus(\F3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+			$authenticationTokens[0]->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
 		}
 	}
 
@@ -88,14 +88,15 @@ class StandardController extends \F3\FLOW3\MVC\Controller\ActionController {
 	 * @return array
 	 */
 	protected function createTestVariables() {
-		$user1 = new \F3\Viewhelpertest\Domain\Model\User(1, 'Ingmar', 'Schlecht', TRUE);
-		$user2 = new \F3\Viewhelpertest\Domain\Model\User(2, 'Sebastian', 'Kurfürst', FALSE);
-		$user3 = new \F3\Viewhelpertest\Domain\Model\User(3, 'Robert', 'Lemke', TRUE);
-		$user4 = new \F3\Viewhelpertest\Domain\Model\User(4, 'Kasper', 'Skårhøj', TRUE, array('TYPO3', 'Snowboarding', 'Architecture'));
-		$invoice1 = new \F3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('1980-12-13'), $user1);
-		$invoice2 = new \F3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-01'), $user2);
-		$invoice3 = new \F3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-04'), $user1);
+		$user1 = new \TYPO3\Viewhelpertest\Domain\Model\User(1, 'Ingmar', 'Schlecht', TRUE);
+		$user2 = new \TYPO3\Viewhelpertest\Domain\Model\User(2, 'Sebastian', 'Kurfürst', FALSE);
+		$user3 = new \TYPO3\Viewhelpertest\Domain\Model\User(3, 'Robert', 'Lemke', TRUE);
+		$user4 = new \TYPO3\Viewhelpertest\Domain\Model\User(4, 'Kasper', 'Skårhøj', TRUE, array('TYPO3', 'Snowboarding', 'Architecture'));
+		$invoice1 = new \TYPO3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('1980-12-13'), $user1);
+		$invoice2 = new \TYPO3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-01'), $user2);
+		$invoice3 = new \TYPO3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-04'), $user1);
 		$testVariables = array(
+			'simpleText' => 'Hello world!',
 			'text' => 'this is some text with newlines' . chr(10) . 'and special characters: äöüß <script>alert(\'this should never be executed!!\')</script>',
 			'array' => array('a', 'b', 'c', 'd', 'e'),
 			'fruits' => array(array('name' => 'blackberry', 'type' => 'berry'), array('name' => 'orange', 'type' => 'citrus fruit'), array('name' => 'cranberry', 'type' => 'berry'), array('name' => 'pear', 'type' => 'core'), array('name' => 'lemon', 'type' => 'citrus fruit'), array('name' => 'grape', 'type' => 'berry'), array('name' => 'apple', 'type' => 'core')),

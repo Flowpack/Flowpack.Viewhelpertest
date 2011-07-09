@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest;
+namespace TYPO3\Viewhelpertest;
 
 /*
  * This script belongs to the TYPO3 project.                              *
@@ -24,11 +24,11 @@ namespace F3\Viewhelpertest;
 
 require_once(__DIR__ . '/SeleniumBaseTestCase.php');
 
-class FormViewHelperTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
+class FormViewHelperTest extends \TYPO3\Viewhelpertest\SeleniumBaseTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function itIsPossibleToPutFormFieldsIntoPartial() {
 		$this->navigateToViewHelper('form.withFieldsInPartial');

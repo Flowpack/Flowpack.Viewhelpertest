@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\ViewHelpers;
+namespace TYPO3\Viewhelpertest\ViewHelpers;
 
 /* *
  * This script belongs to the FLOW3 framework.                            *
@@ -29,7 +29,7 @@ namespace F3\Viewhelpertest\ViewHelpers;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class TemplateViewForHighlightViewHelper extends \F3\Fluid\View\TemplateView {
+class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView {
 
 	/**
 	 * The source of the template
@@ -41,7 +41,7 @@ class TemplateViewForHighlightViewHelper extends \F3\Fluid\View\TemplateView {
 	 * The ViewHelperVariableContainer of the surrounding area,
 	 * this makes it possible to test single form elements inside a surrounding
 	 * <f:form>.
-	 * @var F3\Fluid\Core\ViewHelper\ViewHelperVariableContainer
+	 * @var TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer
 	 */
 	protected $viewHelperVariableContainer;
 
@@ -66,11 +66,11 @@ class TemplateViewForHighlightViewHelper extends \F3\Fluid\View\TemplateView {
 	/**
 	 * Set the current ViewHelperVariableContainer.
 	 *
-	 * @param \F3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
+	 * @param \TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
 	 * @return void
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
-	public function setViewHelperVariableContainer(\F3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
+	public function setViewHelperVariableContainer(\TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
 		$this->viewHelperVariableContainer = clone $viewHelperVariableContainer;
 	}
 
@@ -79,7 +79,7 @@ class TemplateViewForHighlightViewHelper extends \F3\Fluid\View\TemplateView {
 	 *
 	 * @param string $actionName render the given action.
 	 * @return string the rendered result
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function render($actionName = NULL) {
 		$this->baseRenderingContext->injectViewHelperVariableContainer($this->viewHelperVariableContainer);

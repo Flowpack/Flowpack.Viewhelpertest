@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\Controller;
+namespace TYPO3\Viewhelpertest\Controller;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -20,7 +20,7 @@ namespace F3\Viewhelpertest\Controller;
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class RenderController extends \F3\FLOW3\MVC\Controller\ActionController {
+class RenderController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 
 	public function optionalSectionsAction() {
 		// TODO

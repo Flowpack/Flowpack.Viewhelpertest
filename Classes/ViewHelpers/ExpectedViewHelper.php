@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\ViewHelpers;
+namespace TYPO3\Viewhelpertest\ViewHelpers;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Viewhelpertest".             *
@@ -27,17 +27,17 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-class ExpectedViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper {
+class ExpectedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * @param boolean $regex
 	 * @return void
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function render($regex = FALSE) {
 		$source = trim($this->renderChildren());
-		$this->viewHelperVariableContainer->addOrUpdate('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source', $source);
-		$this->viewHelperVariableContainer->addOrUpdate('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex', $regex);
+		$this->viewHelperVariableContainer->addOrUpdate('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source', $source);
+		$this->viewHelperVariableContainer->addOrUpdate('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex', $regex);
 	}
 }
 

@@ -1,0 +1,8 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+
+<div class="expected">
+	FEATURE: When passing _all as arguments to render, all available variables should be available in the partial.
+</div>
+<vht:highlight expected="Hello world!"><![CDATA[
+	<f:render partial="Render/PassingAllVariables" arguments="{_all}" />
+]]></vht:highlight>

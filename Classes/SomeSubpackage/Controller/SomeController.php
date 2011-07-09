@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\SomeSubpackage\Controller;
+namespace TYPO3\Viewhelpertest\SomeSubpackage\Controller;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -20,6 +20,6 @@ namespace F3\Viewhelpertest\SomeSubpackage\Controller;
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class SomeController extends \F3\FLOW3\MVC\Controller\ActionController {
+class SomeController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest;
+namespace TYPO3\Viewhelpertest;
 
 /*
  * This script belongs to the TYPO3 project.                              *
@@ -24,12 +24,12 @@ namespace F3\Viewhelpertest;
 
 require_once(__DIR__ . '/SeleniumBaseTestCase.php');
 
-class RenderTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
+class RenderTest extends \TYPO3\Viewhelpertest\SeleniumBaseTestCase {
 
 	// TODO: Test for optional sections
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInLayoutUsesTemplateVariables() {
 		$this->navigateToControllerAndAction('Render', 'renderSectionInLayoutUsesTemplateVariables');
@@ -38,7 +38,7 @@ class RenderTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderPartialNeedsArgumentsExplicitely() {
 		$this->navigateToControllerAndAction('Render', 'renderPartialNeedsArgumentsExplicitely');
@@ -50,7 +50,7 @@ class RenderTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInPartialNeedsArgumentsExplicitely() {
 		$this->navigateToControllerAndAction('Render', 'renderSectionInPartialNeedsArgumentsExplicitely');
@@ -61,7 +61,7 @@ class RenderTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInsidePartialNeedsArgumentsExplicitely() {
 		$this->navigateToControllerAndAction('Render', 'renderSectionInsidePartialNeedsArgumentsExplicitely');
@@ -72,7 +72,7 @@ class RenderTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInsideTemplateNeedsArgumentsExplicitely() {
 		$this->navigateToControllerAndAction('Render', 'renderSectionInsideTemplateNeedsArgumentsExplicitely');
@@ -84,7 +84,7 @@ class RenderTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function recursiveSectionsWorks() {
 		$this->navigateToControllerAndAction('Render', 'recursiveSections');

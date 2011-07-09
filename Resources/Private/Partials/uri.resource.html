@@ -1,9 +1,9 @@
-{namespace vht=F3\Viewhelpertest\ViewHelpers}
-<vht:highlight expectedRegex="/^https?:\/\/.+\/_Resources\/Static\/Packages\/Viewhelpertest\/typo3_logo.png$/"><![CDATA[
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expectedRegex="/^https?:\/\/.+\/_Resources\/Static\/Packages\/TYPO3.Viewhelpertest\/typo3_logo.png$/"><![CDATA[
 	{f:uri.resource(path:'typo3_logo.png')}
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/^https?:\/\/.+\/_Resources\/Static\/Packages\/Viewhelpertest\/NonExistingResource$/"><![CDATA[
+<vht:highlight expectedRegex="/^https?:\/\/.+\/_Resources\/Static\/Packages\/TYPO3.Viewhelpertest\/NonExistingResource$/"><![CDATA[
 	{f:uri.resource(path:'NonExistingResource')}
 ]]></vht:highlight>
 

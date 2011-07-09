@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\ViewHelpers;
+namespace TYPO3\Viewhelpertest\ViewHelpers;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Viewhelpertest".             *
@@ -27,7 +27,7 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-class HighlightViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubTemplateRenderingViewHelper {
+class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubTemplateRenderingViewHelper {
 
 	protected static $executionCount = 0;
 
@@ -63,16 +63,16 @@ class HighlightViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubTemp
 			$expectedRegex = html_entity_decode($expectedRegex);
 		}
 
-		if ($expected === NULL && $expectedRegex === NULL && $this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source')) {
-			$isRegex = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex');
+		if ($expected === NULL && $expectedRegex === NULL && $this->viewHelperVariableContainer->exists('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source')) {
+			$isRegex = $this->viewHelperVariableContainer->get('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex');
 			if ($isRegex) {
-				$expectedRegex = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
+				$expectedRegex = $this->viewHelperVariableContainer->get('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
 			} else {
-				$expected = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
+				$expected = $this->viewHelperVariableContainer->get('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
 			}
 
-			$this->viewHelperVariableContainer->remove('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
-			$this->viewHelperVariableContainer->remove('F3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex');
+			$this->viewHelperVariableContainer->remove('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
+			$this->viewHelperVariableContainer->remove('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex');
 		}
 		if ($expected !== NULL && trim($renderedSource) === $expected) {
 			$title = 'successfully compared the rendered result with &quot;' . htmlspecialchars($expected) . '&quot;';
@@ -91,8 +91,8 @@ class HighlightViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubTemp
 			}
 		}
 
-		if ($this->viewHelperVariableContainer->exists('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
-			$results = $this->viewHelperVariableContainer->get('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
+		if ($this->viewHelperVariableContainer->exists('TYPO3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results')) {
+			$results = $this->viewHelperVariableContainer->get('TYPO3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results');
 		} else {
 			$results = array(
 				'total' => 0,
@@ -105,7 +105,7 @@ class HighlightViewHelper extends \F3\Viewhelpertest\ViewHelpers\AbstractSubTemp
 		if ($className === 'failure') {
 			$results['failures']++;
 		}
-		$this->viewHelperVariableContainer->addOrUpdate('F3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results', $results);
+		$this->viewHelperVariableContainer->addOrUpdate('TYPO3\Viewhelpertest\ViewHelpers\HighlightViewHelper', 'results', $results);
 
 		$uriToThisTest = $this->controllerContext->getUriBuilder()
 				->reset()

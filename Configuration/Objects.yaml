@@ -1,4 +1,4 @@
-F3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper:
+TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper:
   properties:
     renderingContext:
-      object: F3\Fluid\Core\Rendering\RenderingContext
+      object: TYPO3\Fluid\Core\Rendering\RenderingContext

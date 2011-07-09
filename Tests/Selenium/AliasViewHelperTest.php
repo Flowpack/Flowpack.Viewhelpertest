@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest;
+namespace TYPO3\Viewhelpertest;
 
 /*
  * This script belongs to the TYPO3 project.                              *
@@ -24,11 +24,11 @@ namespace F3\Viewhelpertest;
 
 require_once(__DIR__ . '/SeleniumBaseTestCase.php');
 
-class AliasViewHelperTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
+class AliasViewHelperTest extends \TYPO3\Viewhelpertest\SeleniumBaseTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 * @author Bastian Waidelich <bastian@typo3.org>
 	 */
     public function aliasViewHelperWorksWithOneParameter() {
@@ -42,7 +42,7 @@ class AliasViewHelperTest extends \F3\Viewhelpertest\SeleniumBaseTestCase {
 	 */
     public function aliasViewHelperWorksWithTwoParametersAndSpecialCharacters() {
 		$this->navigateToViewHelper('alias');
-        $this->assertText('f-fluid-alias', 'Kurfürst, Sebastian');
+        $this->assertText('f-fluid-alias', 'Kurf√ºrst, Sebastian');
     }
 }
 ?>

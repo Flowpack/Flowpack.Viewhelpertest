@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\ViewHelpers;
+namespace TYPO3\Viewhelpertest\ViewHelpers;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Viewhelpertest".             *
@@ -27,11 +27,11 @@ namespace F3\Viewhelpertest\ViewHelpers;
  * @api
  * @scope prototype
  */
-class IssetViewHelper extends \F3\Fluid\Core\ViewHelper\AbstractViewHelper {
+class IssetViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * @return void
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf‚àö¬∫rst <sebastian@typo3.org>
 	 */
 	public function render() {
 		return $this->renderChildren() !== NULL;

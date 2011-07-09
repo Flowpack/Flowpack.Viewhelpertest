@@ -1,8 +1,8 @@
-{namespace vht=F3\Viewhelpertest\ViewHelpers}
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
 <vht:expected regex="true">
-#^<form action="viewhelpertest/standard/" method="post">
+#^<form action="typo3.viewhelpertest/standard/" method="post">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[@package\]" value="Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
 \s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
 \s*<input type="hidden" name="__referrer\[@action\]" value="index" />
@@ -18,7 +18,7 @@
 <vht:expected regex="true">
 #^<form method="get" action="custom\/relative\/uri">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[@package\]" value="Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
 \s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
 \s*<input type="hidden" name="__referrer\[@action\]" value="index" />
@@ -35,14 +35,14 @@
 /<form enctype="multipart\/form-data" onreset="void\(0\)" onsubmit="void\(0\)" action="https?:\/\/(.*?)" method="post">/
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:form enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="Some" package="Viewhelpertest" subpackage="SomeSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
+	<f:form enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="Some" package="TYPO3.Viewhelpertest" subpackage="SomeSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
 ]]></vht:highlight>
 
 
 <vht:expected regex="true">
-#^<form title="someTitleAttribute" method="get" name="foo" id="bar" action="viewhelpertest/standard/foo">
+#^<form title="someTitleAttribute" method="get" name="foo" id="bar" action="typo3.viewhelpertest/standard/foo">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[@package\]" value="Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
 \s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
 \s*<input type="hidden" name="__referrer\[@action\]" value="index" />
@@ -57,11 +57,13 @@
 <h1>form (bound to object)</h1>
 
 <f:form name="someUser" object="{testVariables.user4}">
-	<vht:highlight expected="<input type=&quot;text&quot; name=&quot;someUser[firstName]&quot; value=&quot;Kasper&quot; />"><![CDATA[
+	<vht:expected><input type="text" name="someUser[firstName]" value="Kasper" /></vht:expected>
+	<vht:highlight><![CDATA[
 		<f:form.textbox property="firstName" />
 	]]></vht:highlight>
 
-	<vht:highlight expected="<input type=&quot;text&quot; name=&quot;someUser[lastName]&quot; value=&quot;Skårhøj&quot; />"><![CDATA[
+	<vht:expected><input type="text" name="someUser[lastName]" value="Skårhøj" /></vht:expected>
+	<vht:highlight><![CDATA[
 		<f:form.textbox property="lastName" />
 	]]></vht:highlight>
 

@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\Tests\Functional;
+namespace TYPO3\Viewhelpertest\Tests\Functional;
 
 /*                                                                        *
  * This script belongs to the FLOW3 framework.                            *
@@ -31,7 +31,7 @@ class RenderingTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInLayoutUsesTemplateVariables() {
 		$this->callActionAndValidateResult('renderSectionInLayoutUsesTemplateVariables');
@@ -39,7 +39,7 @@ class RenderingTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInPartialNeedsArgumentsExplicitely() {
 		$this->callActionAndValidateResult('renderSectionInPartialNeedsArgumentsExplicitely');
@@ -47,7 +47,7 @@ class RenderingTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderPartialNeedsArgumentsExplicitely() {
 		$this->callActionAndValidateResult('renderPartialNeedsArgumentsExplicitely');
@@ -55,7 +55,7 @@ class RenderingTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInsidePartialNeedsArgumentsExplicitely() {
 		$this->callActionAndValidateResult('renderSectionInsidePartialNeedsArgumentsExplicitely');
@@ -63,7 +63,7 @@ class RenderingTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInsideTemplateNeedsArgumentsExplicitely() {
 		$this->callActionAndValidateResult('renderSectionInsideTemplateNeedsArgumentsExplicitely');
@@ -91,7 +91,7 @@ class RenderingTest extends \F3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function recursiveSections() {
 		$actual = $this->sendWebRequest('Render', 'Viewhelpertest', 'recursiveSections');

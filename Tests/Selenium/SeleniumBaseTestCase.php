@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest;
+namespace TYPO3\Viewhelpertest;
 
 /*
  * This script belongs to the TYPO3 project.                              *
@@ -35,7 +35,7 @@ class SeleniumBaseTestCase extends \F3\Testing\SeleniumTestCase {
 	 *
 	 * @param string $controller
 	 * @param string $action
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	protected function navigateToControllerAndAction($controller, $action) {
 		$this->open('/viewhelpertest/' . $controller . '/' . strtolower($action));

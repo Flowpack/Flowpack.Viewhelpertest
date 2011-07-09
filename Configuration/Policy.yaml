@@ -1,7 +1,7 @@
 resources:
   methods:
-    F3_Viewhelpertest_AllowedMethods: 'method(F3\Viewhelpertest\Controller\StandardController->allowedAction())'
-    F3_Viewhelpertest_DeniedMethods: 'method(F3\Viewhelpertest\Controller\StandardController->deniedAction())'
+    F3_Viewhelpertest_AllowedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->allowedAction())'
+    F3_Viewhelpertest_DeniedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->deniedAction())'
 
 roles:
   TestRole: []

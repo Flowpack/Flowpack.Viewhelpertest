@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest\Domain\Model;
+namespace TYPO3\Viewhelpertest\Domain\Model;
 
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
@@ -34,7 +34,7 @@ class Invoice {
 	protected $date;
 
 	/**
-	 * @var \F3\Viewhelpertest\Domain\Model\User
+	 * @var \TYPO3\Viewhelpertest\Domain\Model\User
 	 */
 	protected $customer;
 
@@ -54,15 +54,15 @@ class Invoice {
 	}
 
 	/**
-	 * @param \F3\Viewhelpertest\Domain\Model\User $customer
+	 * @param \TYPO3\Viewhelpertest\Domain\Model\User $customer
 	 * @return void
 	 */
-	public function setCustomer(\F3\Viewhelpertest\Domain\Model\User $customer) {
+	public function setCustomer(\TYPO3\Viewhelpertest\Domain\Model\User $customer) {
 		$this->customer = $customer;
 	}
 
 	/**
-	 * @return \F3\Viewhelpertest\Domain\Model\User
+	 * @return \TYPO3\Viewhelpertest\Domain\Model\User
 	 */
 	public function getCustomer() {
 		return $this->customer;
@@ -70,9 +70,9 @@ class Invoice {
 
 	/**
 	 * @param \DateTime $date
-	 * @param \F3\Viewhelpertest\Domain\Model\User $customer
+	 * @param \TYPO3\Viewhelpertest\Domain\Model\User $customer
 	 */
-	public function __construct(\DateTime $date, \F3\Viewhelpertest\Domain\Model\User $customer) {
+	public function __construct(\DateTime $date, \TYPO3\Viewhelpertest\Domain\Model\User $customer) {
 		$this->date = $date;
 		$this->customer = $customer;
 	}

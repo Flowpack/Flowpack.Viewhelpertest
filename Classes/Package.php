@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Viewhelpertest;
+namespace TYPO3\Viewhelpertest;
 
 /*                                                                        *
  * This script belongs to the FLOW3 framework.                            *
@@ -25,7 +25,7 @@ namespace F3\Viewhelpertest;
 /**
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class Package extends \F3\FLOW3\Package\Package {
+class Package extends \TYPO3\FLOW3\Package\Package {
 
 }
 ?>
