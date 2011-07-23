@@ -3,3 +3,6 @@ TYPO3:
   Viewhelpertest:
     includeViewHelpers: [alias, base, count, cycle, debug, escape, flashMessages, for, form, form.checkbox, form.hidden, form.select, form.submit, form.textarea, form.textbox, form.upload, format.crop, format.currency, format.date, format.nl2br, format.number, format.padding, format.printf, groupedFor, if, link.action, link.email, link.external, raw, render, section, security.ifAccess, security.ifAuthenticated, security.ifHasRole, uri.action, uri.email, uri.external, uri.resource]
     someSettingForTestingSettingsInPartials: someSettingValue
+    # with slash at end!
+    xhprofRoot: /Volumes/data/Users/sebastian/htdocs/xhprof/
+    optimizationIdentifier: notOptimized
