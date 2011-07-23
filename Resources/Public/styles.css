@@ -88,6 +88,15 @@
 	color: #333;
 }
 
+/*** forms ***/
+
+.viewhelpertest label {
+	display: block;
+	float: left;
+	font-weight: bold;
+	width: 100px;
+}
+
 /*******************************
  *      Rendering Tests        *
  *******************************/
@@ -116,4 +125,15 @@
 
 .renderTest .variableOutput.expected-empty {
 	background-color:#ff0000;
+}
+
+/*******************************
+ *          Profiling          *
+ *******************************/
+
+.profilingBox {
+	border: 1px solid #f0f0f0;
+	width: 250px;
+	height: 100px;
+	overflow-y: scroll;
 }
