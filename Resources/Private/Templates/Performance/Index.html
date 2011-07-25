@@ -1,1 +1,41 @@
-Test foo bar
+<f:layout name="default" />
+<f:section name="content">
+	<div class="viewhelpertest">
+		<f:form action="profile" method="get">
+			<ol>
+				<li>
+					<label>Use Layout</label>
+					<f:form.checkbox name="setup[layout]" value="1" checked="false" />
+				</li>
+				<li>
+					<label>Nr of Objects</label>
+					<f:form.textfield name="setup[objects]" value="50" />
+				</li>
+				<li>
+					<label>Nr of Arrays</label>
+					<f:form.textfield name="setup[arrays]" value="50" />
+				</li>
+				<li>
+					<label>Forms</label>
+					<f:form.textfield name="setup[forms]" value="1" />
+				</li>
+				<li>
+					<label>Nesting levels</label>
+					<f:form.textfield name="setup[nestingLevels]" value="4" />
+				</li>
+				<li>
+					<label>Nr of Partials</label>
+					<f:form.textfield name="setup[partials]" value="1" />
+				</li>
+				<li>
+					<label>Nr of Sections</label>
+					<f:form.textfield name="setup[sections]" value="1" />
+				</li>
+				<li>&nbsp;</li>
+				<li>
+					<f:form.submit value="start profiling" />
+				</li>
+			</ol>
+		</f:form>
+	</div>
+</f:section>
