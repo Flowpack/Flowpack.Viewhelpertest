@@ -33,7 +33,10 @@ class PerformanceController extends \TYPO3\FLOW3\MVC\Controller\ActionController
 	public function indexAction() {
 	}
 
-
+	public function testAction() {
+		$this->view->assign("foo", array('baz', 'buz', 'x', 'y', 'z'));
+		$this->view->assign('simpleOneValue', '1');
+	}
 
 	/**
 	 * @param array $setup

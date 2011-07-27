@@ -86,5 +86,15 @@ class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView 
 		$this->baseRenderingContext->getViewHelperVariableContainer()->setView($this);
 		return parent::render($actionName);
 	}
+
+	/**
+	 * We use a checksum of the template source as the template identifier
+	 *
+	 * @param string $actionName
+	 * @return string
+	 */
+	protected function getTemplateIdentifier($actionName = NULL) {
+		return 'viewhelpertest_' . sha1($this->templateSource);
+	}
 }
 ?>
