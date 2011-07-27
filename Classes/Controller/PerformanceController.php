@@ -34,9 +34,14 @@ class PerformanceController extends \TYPO3\FLOW3\MVC\Controller\ActionController
 	protected $environment;
 
 	/**
+	 * @param array $setup
 	 * @return void
 	 */
-	public function indexAction() {
+	public function indexAction(array $setup = NULL) {
+		if ($setup === NULL) {
+			$setup = array('optimizationIdentifier' => 'default');
+		}
+		$this->view->assign('setup', $setup);
 	}
 
 	/**
@@ -210,7 +215,7 @@ EOT;
 EOT;
 		}
 
-		$templateCode .= '<p><f:link.action action="index">BACK</f:link.action></p>';
+		$templateCode .= '<p><f:link.action action="index" arguments="{setup: setup}">Modify Setup</f:link.action></p>';
 		if ($this->setup['layout']) {
 			$templateCode .= '</f:section>';
 		} else {
