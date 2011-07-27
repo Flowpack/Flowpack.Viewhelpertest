@@ -28,11 +28,20 @@ class PerformanceController extends \TYPO3\FLOW3\MVC\Controller\ActionController
 	protected $setup;
 
 	/**
+	 * @var TYPO3\FLOW3\Utility\Environment
+	 * @inject
+	 */
+	protected $environment;
+
+	/**
 	 * @return void
 	 */
 	public function indexAction() {
 	}
 
+	/**
+	 * @return void
+	 */
 	public function testAction() {
 		$this->view->assign("foo", array('baz', 'buz', 'x', 'y', 'z'));
 		$this->view->assign('simpleOneValue', '1');
@@ -53,9 +62,9 @@ class PerformanceController extends \TYPO3\FLOW3\MVC\Controller\ActionController
 		$this->startProfiler();
 		$output = $this->view->render();
 		$endTime = microtime(TRUE);
-		$timeInMilliseconds = (integer)(($endTime - $startTime) * 1000000);
+		$timeInMilliseconds = (integer)(($endTime - $startTime) * 1000);
 		$this->stopProfiler($timeInMilliseconds);
-		$output = str_replace('###RENDERING_TIME###', $timeInMilliseconds , $output);
+		$output = str_replace('###RENDERING_TIME###', number_format($timeInMilliseconds, 2, ',', '.') , $output);
 		return $output;
 	}
 
@@ -201,6 +210,7 @@ EOT;
 EOT;
 		}
 
+		$templateCode .= '<p><f:link.action action="index">BACK</f:link.action></p>';
 		if ($this->setup['layout']) {
 			$templateCode .= '</f:section>';
 		} else {
@@ -297,7 +307,9 @@ EOT;
 		\TYPO3\FLOW3\Utility\Files::createDirectoryRecursively($this->settings['xhprof']['outputDirectory']);
 		$xhprofRun = new \XHProfRuns_Default($this->settings['xhprof']['outputDirectory']);
 
-		$outputFilename = sprintf('vhtest_%s_%s_%s', $this->settings['xhprof']['optimizationIdentifier'], $this->request->getControllerActionName(), date('Y-m-d_H-i-s'));
+		$rawGetArguments = $this->environment->getRawGetArguments();
+		$optimizationIdentifier = isset($rawGetArguments['optimizationIdentifier']) ? $rawGetArguments['optimizationIdentifier'] : $this->settings['xhprof']['optimizationIdentifier'];
+		$outputFilename = sprintf('vhtest_%s_%s_%s', $optimizationIdentifier, $this->request->getControllerActionName(), date('Y-m-d_H-i-s'));
 		$xhprofRun->save_run(
 			$xhprofData,
 			'xhprof',
@@ -305,7 +317,7 @@ EOT;
 		);
 		$settingsOutputFilename = $outputFilename . '.settings';
 		$data = $this->setup;
-		$data['time'] = $timeInMilliseconds;
+		$data['time'] = $timeInMilliseconds * 1000;
 		file_put_contents(\TYPO3\FLOW3\Utility\Files::concatenatePaths(array($this->settings['xhprof']['outputDirectory'], $settingsOutputFilename)), serialize($data));
 	}
 }
