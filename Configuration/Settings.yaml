@@ -7,6 +7,5 @@ TYPO3:
     xhprof:
       rootDirectory: '' # path to the XHProf library
       outputDirectory: %FLOW3_PATH_DATA%Temporary/Viewhelpertest/XHProf/ # output directory
-      optimizationIdentifier: default
 
     profilingTemplatesDirectory: %FLOW3_PATH_DATA%Temporary/Viewhelpertest/Fluidtemplates/

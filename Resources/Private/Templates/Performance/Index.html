@@ -4,6 +4,11 @@
 		<form action="{f:uri.action(action: 'profile')}" method="get">
 			<ol>
 				<li>
+					<label>Optimization Identifier</label>
+					<f:form.textfield name="setup[optimizationIdentifier]" value="default" />
+				</li>
+				<li>&nbsp;</li>
+				<li>
 					<label>Use Layout</label>
 					<f:form.checkbox name="setup[layout]" value="1" />
 				</li>

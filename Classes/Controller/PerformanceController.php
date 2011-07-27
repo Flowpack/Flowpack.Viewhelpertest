@@ -308,7 +308,7 @@ EOT;
 		$xhprofRun = new \XHProfRuns_Default($this->settings['xhprof']['outputDirectory']);
 
 		$rawGetArguments = $this->environment->getRawGetArguments();
-		$optimizationIdentifier = isset($rawGetArguments['optimizationIdentifier']) ? $rawGetArguments['optimizationIdentifier'] : $this->settings['xhprof']['optimizationIdentifier'];
+		$optimizationIdentifier = isset($this->setup['optimizationIdentifier']) ? $this->setup['optimizationIdentifier'] : 'default';
 		$outputFilename = sprintf('vhtest_%s_%s_%s', $optimizationIdentifier, $this->request->getControllerActionName(), date('Y-m-d_H-i-s'));
 		$xhprofRun->save_run(
 			$xhprofData,
