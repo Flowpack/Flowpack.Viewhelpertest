@@ -1,7 +1,7 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
 <f:if condition="{rowValue.literal -> vht:isset()}"><f:if condition="{columnValue.literal -> vht:isset()}">
 	<vht:highlight expected="{expectedResult}"><![CDATA[
-		<f:if condition="]]>{rowValue.literal} {comparator -> f:raw()} {columnValue.literal}<![CDATA[">
+		<f:if condition="]]>{rowValue.literal} {comparator -> f:format.raw()} {columnValue.literal}<![CDATA[">
 			<f:then>1</f:then>
 			<f:else>0</f:else>
 		</f:if>
@@ -10,7 +10,7 @@
 
 <f:if condition="{rowValue.objectAccess -> vht:isset()}"><f:if condition="{columnValue.literal -> vht:isset()}">
 <vht:highlight expected="{expectedResult}"><![CDATA[
-	<f:if condition="]]><vht:curlyBrackets>{rowValue.objectAccess}</vht:curlyBrackets> {comparator -> f:raw()} {columnValue.literal}<![CDATA[">
+	<f:if condition="]]><vht:curlyBrackets>{rowValue.objectAccess}</vht:curlyBrackets> {comparator -> f:format.raw()} {columnValue.literal}<![CDATA[">
 		<f:then>1</f:then>
 		<f:else>0</f:else>
 	</f:if>
@@ -19,7 +19,7 @@
 
 <f:if condition="{rowValue.literal -> vht:isset()}"><f:if condition="{columnValue.objectAccess -> vht:isset()}">
 <vht:highlight expected="{expectedResult}"><![CDATA[
-	<f:if condition="]]>{rowValue.literal} {comparator -> f:raw()} <vht:curlyBrackets>{columnValue.objectAccess}</vht:curlyBrackets><![CDATA[">
+	<f:if condition="]]>{rowValue.literal} {comparator -> f:format.raw()} <vht:curlyBrackets>{columnValue.objectAccess}</vht:curlyBrackets><![CDATA[">
 		<f:then>1</f:then>
 		<f:else>0</f:else>
 	</f:if>
@@ -28,7 +28,7 @@
 
 <f:if condition="{rowValue.objectAccess -> vht:isset()}"><f:if condition="{columnValue.objectAccess -> vht:isset()}">
 	<vht:highlight expected="{expectedResult}"><![CDATA[
-		<f:if condition="]]><vht:curlyBrackets>{rowValue.objectAccess}</vht:curlyBrackets> {comparator -> f:raw()} <vht:curlyBrackets>{columnValue.objectAccess}</vht:curlyBrackets><![CDATA[">
+		<f:if condition="]]><vht:curlyBrackets>{rowValue.objectAccess}</vht:curlyBrackets> {comparator -> f:format.raw()} <vht:curlyBrackets>{columnValue.objectAccess}</vht:curlyBrackets><![CDATA[">
 			<f:then>1</f:then>
 			<f:else>0</f:else>
 		</f:if>

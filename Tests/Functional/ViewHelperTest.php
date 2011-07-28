@@ -27,7 +27,7 @@ namespace TYPO3\Viewhelpertest\Tests\Functional;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class ViewHelperTest extends \F3\FLOW3\Tests\FunctionalTestCase {
+class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 	protected $testableSecurityEnabled = TRUE;
 
