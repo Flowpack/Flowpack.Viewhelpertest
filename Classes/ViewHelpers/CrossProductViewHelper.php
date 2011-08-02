@@ -31,16 +31,22 @@ class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractS
 
 	/**
 	 * @param array $values,
-	 * @param string $expected
 	 * @param string $matrixMode
 	 * @return void
 	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
-	public function render($values, $expected=NULL, $matrixMode=NULL) {
+	public function render($values, $matrixMode=NULL) {
 		if ($matrixMode !== NULL && $matrixMode !== 'outputRaw' && $matrixMode !== 'symmetric') {
 			throw new \Exception('TODO: Matrix mode must be either "outputRaw" or "symmetric"');
 		}
 		$variableNames = array_keys($values);
+
+		$expected = NULL;
+		if ($this->viewHelperVariableContainer->exists('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source')) {
+			$expected = $this->viewHelperVariableContainer->get('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
+			$this->viewHelperVariableContainer->remove('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
+			$this->viewHelperVariableContainer->remove('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex');
+		}
 
 		if ($expected === NULL) {
 			return $this->renderHelper($variableNames);

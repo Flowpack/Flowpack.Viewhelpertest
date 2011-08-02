@@ -139,7 +139,7 @@ TODO: Strings, and Boolean literal values, and NULL literal value
 }}">
 
 <h3>== comparator</h3>
-<vht:crossProduct values="{values}" expected="
+<vht:expected>
                ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
 IntegerPositive;    1          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
 IntegerNegative;    0          ;    1          ;    0          ;    0          ;    0          ;    0          ;    0
@@ -148,14 +148,13 @@ FloatPositive  ;    0          ;    0          ;    0          ;    1          ;
 FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    1          ;    0          ;    0
 Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    1          ;    0
 Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    1
-"
-matrixMode="symmetric"
->
+</vht:expected>
+<vht:crossProduct values="{values}" matrixMode="symmetric">
 	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '=='}" />
 </vht:crossProduct>
 
 <h3>!= comparator</h3>
-<vht:crossProduct values="{values}" expected="
+<vht:expected>
                ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
 IntegerPositive;    0          ;    1          ;    1          ;    1          ;    1          ;    1          ;    1
 IntegerNegative;    0          ;    0          ;    1          ;    1          ;    1          ;    1          ;    1
@@ -164,9 +163,8 @@ FloatPositive  ;    0          ;    0          ;    0          ;    0          ;
 FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    0          ;    1          ;    1
 Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    1
 Array          ;    1          ;    1          ;    1          ;    1          ;    1          ;    1          ;    0
-"
-matrixMode="symmetric"
->
+</vht:expected>
+<vht:crossProduct values="{values}" matrixMode="symmetric">
 	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '!='}" />
 </vht:crossProduct>
 
@@ -174,9 +172,8 @@ matrixMode="symmetric"
 TODO: specify
 
 <h3>&gt;= comparator</h3>
-
-<vht:crossProduct values="{values}" expected="
-               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
+<vht:expected>
+	           ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
 IntegerPositive;    1          ;    1          ;    1          ;    0          ;    1          ;    0          ;    0
 IntegerNegative;    0          ;    1          ;    0          ;    0          ;    1          ;    0          ;    0
 IntegerZero    ;    0          ;    1          ;    1          ;    0          ;    1          ;    0          ;    0
@@ -184,14 +181,13 @@ FloatPositive  ;    1          ;    1          ;    1          ;    1          ;
 FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    1          ;    0          ;    0
 Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    1          ;    0
 Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    1
-"
->
+</vht:expected>
+<vht:crossProduct values="{values}">
 	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '>='}" />
 </vht:crossProduct>
 
 <h3>&gt; comparator</h3>
-
-<vht:crossProduct values="{values}" expected="
+<vht:expected>
                ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
 IntegerPositive;    0          ;    1          ;    1          ;    0          ;    1          ;    0          ;    0
 IntegerNegative;    0          ;    0          ;    0          ;    0          ;    1          ;    0          ;    0
@@ -200,14 +196,13 @@ FloatPositive  ;    1          ;    1          ;    1          ;    0          ;
 FloatNegative  ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
 Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
 Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
-"
->
+</vht:expected>
+<vht:crossProduct values="{values}">
 	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '>'}" />
 </vht:crossProduct>
 
 <h3>&lt;= comparator</h3>
-
-<vht:crossProduct values="{values}" expected="
+<vht:expected>
                ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
 IntegerPositive;    1          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
 IntegerNegative;    1          ;    1          ;    1          ;    1          ;    0          ;    0          ;    0
@@ -216,15 +211,14 @@ FloatPositive  ;    0          ;    0          ;    0          ;    1          ;
 FloatNegative  ;    1          ;    1          ;    1          ;    1          ;    1          ;    0          ;    0
 Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    1          ;    0
 Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    1
-"
->
+</vht:expected>
+<vht:crossProduct values="{values}">
 	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '<='}" />
 </vht:crossProduct>
 
 <h3>< comparator</h3>
-
-<vht:crossProduct values="{values}" expected="
-               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
+<vht:expected>
+	               ;IntegerPositive;IntegerNegative;IntegerZero    ;FloatPositive  ;FloatNegative  ;Object         ;Array
 IntegerPositive;    0          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
 IntegerNegative;    1          ;    0          ;    1          ;    1          ;    0          ;    0          ;    0
 IntegerZero    ;    1          ;    0          ;    0          ;    1          ;    0          ;    0          ;    0
@@ -232,8 +226,8 @@ FloatPositive  ;    0          ;    0          ;    0          ;    0          ;
 FloatNegative  ;    1          ;    1          ;    1          ;    1          ;    0          ;    0          ;    0
 Object         ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
 Array          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0          ;    0
-"
->
+</vht:expected>
+<vht:crossProduct values="{values}">
 	<f:render partial="If/ConditionMatrix" arguments="{testVariables: testVariables, expectedResult: expectedResult, rowValue: rowValue, columnValue: columnValue, comparator: '<'}" />
 </vht:crossProduct>
 
