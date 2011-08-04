@@ -85,7 +85,7 @@ class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 */
 	protected function writeResultToFile($result) {
 		$newHeader =' -->';
-		$newHeader .= '<style>' . file_get_contents(FLOW3_PATH_ROOT . 'Packages/Application/Viewhelpertest/Resources/Public/styles.css') . '</style>';
+		$newHeader .= '<style>' . file_get_contents(FLOW3_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/styles.css') . '</style>';
 		$newHeader .= '<link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css" />
 			<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"> </script>
 			<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all.js"> </script>';
