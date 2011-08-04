@@ -78,7 +78,7 @@ class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 * @return void
 	 */
 	protected function callActionAndValidateResult($actionName) {
-		$result = $this->sendWebRequest('Render', 'Viewhelpertest', $actionName);
+		$result = $this->sendWebRequest('Render', 'TYPO3.Viewhelpertest', $actionName);
 
 			// Check if there is a '.expected-notEmpty' area which only contains whitespace. If this is the case,
 			// the assertion fails.
@@ -94,7 +94,7 @@ class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function recursiveSections() {
-		$actual = $this->sendWebRequest('Render', 'Viewhelpertest', 'recursiveSections');
+		$actual = $this->sendWebRequest('Render', 'TYPO3.Viewhelpertest', 'recursiveSections');
 		$expected = '
 			<ul>
 				<li>

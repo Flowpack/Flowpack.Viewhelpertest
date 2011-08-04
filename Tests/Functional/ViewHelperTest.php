@@ -38,7 +38,7 @@ class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	public function runViewHelperTest() {
 		$this->authenticateRoles(array('TestRole'));
 
-		$result = $this->sendWebRequest('Standard', 'Viewhelpertest', 'index', array('selectedPartial' => 'all'));
+		$result = $this->sendWebRequest('Standard', 'TYPO3.Viewhelpertest', 'index', array('selectedPartial' => 'all'));
 
 		$resultsWithFailures = \PHPUnit_Util_XML::cssSelect('.failure', TRUE, $result);
 		$successfulResultList = \PHPUnit_Util_XML::cssSelect('.success', TRUE, $result);
