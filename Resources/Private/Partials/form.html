@@ -59,12 +59,12 @@
 <f:form name="someUser" object="{testVariables.user4}">
 	<vht:expected><input type="text" name="someUser[firstName]" value="Kasper" /></vht:expected>
 	<vht:highlight><![CDATA[
-		<f:form.textbox property="firstName" />
+		<f:form.textfield property="firstName" />
 	]]></vht:highlight>
 
 	<vht:expected><input type="text" name="someUser[lastName]" value="Skårhøj" /></vht:expected>
 	<vht:highlight><![CDATA[
-		<f:form.textbox property="lastName" />
+		<f:form.textfield property="lastName" />
 	]]></vht:highlight>
 
 	<vht:expected>
@@ -107,7 +107,7 @@
 <p>&quot;objectName&quot; argument overrules &quot;name&quot; attribute:</p>
 <f:form name="formName" objectName="someUser" object="{testVariables.user4}">
 	<vht:highlight expected="<input type=&quot;text&quot; name=&quot;someUser[firstName]&quot; value=&quot;Kasper&quot; />"><![CDATA[
-		<f:form.textbox property="firstName" />
+		<f:form.textfield property="firstName" />
 	]]></vht:highlight>
 </f:form>
 

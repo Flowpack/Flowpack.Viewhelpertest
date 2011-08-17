@@ -1,0 +1,8 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="<input type=&quot;text&quot; name=&quot;myTextField&quot; />"><![CDATA[
+	<f:form.textfield name="myTextField" />
+]]></vht:highlight>
+
+<vht:highlight expected="<input type=&quot;text&quot; name=&quot;myTextField&quot; value=&quot;other value&quot; />"><![CDATA[
+	<f:form.textfield value="other value" name="myTextField"><input type="text" value="###dummy###" /></f:form.textfield>
+]]></vht:highlight>
