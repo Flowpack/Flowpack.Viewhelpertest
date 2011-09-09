@@ -1,0 +1,12 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected=""><![CDATA[
+	<f:comment />
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:comment>Some text that won't be rendered. <f:base /></f:comment>
+]]></vht:highlight>
+
+<vht:highlight expected="">
+	<f:comment><![CDATA[<f:some.invalid.syntax />]]></f:comment>
+</vht:highlight>
