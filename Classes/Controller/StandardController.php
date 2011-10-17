@@ -11,19 +11,21 @@ namespace TYPO3\Viewhelpertest\Controller;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use TYPO3\FLOW3\Annotations as FLOW3;
+
 /**
  * Viewhelpertest Default Controller
  */
 class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 
 	/**
-	 * @inject
+	 * @FLOW3\Inject
 	 * @var \TYPO3\FLOW3\Security\Authentication\AuthenticationManagerInterface
 	 */
 	protected $authenticationManager;
 
 	/**
-	 * @inject
+	 * @FLOW3\Inject
 	 * @var TYPO3\FLOW3\Security\Context
 	 */
 	protected $securityContext;

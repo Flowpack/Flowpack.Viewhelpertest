@@ -11,6 +11,8 @@ namespace TYPO3\Viewhelpertest\Controller;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use TYPO3\FLOW3\Annotations as FLOW3;
+
 /**
  * Viewhelpertest Performance Controller
  */
@@ -23,7 +25,7 @@ class PerformanceController extends \TYPO3\FLOW3\MVC\Controller\ActionController
 
 	/**
 	 * @var TYPO3\FLOW3\Utility\Environment
-	 * @inject
+	 * @FLOW3\Inject
 	 */
 	protected $environment;
 
