@@ -1,24 +1,18 @@
 <?php
-declare(ENCODING = 'utf-8');
 namespace TYPO3\Viewhelpertest\SomeSubpackage\Controller;
 
 /*                                                                        *
- * This script is part of the TYPO3 project - inspiring people to share!  *
+ * This script belongs to the FLOW3 package "Viewhelpertest".             *
  *                                                                        *
- * TYPO3 is free software; you can redistribute it and/or modify it under *
- * the terms of the GNU General Public License version 2 as published by  *
- * the Free Software Foundation.                                          *
+ * It is free software; you can redistribute it and/or modify it under    *
+ * the terms of the GNU Lesser General Public License, either version 3   *
+ *  of the License, or (at your option) any later version.                *
  *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General      *
- * Public License for more details.                                       *
+ * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
 /**
  * Empty controller fixture; needed for testing <f:link.action>
- *
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class SomeController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 }

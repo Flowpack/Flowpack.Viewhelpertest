@@ -1,24 +1,18 @@
 <?php
-declare(ENCODING = 'utf-8');
 namespace TYPO3\Viewhelpertest\Controller;
 
 /*                                                                        *
- * This script is part of the TYPO3 project - inspiring people to share!  *
+ * This script belongs to the FLOW3 package "Viewhelpertest".             *
  *                                                                        *
- * TYPO3 is free software; you can redistribute it and/or modify it under *
- * the terms of the GNU General Public License version 2 as published by  *
- * the Free Software Foundation.                                          *
+ * It is free software; you can redistribute it and/or modify it under    *
+ * the terms of the GNU Lesser General Public License, either version 3   *
+ *  of the License, or (at your option) any later version.                *
  *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General      *
- * Public License for more details.                                       *
+ * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
 /**
  * Viewhelpertest Default Controller
- *
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 
@@ -51,8 +45,8 @@ class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 		$this->view->assign('allowedPartials', $allowedPartials);
 		$this->view->assign('selectedPartials', $selectedPartials);
 		if (in_array('flashMessages', $selectedPartials)) {
-			$this->flashMessageContainer->add('Some dummy flash message at ' . date('H:i:s'));
-			$this->flashMessageContainer->add('Another dummy flash message.');
+			$this->addFlashMessage('Some dummy flash message at ' . date('H:i:s'));
+			$this->addFlashMessage('Error flash message with %s content.', 'Flash message title', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR, array('dynamic'), 123);
 		}
 		if (in_array('security.ifAccess', $selectedPartials) || in_array('security.ifAuthenticated', $selectedPartials) || in_array('security.ifHasRole', $selectedPartials)) {
 			$this->loginTestuser();
