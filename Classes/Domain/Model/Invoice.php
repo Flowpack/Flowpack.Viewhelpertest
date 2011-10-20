@@ -12,6 +12,7 @@ namespace TYPO3\Viewhelpertest\Domain\Model;
  *                                                                        */
 
 use TYPO3\FLOW3\Annotations as FLOW3;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * An Invoice
@@ -27,6 +28,7 @@ class Invoice {
 	protected $date;
 
 	/**
+	 * @ORM\ManyToOne
 	 * @var \TYPO3\Viewhelpertest\Domain\Model\User
 	 */
 	protected $customer;
