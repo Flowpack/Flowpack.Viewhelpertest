@@ -11,7 +11,7 @@ namespace TYPO3\Viewhelpertest\ViewHelpers;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-abstract class AbstractSubTemplateRenderingViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper implements \TYPO3\Fluid\Core\ViewHelper\Facets\ChildNodeAccessInterface {
+abstract class AbstractSubTemplateRenderingViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * @var TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper
@@ -21,27 +21,18 @@ abstract class AbstractSubTemplateRenderingViewHelper extends \TYPO3\Fluid\Core\
 	/**
 	 * @param \TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView
 	 * @return void
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function injectTemplateView(\TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView) {
 		$this->templateView = $templateView;
 	}
 
 	/**
-	 * We only need to implement this method because we want to call $this->getRenderingContext(), and for that, we need
-	 * to implement ChildNodeAccessInterface, which in turn requires this method to exist.
-	 *
-	 * @param array $childNodes
-	 * @return void
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
+	 * @param $source
+	 * @return mixed
 	 */
-	public function setChildNodes(array $childNodes) {
-	}
-
-
 	protected function renderSource($source) {
 		$this->templateView->setTemplateSource($source);
-		$this->templateView->setControllerContext($this->getRenderingContext()->getControllerContext());
+		$this->templateView->setControllerContext($this->renderingContext->getControllerContext());
 		$this->templateView->setViewHelperVariableContainer($this->viewHelperVariableContainer);
 
 		$this->templateView->assign('testVariables', $this->templateVariableContainer->get('testVariables'));

@@ -66,9 +66,9 @@ class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 	}
 
 	protected function loginTestuser() {
-		$account = $this->objectManager->create('TYPO3\FLOW3\Security\Account');
+		$account = new \TYPO3\FLOW3\Security\Account();
 		$roles = array(
-			$this->objectManager->create('TYPO3\FLOW3\Security\Policy\Role', 'TestRole'),
+			new \TYPO3\FLOW3\Security\Policy\Role('TestRole'),
 		);
 		$account->setAuthenticationProviderName('DefaultProvider');
 		$account->setRoles($roles);
