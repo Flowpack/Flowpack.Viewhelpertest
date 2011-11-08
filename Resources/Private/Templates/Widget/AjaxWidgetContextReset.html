@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/base/jquery-ui.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
+	</head>
+	<body>
+
+		<h1>Widget Test</h1>
+
+		<p>EXPECTED: The first input element does an autocomplete on "Kurfuerst", while the second one does an autocomplete on "Lemke".</p>
+
+		<p>BUG #31667: The first input element also does an autocomplete on "Lemke".</p>
+
+		<p><b>Make sure to test it on the second try as well (cached)</b></p>
+
+		<f:for each="{testData}" key="key" as="testElement">
+			<input id="foo{key}" /><br />
+			<f:widget.autocomplete for="foo{key}" objects="{testElement}" searchProperty="lastName" />
+		</f:for>
+	</body>
+</html>
