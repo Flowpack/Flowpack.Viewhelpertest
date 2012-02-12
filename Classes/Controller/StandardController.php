@@ -26,9 +26,27 @@ class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 
 	/**
 	 * @FLOW3\Inject
-	 * @var TYPO3\FLOW3\Security\Context
+	 * @var \TYPO3\FLOW3\Security\Authentication\Provider\TestingProvider
+	 */
+	protected $testAuthenticationProvider;
+
+	/**
+	 * @FLOW3\Inject
+	 * @var \TYPO3\FLOW3\Security\Context
 	 */
 	protected $securityContext;
+
+	/**
+	 * @FLOW3\Inject
+	 * @var \TYPO3\FLOW3\Security\AccountFactory
+	 */
+	protected $accountFactory;
+
+	/**
+	 * @FLOW3\Inject
+	 * @var \TYPO3\FLOW3\Session\SessionInterface
+	 */
+	protected $session;
 
 	/**
 	 * @param string $selectedPartial
@@ -73,11 +91,11 @@ class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 		$account->setAuthenticationProviderName('DefaultProvider');
 		$account->setRoles($roles);
 
-		$authenticationTokens = $this->securityContext->getAuthenticationTokensOfType('TYPO3\FLOW3\Security\Authentication\Token\UsernamePassword');
-		if (count($authenticationTokens) === 1) {
-			$authenticationTokens[0]->setAccount($account);
-			$authenticationTokens[0]->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
-		}
+		$this->testAuthenticationProvider->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+		$this->testAuthenticationProvider->setAccount($account);
+
+		$this->securityContext->clearContext();
+		$this->authenticationManager->authenticate();
 	}
 
 	/**

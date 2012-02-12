@@ -1,0 +1,8 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="foo%20%40%2B%25%2F"><![CDATA[
+	<f:format.urlencode value="foo @+%/" />
+]]></vht:highlight>
+
+<vht:highlight expected="Those%20should%20not%20be%20converted%3A%20-_.~"><![CDATA[
+	<f:format.urlencode>Those should not be converted: -_.~</f:format.urlencode>
+]]></vht:highlight>

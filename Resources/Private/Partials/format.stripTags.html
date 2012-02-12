@@ -1,0 +1,8 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="Some string without tags"><![CDATA[
+	<f:format.stripTags>Some string without tags</f:format.stripTags>
+]]></vht:highlight>
+
+<vht:highlight expected="Some string without tags"><![CDATA[
+	<f:format.stripTags>Some string <strong>with</strong>out tags</f:format.stripTags>
+]]></vht:highlight>

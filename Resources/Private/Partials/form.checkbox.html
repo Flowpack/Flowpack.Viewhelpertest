@@ -19,3 +19,14 @@
 <vht:highlight><![CDATA[
 	<f:form.checkbox name="foo" value="Bar" checked="true" disabled="disabled">Checkbox Preview</f:form.checkbox>
 ]]></vht:highlight>
+
+<vht:expected>
+	<input type="hidden" name="foo" value="" /><input disabled="disabled" type="checkbox" name="foo" value="Bar" />
+	<input type="hidden" name="bar" value="" /><input type="checkbox" name="bar" value="Baz" />
+	<input type="checkbox" name="foo" value="Foos" checked="checked" />
+</vht:expected>
+<vht:highlight><![CDATA[
+	<f:form.checkbox name="foo" value="Bar" disabled="disabled">Checkbox Preview</f:form.checkbox>
+	<f:form.checkbox name="bar" value="Baz" />
+	<f:form.checkbox name="foo" value="Foos" checked="true" />
+]]></vht:highlight>

@@ -1,0 +1,14 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:expected>
+	<button type="submit" name="foo" value="Bar" />
+</vht:expected>
+<vht:highlight><![CDATA[
+	<f:form.button name="foo" value="Bar" />
+]]></vht:highlight>
+
+<vht:expected>
+	<button disabled="disabled" formmethod="post" formnovalidate="formnovalidate" type="reset" name="buttonName" value="buttonValue">Cancel</button>
+</vht:expected>
+<vht:highlight><![CDATA[
+	<f:form.button type="reset" name="buttonName" value="buttonValue" disabled="disabled" formmethod="post" formnovalidate="formnovalidate">Cancel</f:form.button>
+]]></vht:highlight>

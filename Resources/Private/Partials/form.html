@@ -97,6 +97,13 @@
 	]]></vht:highlight>
 
 	<vht:expected>
+		<input type="hidden" name="someUser[nonExistingProperty]" value="" /><input type="checkbox" name="someUser[nonExistingProperty]" value="SomeValue" />
+	</vht:expected>
+	<vht:highlight><![CDATA[
+		<f:form.checkbox property="nonExistingProperty" value="SomeValue" />
+	]]></vht:highlight>
+
+	<vht:expected>
 		<label><input type="radio" name="someUser[newsletter]" value="1" checked="checked" /> YES</label><label><input type="radio" name="someUser[newsletter]" value="0" /> NO</label>
 	</vht:expected>
 	<vht:highlight><![CDATA[

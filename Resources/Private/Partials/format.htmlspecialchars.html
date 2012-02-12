@@ -1,0 +1,20 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="Some special chars: &amp;quot;&amp;lt;√Ñ√§√∂√º√ü"><![CDATA[
+	<f:format.htmlspecialchars>Some special chars: "<√Ñ√§√∂√º√ü</f:format.htmlspecialchars>
+]]></vht:highlight>
+
+<vht:highlight expected="Don't keep the &amp;quot;quotes&amp;quot; by default"><![CDATA[
+	<f:format.htmlspecialchars>Don't keep the "quotes" by default</f:format.htmlspecialchars>
+]]></vht:highlight>
+
+<vht:highlight expected="Keep the &quot;quotes&quot;"><![CDATA[
+	<f:format.htmlspecialchars keepQuotes="1">Keep the "quotes"</f:format.htmlspecialchars>
+]]></vht:highlight>
+
+<vht:highlight expected="This should be encoded again &amp;amp;amp;"><![CDATA[
+	<f:format.htmlspecialchars>This should be encoded again &amp;</f:format.htmlspecialchars>
+]]></vht:highlight>
+
+<vht:highlight expected="This should not be encoded again &amp;amp;"><![CDATA[
+	<f:format.htmlspecialchars doubleEncode="0">This should not be encoded again &amp;</f:format.htmlspecialchars>
+]]></vht:highlight>
