@@ -1,13 +1,5 @@
 
 TYPO3:
-  FLOW3:
-    security:
-      authentication:
-        authenticationStrategy: anyToken
-
-        providers:
-          DefaultProvider:
-            providerClass: TYPO3\FLOW3\Security\Authentication\Provider\TestingProvider
   Viewhelpertest:
     includeViewHelpers: [alias, base, comment, count, cycle, debug, flashMessages, for, form, form.checkbox, form.hidden, form.select, form.submit, form.textarea, form.textfield, form.upload, format.crop, format.currency, format.date, format.nl2br, format.number, format.padding, format.printf, format.raw, groupedFor, if, link.action, link.email, link.external, render, section, security.ifAccess, security.ifAuthenticated, security.ifHasRole, uri.action, uri.email, uri.external, uri.resource]
     someSettingForTestingSettingsInPartials: someSettingValue

@@ -16,7 +16,7 @@ use TYPO3\FLOW3\Annotations as FLOW3;
 /**
  * Viewhelpertest Default Controller
  */
-class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
+class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 
 	/**
 	 * @FLOW3\Inject
@@ -68,9 +68,6 @@ class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 			$this->addFlashMessage('Some dummy flash message at ' . date('H:i:s'));
 			$this->addFlashMessage('Error flash message with %s content.', 'Flash message title', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR, array('dynamic'), 123);
 		}
-		if (in_array('security.ifAccess', $selectedPartials) || in_array('security.ifAuthenticated', $selectedPartials) || in_array('security.ifHasRole', $selectedPartials)) {
-			$this->loginTestuser();
-		}
 
 		$this->view->assign('testVariables', $this->createTestVariables());
 	}
@@ -81,21 +78,6 @@ class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 	public function allowedAction() {
 	}
 	public function deniedAction() {
-	}
-
-	protected function loginTestuser() {
-		$account = new \TYPO3\FLOW3\Security\Account();
-		$roles = array(
-			new \TYPO3\FLOW3\Security\Policy\Role('TestRole'),
-		);
-		$account->setAuthenticationProviderName('DefaultProvider');
-		$account->setRoles($roles);
-
-		$this->testAuthenticationProvider->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
-		$this->testAuthenticationProvider->setAccount($account);
-
-		$this->securityContext->clearContext();
-		$this->authenticationManager->authenticate();
 	}
 
 	/**
@@ -123,7 +105,6 @@ class StandardController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 			'user4' => $user4,
 			'users' => array($user1, $user2, $user3, $user4),
 			'date' => new \DateTime(),
-			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>',
 			'stdClass1' => new \stdClass(),
 			'stdClass2' => new \stdClass(),
 			'integer' => 1,

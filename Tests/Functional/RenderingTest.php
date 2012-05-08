@@ -30,8 +30,13 @@ namespace TYPO3\Viewhelpertest\Tests\Functional;
 class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
+	 * Enable testable HTTP.
+	 * @var boolean
+	 */
+	protected $testableHttpEnabled = TRUE;
+
+	/**
 	 * @test
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInLayoutUsesTemplateVariables() {
 		$this->callActionAndValidateResult('renderSectionInLayoutUsesTemplateVariables');
@@ -39,7 +44,6 @@ class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInPartialNeedsArgumentsExplicitely() {
 		$this->callActionAndValidateResult('renderSectionInPartialNeedsArgumentsExplicitely');
@@ -47,7 +51,6 @@ class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderPartialNeedsArgumentsExplicitely() {
 		$this->callActionAndValidateResult('renderPartialNeedsArgumentsExplicitely');
@@ -55,7 +58,6 @@ class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInsidePartialNeedsArgumentsExplicitely() {
 		$this->callActionAndValidateResult('renderSectionInsidePartialNeedsArgumentsExplicitely');
@@ -63,7 +65,6 @@ class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function renderSectionInsideTemplateNeedsArgumentsExplicitely() {
 		$this->callActionAndValidateResult('renderSectionInsideTemplateNeedsArgumentsExplicitely');
@@ -78,9 +79,9 @@ class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 * @return void
 	 */
 	protected function callActionAndValidateResult($actionName) {
-		$result = $this->sendWebRequest('Render', 'TYPO3.Viewhelpertest', $actionName);
+		$result = $this->browser->request('http://localhost/typo3.viewhelpertest/render/' . $actionName)->getContent();
 
-			// Check if there is a '.expected-notEmpty' area which only contains whitespace. If this is the case,
+		// Check if there is a '.expected-notEmpty' area which only contains whitespace. If this is the case,
 			// the assertion fails.
 		$this->assertSelectRegExp('.expected-notEmpty', '/^\s*$/', FALSE, $result, 'A variable which should not be empty was found empty.');
 
@@ -91,10 +92,9 @@ class RenderingTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function recursiveSections() {
-		$actual = $this->sendWebRequest('Render', 'TYPO3.Viewhelpertest', 'recursiveSections');
+		$actual = $this->browser->request('http://localhost/typo3.viewhelpertest/render/recursivesections')->getContent();
 		$expected = '
 			<ul>
 				<li>

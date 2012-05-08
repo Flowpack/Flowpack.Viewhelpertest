@@ -29,16 +29,19 @@ namespace TYPO3\Viewhelpertest\Tests\Functional;
  */
 class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 
+	/**
+	 * Enable testable security (and HTTP as well).
+	 * @var boolean
+	 */
 	protected $testableSecurityEnabled = TRUE;
 
 	/**
 	 * @test
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function runViewHelperTest() {
 		$this->authenticateRoles(array('TestRole'));
 
-		$result = $this->sendWebRequest('Standard', 'TYPO3.Viewhelpertest', 'index', array('selectedPartial' => 'all'));
+		$result = $this->browser->request('http://localhost/typo3.viewhelpertest/standard/index?selectedPartial=all')->getContent();
 
 		$resultsWithFailures = \PHPUnit_Util_XML::cssSelect('.failure', TRUE, $result);
 		$successfulResultList = \PHPUnit_Util_XML::cssSelect('.success', TRUE, $result);
@@ -53,8 +56,8 @@ class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 			$numberOfFailedTests = count($resultsWithFailures);
 		}
 
-		// Outputting some statistics for the Jenkins Measurement Plots plugin:
-		// https://wiki.jenkins-ci.org/display/JENKINS/Measurement+Plots+Plugin
+			// Outputting some statistics for the Jenkins Measurement Plots plugin:
+			// https://wiki.jenkins-ci.org/display/JENKINS/Measurement+Plots+Plugin
 		echo '<measurement><name>Number of successful ViewHelper Tests</name><value>' . $numberOfSuccessfulTests . '</value></measurement>';
 		echo '<measurement><name>Number of failed ViewHelper Tests</name><value>' . $numberOfFailedTests . '</value></measurement>';
 

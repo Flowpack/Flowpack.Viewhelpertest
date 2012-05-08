@@ -16,7 +16,7 @@ use TYPO3\FLOW3\Annotations as FLOW3;
 /**
  * Viewhelpertest Performance Controller
  */
-class PerformanceController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
+class PerformanceController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 
 	/**
 	 * @var array
@@ -24,7 +24,7 @@ class PerformanceController extends \TYPO3\FLOW3\MVC\Controller\ActionController
 	protected $setup;
 
 	/**
-	 * @var TYPO3\FLOW3\Utility\Environment
+	 * @var \TYPO3\FLOW3\Utility\Environment
 	 * @FLOW3\Inject
 	 */
 	protected $environment;
@@ -50,7 +50,7 @@ class PerformanceController extends \TYPO3\FLOW3\MVC\Controller\ActionController
 
 	/**
 	 * @param array $setup
-	 * @return void
+	 * @return string
 	 */
 	public function profileAction(array $setup) {
 		$this->setup = $setup;
@@ -308,7 +308,6 @@ EOT;
 		\TYPO3\FLOW3\Utility\Files::createDirectoryRecursively($this->settings['xhprof']['outputDirectory']);
 		$xhprofRun = new \XHProfRuns_Default($this->settings['xhprof']['outputDirectory']);
 
-		$rawGetArguments = $this->environment->getRawGetArguments();
 		$optimizationIdentifier = isset($this->setup['optimizationIdentifier']) ? $this->setup['optimizationIdentifier'] : 'default';
 		$outputFilename = sprintf('vhtest_%s_%s_%s', $optimizationIdentifier, $this->request->getControllerActionName(), date('Y-m-d_H-i-s'));
 		$xhprofRun->save_run(
