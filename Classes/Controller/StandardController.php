@@ -20,18 +20,6 @@ class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 
 	/**
 	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\Authentication\AuthenticationManagerInterface
-	 */
-	protected $authenticationManager;
-
-	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\Authentication\Provider\TestingProvider
-	 */
-	protected $testAuthenticationProvider;
-
-	/**
-	 * @FLOW3\Inject
 	 * @var \TYPO3\FLOW3\Security\Context
 	 */
 	protected $securityContext;
@@ -47,6 +35,12 @@ class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	 * @var \TYPO3\FLOW3\Session\SessionInterface
 	 */
 	protected $session;
+
+	/**
+	 * @FLOW3\Inject
+	 * @var \TYPO3\FLOW3\Security\Authentication\AuthenticationManagerInterface
+	 */
+	protected $authenticationManager;
 
 	/**
 	 * @param string $selectedPartial
@@ -68,8 +62,26 @@ class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 			$this->addFlashMessage('Some dummy flash message at ' . date('H:i:s'));
 			$this->addFlashMessage('Error flash message with %s content.', 'Flash message title', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR, array('dynamic'), 123);
 		}
+		if (in_array('security.ifAccess', $selectedPartials) || in_array('security.ifAuthenticated', $selectedPartials) || in_array('security.ifHasRole', $selectedPartials)) {
+			$this->loginTestAccount();
+		}
 
 		$this->view->assign('testVariables', $this->createTestVariables());
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function loginTestAccount() {
+		$account = new \TYPO3\FLOW3\Security\Account();
+		$account->addRole(new \TYPO3\FLOW3\Security\Policy\Role('TestRole'));
+
+		/** @var $securityContext \TYPO3\FLOW3\Security\Context */
+		$securityContext = $this->authenticationManager->getSecurityContext();
+
+		$authenticationTokens = $securityContext->getAuthenticationTokensOfType('TYPO3\FLOW3\Security\Authentication\Token\UsernamePassword');
+		$authenticationTokens[0]->setAccount($account);
+		$authenticationTokens[0]->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
 	}
 
 	/**
