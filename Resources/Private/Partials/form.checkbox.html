@@ -1,28 +1,59 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
 <vht:expected>
-	<input type="hidden" name="foo" value="" /><input type="checkbox" name="foo" value="Bar" />
+	<input type="checkbox" name="foo" value="Bar" />
 </vht:expected>
 <vht:highlight><![CDATA[
 	<f:form.checkbox name="foo" value="Bar" />
 ]]></vht:highlight>
 
-<vht:expected>
-	<input type="hidden" name="bars" value="" /><input type="checkbox" name="bars[]" value="Baz" />
+<vht:expected regex="true">
+#^<form .*>
+\s*<div style="display: none">
+\s*<input type="hidden" name="__referrer\[@package\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@subpackage\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@controller\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@action\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[arguments\]" value="[^"]*" />
+\s*<input type="hidden" name="foo" value="" />
+\s*<input type="hidden" name="__trustedProperties" value="[^"]*" />
+\s*</div>
+\s*<input type="checkbox" name="foo" value="Bar" />#
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:form.checkbox name="bars[]" value="Baz" />
+	<f:form>
+		<f:form.checkbox name="foo" value="Bar" />
+	</f:form>
 ]]></vht:highlight>
 
+<vht:expected regex="true">
+#^<form .*>
+\s*<div style="display: none">
+\s*<input type="hidden" name="__referrer\[@package\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@subpackage\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@controller\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@action\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[arguments\]" value="[^"]*" />
+\s*<input type="hidden" name="bars" value="" />
+\s*<input type="hidden" name="__trustedProperties" value="[^"]*" />
+\s*</div>
+\s*<input type="checkbox" name="bars\[\]" value="Baz" />#
+</vht:expected>
+<vht:highlight><![CDATA[
+	<f:form>
+		<f:form.checkbox name="bars[]" value="Baz" />
+	</f:form>
+	]]></vht:highlight>
+
 <vht:expected>
-	<input type="hidden" name="foo" value="" /><input disabled="disabled" type="checkbox" name="foo" value="Bar" checked="checked" />
+	<input disabled="disabled" type="checkbox" name="foo" value="Bar" checked="checked" />
 </vht:expected>
 <vht:highlight><![CDATA[
 	<f:form.checkbox name="foo" value="Bar" checked="true" disabled="disabled">Checkbox Preview</f:form.checkbox>
 ]]></vht:highlight>
 
 <vht:expected>
-	<input type="hidden" name="foo" value="" /><input disabled="disabled" type="checkbox" name="foo" value="Bar" />
-	<input type="hidden" name="bar" value="" /><input type="checkbox" name="bar" value="Baz" />
+	<input disabled="disabled" type="checkbox" name="foo" value="Bar" />
+	<input type="checkbox" name="bar" value="Baz" />
 	<input type="checkbox" name="foo" value="Foos" checked="checked" />
 </vht:expected>
 <vht:highlight><![CDATA[

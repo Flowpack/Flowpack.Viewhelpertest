@@ -1,6 +1,6 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
 <vht:expected>
-	<input type="hidden" name="mySelect" value="" /><select multiple="multiple" size="5" name="mySelect[]"><option value="0">a</option>
+	<select multiple="multiple" size="5" name="mySelect[]"><option value="0">a</option>
 <option value="1">b</option>
 <option value="2" selected="selected">c</option>
 <option value="3" selected="selected">d</option>
@@ -9,6 +9,30 @@
 </vht:expected>
 <vht:highlight><![CDATA[
 	<f:form.select value="{testVariables.selected}" name="mySelect" options="{testVariables.array}" multiple="multiple" size="5"><select><option>###dummy###</option></select></f:form.select>
+]]></vht:highlight>
+
+<vht:expected regex="true">
+#^<form .*>
+\s*<div style="display: none">
+\s*<input type="hidden" name="__referrer\[@package\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@subpackage\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@controller\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[@action\]" value="[^"]*" />
+\s*<input type="hidden" name="__referrer\[arguments\]" value="[^"]*" />
+\s*<input type="hidden" name="mySelect" value="" />
+\s*<input type="hidden" name="__trustedProperties" value="[^"]*" />
+\s*</div>
+\s*<select multiple="multiple" size="5" name="mySelect\[\]"><option value="0">a</option>
+\s*<option value="1">b</option>
+\s*<option value="2" selected="selected">c</option>
+\s*<option value="3" selected="selected">d</option>
+\s*<option value="4">e</option>
+\s*</select>#
+</vht:expected>
+<vht:highlight><![CDATA[
+	<f:form>
+		<f:form.select value="{testVariables.selected}" name="mySelect" options="{testVariables.array}" multiple="multiple" size="5"><select><option>###dummy###</option></select></f:form.select>
+	</f:form>
 ]]></vht:highlight>
 
 <vht:expected>
@@ -23,7 +47,7 @@
 ]]></vht:highlight>
 
 <vht:expected>
-	<input type="hidden" name="mySelect3" value="" /><select multiple="multiple" size="5" name="mySelect3[]"><option value="1" selected="selected">Ingmar</option>
+	<select multiple="multiple" size="5" name="mySelect3[]"><option value="1" selected="selected">Ingmar</option>
 <option value="2">Sebastian</option>
 <option value="3">Robert</option>
 <option value="4" selected="selected">Kasper</option>
@@ -36,7 +60,7 @@
 ]]></vht:highlight>
 
 <vht:expected>
-	<input type="hidden" name="mySelect4[prefix]" value="" /><select multiple="multiple" size="5" name="mySelect4[prefix][]"><option value="1" selected="selected">Ingmar</option>
+	<select multiple="multiple" size="5" name="mySelect4[prefix][]"><option value="1" selected="selected">Ingmar</option>
 <option value="2" selected="selected">Sebastian</option>
 <option value="3" selected="selected">Robert</option>
 <option value="4" selected="selected">Kasper</option>

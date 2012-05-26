@@ -71,36 +71,28 @@
 	]]></vht:highlight>
 
 	<vht:expected>
-		<input type="hidden" name="someUser[newsletter]" value="" /><input type="checkbox" name="someUser[newsletter]" value="1" checked="checked" />
+		<input type="checkbox" name="someUser[newsletter]" value="1" checked="checked" />
 	</vht:expected>
 	<vht:highlight><![CDATA[
 		<f:form.checkbox property="newsletter" value="1" />
 	]]></vht:highlight>
 
 	<vht:expected>
-		<input type="hidden" name="someUser[newsletter]" value="" /><input type="checkbox" name="someUser[newsletter]" value="1" />
+		<input type="checkbox" name="someUser[newsletter]" value="1" />
 	</vht:expected>
 	<vht:highlight><![CDATA[
 		<f:form.checkbox property="newsletter" value="1" checked="false" />
 	]]></vht:highlight>
 
-	<p>If two checkboxes have the same name, the hidden field is only rendered once:</p>
 	<vht:expected>
-		<input type="hidden" name="someUser[newsletter]" value="" /><input type="checkbox" name="someUser[newsletter]" value="1" /><input type="checkbox" name="someUser[newsletter]" value="2" />
-	</vht:expected>
-	<vht:highlight><![CDATA[
-		<f:form.checkbox property="newsletter" value="1" checked="false" /><f:form.checkbox property="newsletter" value="2" checked="false" />
-	]]></vht:highlight>
-
-	<vht:expected>
-		<label><input type="hidden" name="someUser[interests]" value="" /><input type="checkbox" name="someUser[interests][]" value="TYPO3" checked="checked" /> TYPO3</label><label><input type="checkbox" name="someUser[interests][]" value="Snowboarding" checked="checked" /> Snowboarding</label><label><input type="checkbox" name="someUser[interests][]" value="Commerce" /> Commerce</label>
+		<label><input type="checkbox" name="someUser[interests][]" value="TYPO3" checked="checked" /> TYPO3</label><label><input type="checkbox" name="someUser[interests][]" value="Snowboarding" checked="checked" /> Snowboarding</label><label><input type="checkbox" name="someUser[interests][]" value="Commerce" /> Commerce</label>
 	</vht:expected>
 	<vht:highlight><![CDATA[
 		<label><f:form.checkbox property="interests" value="TYPO3" /> TYPO3</label><label><f:form.checkbox property="interests" value="Snowboarding" /> Snowboarding</label><label><f:form.checkbox property="interests" value="Commerce" /> Commerce</label>
 	]]></vht:highlight>
 
 	<vht:expected>
-		<input type="hidden" name="someUser[nonExistingProperty]" value="" /><input type="checkbox" name="someUser[nonExistingProperty]" value="SomeValue" />
+		<input type="checkbox" name="someUser[nonExistingProperty]" value="SomeValue" />
 	</vht:expected>
 	<vht:highlight><![CDATA[
 		<f:form.checkbox property="nonExistingProperty" value="SomeValue" />
