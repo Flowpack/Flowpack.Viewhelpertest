@@ -39,6 +39,7 @@ class RenderController extends AbstractBaseController {
 	public function renderSectionInsideTemplateNeedsArgumentsExplicitelyAction() {
 		$this->view->assign('variable', 'This variable is set from within the controller.');
 	}
+
 	public function recursiveSectionsAction() {
 		$this->view->assign('testVariables', array('menu' => array(
 			array(

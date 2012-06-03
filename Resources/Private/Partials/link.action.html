@@ -15,3 +15,9 @@
 <vht:highlight expectedRegex="/^<a href=&quot;.+\/standard\/someaction&quot;><\/a>$/"><![CDATA[
 	<f:link.action action="someAction"></f:link.action>
 ]]></vht:highlight>
+
+<h2>data Attributes (supported by all tag-based ViewHelpers):</h2>
+
+<vht:highlight expectedRegex="/^<a data-test=&quot;hello&quot; data-other=&quot;This should be &amp;lt;b&amp;gt;bold&amp;lt;\/b&amp;gt; and &amp;lt;i&amp;gt;italic&amp;lt;\/i&amp;gt;&quot; href=&quot;.+\/standard\/someaction&quot;>link<\/a>$/"><![CDATA[
+	<f:link.action action="someAction" data="{test: 'hello', other: testVariables.htmlContent}">link</f:link.action>
+]]></vht:highlight>

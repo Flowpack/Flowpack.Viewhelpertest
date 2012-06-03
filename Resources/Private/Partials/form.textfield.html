@@ -6,3 +6,9 @@
 <vht:highlight expected="<input type=&quot;text&quot; name=&quot;myTextField&quot; value=&quot;other value&quot; />"><![CDATA[
 	<f:form.textfield value="other value" name="myTextField"><input type="text" value="###dummy###" /></f:form.textfield>
 ]]></vht:highlight>
+
+<h2>data Attributes (supported by all tag-based ViewHelpers):</h2>
+
+<vht:highlight expected="<input data-test=&quot;hello&quot; data-other=&quot;This should be &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt; and &amp;lt;i&amp;gt;italic&amp;lt;/i&amp;gt;&quot; type=&quot;text&quot; name=&quot;test&quot; />"><![CDATA[
+	<f:form.textfield name="test" data="{test: 'hello', other: testVariables.htmlContent}" />
+]]></vht:highlight>

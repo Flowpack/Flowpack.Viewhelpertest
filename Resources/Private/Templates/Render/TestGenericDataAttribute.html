@@ -1,0 +1,10 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="content">
+    <div class="viewhelpertest">
+        <vht:highlight expected="<input data-test=&quot;hello&quot; data-other=&quot;['a','b','c','d','e']&quot; type=&quot;text&quot; name=&quot;test&quot; />"><![CDATA[
+            <f:form.textfield name="test" data="{test: 'hello', other: testVariables.array}" />
+        ]]></vht:highlight>
+    </div>
+</f:section>
