@@ -56,16 +56,16 @@
 	white-space: pre;
 }
 
-.viewhelpertest .testcase.failure {
+.viewhelpertest .failure {
 	background: #df9d9d;
 }
-.viewhelpertest .testcase.failure .input {
+.viewhelpertest .failure .input {
 	background: #dfb2b2;
 }
-.viewhelpertest .testcase.success {
+.viewhelpertest .success {
 	background: #d4ffc4;
 }
-.viewhelpertest .testcase.success .input {
+.viewhelpertest .success .input {
 	background: #dcffd0;
 }
 
