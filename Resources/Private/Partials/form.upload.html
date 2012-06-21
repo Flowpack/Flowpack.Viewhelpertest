@@ -1,13 +1,13 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
 <vht:expected>
-	<input type="hidden" name="myName[submittedFile][filename]" value="" /><input type="hidden" name="myName[submittedFile][resourcePointer]" value="" /><input type="file" name="myName" />
+	<input type="file" name="myName" />
 </vht:expected>
 <vht:highlight><![CDATA[
 	<f:form.upload name="myName" />
 ]]></vht:highlight>
 
 <vht:expected>
-	<input type="hidden" name="myName[submittedFile][filename]" value="" /><input type="hidden" name="myName[submittedFile][resourcePointer]" value="" /><input disabled="disabled" type="file" name="myName" />
+	<input disabled="disabled" type="file" name="myName" />
 </vht:expected>
 <vht:highlight><![CDATA[
 	<f:form.upload name="myName" disabled="disabled"><input type="file" /></f:form.upload>
