@@ -78,7 +78,7 @@ class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 		echo '<measurement><name>Number of failed ViewHelper Tests</name><value>' . $numberOfFailedTests . '</value></measurement>';
 
 		if (strpos($result, '___VIEWHELPERTEST_EXECUTED___') === FALSE) {
-			$this->fail('It seems that the tests were not executed!');
+			$this->fail('It seems that the tests were not executed!' . PHP_EOL . PHP_EOL . $result);
 		}
 
 		$this->writeResultToFile($result);
