@@ -16,10 +16,10 @@ class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractS
 	/**
 	 * @param array $values,
 	 * @param string $matrixMode
-	 * @return void
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
+	 * @return string
+	 * @throws \Exception
 	 */
-	public function render($values, $matrixMode=NULL) {
+	public function render($values, $matrixMode = NULL) {
 		if ($matrixMode !== NULL && $matrixMode !== 'outputRaw' && $matrixMode !== 'symmetric') {
 			throw new \Exception('TODO: Matrix mode must be either "outputRaw" or "symmetric"');
 		}
@@ -43,9 +43,6 @@ class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractS
 		$expectedResultsTable = $this->parseExpectedResults($expected);
 		$this->sanityCheckExpectedResultsArray($expectedResultsTable);
 
-
-
-
 		$output = '<table class="crossProduct">';
 		$output .= '<tr><th> </th>';
 
@@ -54,14 +51,14 @@ class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractS
 		}
 
 		$output .= '</tr>';
-		// TODO: add header column
-		for ($i=1; $i <= count($variableNames); $i++) {
-			$rowVariableName = $variableNames[$i-1];
+			// TODO: add header column
+		for ($i = 1; $i <= count($variableNames); $i++) {
+			$rowVariableName = $variableNames[$i - 1];
 			$output .= '<tr>';
 			$output .= '<th>' . $rowVariableName . '</th>';
-			for ($j=1; $j <= count($variableNames); $j++) {
-				$columnVariableName = $variableNames[$j-1];
-				if ($i > $j && $matrixMode==='symmetric') {
+			for ($j = 1; $j <= count($variableNames); $j++) {
+				$columnVariableName = $variableNames[$j - 1];
+				if ($i > $j && $matrixMode === 'symmetric') {
 					$expectedResult = trim($expectedResultsTable[$j][$i]);
 				} else {
 					$expectedResult = trim($expectedResultsTable[$i][$j]);
@@ -98,6 +95,11 @@ class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractS
 		return $output;
 	}
 
+	/**
+	 * @param string $expected
+	 * @return array
+	 * @throws \Exception
+	 */
 	protected function parseExpectedResults($expected) {
 			// parse expected string
 		$expected = trim($expected);
@@ -112,31 +114,41 @@ class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractS
 		return $lines;
 	}
 
-	protected function sanityCheckExpectedResultsArray($lines) {
+	/**
+	 * @param array $lines
+	 * @throws \Exception
+	 */
+	protected function sanityCheckExpectedResultsArray(array $lines) {
 
-		// Sanity check: First line must contain all columns in correct order
+			// Sanity check: First line must contain all columns in correct order
 		$variableNames = array_keys($this->arguments['values']);
 
 		if (count($variableNames) !== count($lines[0]) - 1) {
 			throw new \Exception('Number of columns not correct. There are ' . count($variableNames) . ' variables but ' . (count($lines[0]) - 1) . ' columns. Use matrixMode="outputRaw" for correcting.');
 		}
-		for ($i=1; $i < count($lines[0]); $i++) {
-			if ($variableNames[$i-1] != trim($lines[0][$i])) {
+		for ($i = 1; $i < count($lines[0]); $i++) {
+			if ($variableNames[$i - 1] != trim($lines[0][$i])) {
 				throw new \Exception('TODO: Header line not correct,  Use matrixMode="outputRaw" for correcting.');
 			}
 		}
-		// Sanity check: Column headers must have the right order and be correct
+			// Sanity check: Column headers must have the right order and be correct
 		if (count($variableNames) !== count($lines) - 1) {
 			throw new \Exception('Number of rows not correct.  Use matrixMode="outputRaw" for correcting.');
 		}
 
-		for ($i=1; $i < count($lines); $i++) {
-			if ($variableNames[$i-1] != trim($lines[$i][0])) {
+		for ($i = 1; $i < count($lines); $i++) {
+			if ($variableNames[$i - 1] != trim($lines[$i][0])) {
 				throw new \Exception('TODO: header column not correct.  Use matrixMode="outputRaw" for correcting. ');
 			}
 		}
 	}
-	protected function renderHelper($variableNames, $inputValues = NULL) {
+
+	/**
+	 * @param array $variableNames
+	 * @param array $inputValues
+	 * @return string
+	 */
+	protected function renderHelper(array $variableNames, array $inputValues = NULL) {
 		$output = '';
 
 		$lengthOfLongestVariable = 0;
@@ -153,7 +165,6 @@ class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractS
 		}
 		$output .= chr(10);
 
-
 		foreach ($variableNames as $rowVariableName) {
 			$output .= str_pad($rowVariableName, $lengthOfLongestVariable);
 			foreach ($variableNames as $columnVariableName) {
@@ -165,18 +176,26 @@ class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractS
 		return '<pre>' . $output . '</pre>';
 	}
 
-	protected function findExistingValueInTable($rowVariableName, $columnVariableName, $inputValues) {
-		if (!is_array($inputValues)) return 'X';
+	/**
+	 * @param string $rowVariableName
+	 * @param string $columnVariableName
+	 * @param array $inputValues
+	 * @return string
+	 */
+	protected function findExistingValueInTable($rowVariableName, $columnVariableName, array $inputValues = NULL) {
+		if (!is_array($inputValues)) {
+			return 'X';
+		}
 
 		$row = NULL;
-		for ($i=1; $i < count($inputValues); $i++) {
+		for ($i = 1; $i < count($inputValues); $i++) {
 			if (trim($inputValues[$i][0]) === $rowVariableName) {
 				$row = $i;
 				break;
 			}
 		}
 		$column = NULL;
-		for ($i=1; $i < count($inputValues[0]); $i++) {
+		for ($i = 1; $i < count($inputValues[0]); $i++) {
 			if (trim($inputValues[0][$i]) === $columnVariableName) {
 				$column = $i;
 				break;

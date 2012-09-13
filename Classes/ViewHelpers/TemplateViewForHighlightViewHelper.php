@@ -28,12 +28,12 @@ class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView 
 	 * The ViewHelperVariableContainer of the surrounding area,
 	 * this makes it possible to test single form elements inside a surrounding
 	 * <f:form>.
-	 * @var TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer
+	 * @var \TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer
 	 */
 	protected $viewHelperVariableContainer;
 
 	/**
-	 * Return the template sourc to the Parser.
+	 * Return the template source to the Parser.
 	 *
 	 * @param string $actionName the name of the action to render.
 	 * @return string
@@ -55,7 +55,6 @@ class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView 
 	 *
 	 * @param \TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
 	 * @return void
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function setViewHelperVariableContainer(\TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
 		$this->viewHelperVariableContainer = clone $viewHelperVariableContainer;
@@ -66,7 +65,6 @@ class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView 
 	 *
 	 * @param string $actionName render the given action.
 	 * @return string the rendered result
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function render($actionName = NULL) {
 		$this->baseRenderingContext->injectViewHelperVariableContainer($this->viewHelperVariableContainer);

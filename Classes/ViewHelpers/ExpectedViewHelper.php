@@ -16,7 +16,6 @@ class ExpectedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper
 	/**
 	 * @param boolean $regex
 	 * @return void
-	 * @author Sebastian Kurf√ºrst <sebastian@typo3.org>
 	 */
 	public function render($regex = FALSE) {
 		$source = trim($this->renderChildren());

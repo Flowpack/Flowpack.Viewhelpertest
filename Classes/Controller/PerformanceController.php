@@ -44,7 +44,7 @@ class PerformanceController extends \TYPO3\FLOW3\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function testAction() {
-		$this->view->assign("foo", array('baz', 'buz', 'x', 'y', 'z'));
+		$this->view->assign('foo', array('baz', 'buz', 'x', 'y', 'z'));
 		$this->view->assign('simpleOneValue', '1');
 	}
 
@@ -65,7 +65,7 @@ class PerformanceController extends \TYPO3\FLOW3\Mvc\Controller\ActionController
 		$endTime = microtime(TRUE);
 		$timeInMilliseconds = (integer)(($endTime - $startTime) * 1000);
 		$this->stopProfiler($timeInMilliseconds);
-		$output = str_replace('###RENDERING_TIME###', number_format($timeInMilliseconds, 2, ',', '.') , $output);
+		$output = str_replace('###RENDERING_TIME###', number_format($timeInMilliseconds, 2, ',', '.'), $output);
 		return $output;
 	}
 

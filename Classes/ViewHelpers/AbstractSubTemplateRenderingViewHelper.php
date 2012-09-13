@@ -14,7 +14,7 @@ namespace TYPO3\Viewhelpertest\ViewHelpers;
 abstract class AbstractSubTemplateRenderingViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
-	 * @var TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper
+	 * @var \TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper
 	 */
 	protected $templateView;
 

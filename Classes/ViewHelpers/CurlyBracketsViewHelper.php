@@ -14,8 +14,7 @@ namespace TYPO3\Viewhelpertest\ViewHelpers;
 class CurlyBracketsViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
-	 * @return void
-	 * @author Sebastian Kurf‚àö¬∫rst <sebastian@typo3.org>
+	 * @return string
 	 */
 	public function render() {
 		return '{' . $this->renderChildren() . '}';

@@ -19,8 +19,6 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 	 * @param string $expected
 	 * @param string $expectedRegex
 	 * @return string
-	 * @author Bastian Waidelich <bastian@typo3.org>
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
 	public function render($expected = NULL, $expectedRegex = NULL) {
 		self::$executionCount++;
@@ -34,7 +32,6 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 		$renderedSource = $this->renderSource($source);
 
 		$title = '';
-		$className = '';
 		if ($expected !== NULL) {
 			$replacement = array(
 				'\n' => "\n",
