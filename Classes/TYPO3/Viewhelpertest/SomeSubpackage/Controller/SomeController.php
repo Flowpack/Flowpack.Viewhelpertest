@@ -14,6 +14,6 @@ namespace TYPO3\Viewhelpertest\SomeSubpackage\Controller;
 /**
  * Empty controller fixture; needed for testing <f:link.action>
  */
-class SomeController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+class SomeController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 }
 ?>

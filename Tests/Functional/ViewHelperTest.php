@@ -11,12 +11,12 @@ namespace TYPO3\Viewhelpertest\Tests\Functional;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Mvc\Routing\Route;
+use TYPO3\Flow\Mvc\Routing\Route;
 
 /**
  * Testcase for all view helpers
  */
-class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
+class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 	/**
 	 * Enable testable security (and HTTP as well).
@@ -29,26 +29,12 @@ class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->registerRoute('{@package}/{@controller}(/{@action})', array(
+		$this->registerRoute('Viewhelpertest', '{@package}/{@controller}(/{@action})', array(
 			'@package' => 'TYPO3.Viewhelpertest',
 			'@controller' => 'Standard',
 			'@action' => 'index',
 			'@format' =>'html'
-		));
-	}
-
-	/**
-	 * Adds a route that can be used in the functional tests
-	 *
-	 * @param $uriPattern
-	 * @param array $defaults
-	 */
-	protected function registerRoute($uriPattern, array $defaults) {
-		$route = new Route();
-		$route->setUriPattern($uriPattern);
-		$route->setDefaults($defaults);
-		$route->setAppendExceedingArguments(TRUE);
-		$this->router->addRoute($route);
+		), TRUE);
 	}
 
 	/**
@@ -104,19 +90,19 @@ class ViewHelperTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	 */
 	protected function writeResultToFile($result) {
 		$newHeader =' -->';
-		$newHeader .= '<style>' . file_get_contents(FLOW3_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/styles.css') . '</style>';
+		$newHeader .= '<style>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/styles.css') . '</style>';
 		$newHeader .= '<link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css" />
 			<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"> </script>
 			<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all.js"> </script>';
 
-		$newHeader .= '<script type="text/javascript">' . file_get_contents(FLOW3_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/javascript.js') . '</script>';
+		$newHeader .= '<script type="text/javascript">' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/javascript.js') . '</script>';
 
 		$newHeader .= '<!--';
 
 
 		$result = preg_replace('/BEGIN_HEADERS.*?END_HEADERS/s', $newHeader, $result);
 
-		file_put_contents(FLOW3_PATH_ROOT . 'Build/Reports/Viewhelpertest.html', $result);
+		file_put_contents(FLOW_PATH_ROOT . 'Build/Reports/Viewhelpertest.html', $result);
 	}
 }
 ?>

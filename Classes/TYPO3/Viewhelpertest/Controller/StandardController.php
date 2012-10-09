@@ -11,34 +11,34 @@ namespace TYPO3\Viewhelpertest\Controller;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * Viewhelpertest Default Controller
  */
-class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\Context
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Context
 	 */
 	protected $securityContext;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\AccountFactory
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\AccountFactory
 	 */
 	protected $accountFactory;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Session\SessionInterface
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Session\SessionInterface
 	 */
 	protected $session;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Security\Authentication\AuthenticationManagerInterface
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface
 	 */
 	protected $authenticationManager;
 
@@ -60,7 +60,7 @@ class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 		$this->view->assign('selectedPartials', $selectedPartials);
 		if (in_array('flashMessages', $selectedPartials)) {
 			$this->addFlashMessage('Some dummy flash message at ' . date('H:i:s'));
-			$this->addFlashMessage('Error flash message with %s content.', 'Flash message title', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR, array('dynamic'), 123);
+			$this->addFlashMessage('Error flash message with %s content.', 'Flash message title', \TYPO3\Flow\Error\Message::SEVERITY_ERROR, array('dynamic'), 123);
 		}
 		if (in_array('security.ifAccess', $selectedPartials) || in_array('security.ifAuthenticated', $selectedPartials) || in_array('security.ifHasRole', $selectedPartials)) {
 			$this->loginTestAccount();
@@ -73,15 +73,15 @@ class StandardController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	 * @return void
 	 */
 	protected function loginTestAccount() {
-		$account = new \TYPO3\FLOW3\Security\Account();
-		$account->addRole(new \TYPO3\FLOW3\Security\Policy\Role('TestRole'));
+		$account = new \TYPO3\Flow\Security\Account();
+		$account->addRole(new \TYPO3\Flow\Security\Policy\Role('TestRole'));
 
-		/** @var $securityContext \TYPO3\FLOW3\Security\Context */
+		/** @var $securityContext \TYPO3\Flow\Security\Context */
 		$securityContext = $this->authenticationManager->getSecurityContext();
 
-		$authenticationTokens = $securityContext->getAuthenticationTokensOfType('TYPO3\FLOW3\Security\Authentication\Token\UsernamePassword');
+		$authenticationTokens = $securityContext->getAuthenticationTokensOfType('TYPO3\Flow\Security\Authentication\Token\UsernamePassword');
 		$authenticationTokens[0]->setAccount($account);
-		$authenticationTokens[0]->setAuthenticationStatus(\TYPO3\FLOW3\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+		$authenticationTokens[0]->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
 	}
 
 	/**

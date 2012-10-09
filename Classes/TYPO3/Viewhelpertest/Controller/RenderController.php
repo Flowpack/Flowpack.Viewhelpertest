@@ -14,7 +14,7 @@ namespace TYPO3\Viewhelpertest\Controller;
 /**
  * Viewhelpertest Render Controller
  */
-class RenderController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+class RenderController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	public function optionalSectionsAction() {
 		// TODO

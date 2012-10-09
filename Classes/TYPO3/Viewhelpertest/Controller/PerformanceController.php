@@ -11,12 +11,12 @@ namespace TYPO3\Viewhelpertest\Controller;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * Viewhelpertest Performance Controller
  */
-class PerformanceController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+class PerformanceController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * @var array
@@ -24,8 +24,8 @@ class PerformanceController extends \TYPO3\FLOW3\Mvc\Controller\ActionController
 	protected $setup;
 
 	/**
-	 * @var \TYPO3\FLOW3\Utility\Environment
-	 * @FLOW3\Inject
+	 * @var \TYPO3\Flow\Utility\Environment
+	 * @Flow\Inject
 	 */
 	protected $environment;
 
@@ -76,10 +76,10 @@ class PerformanceController extends \TYPO3\FLOW3\Mvc\Controller\ActionController
 	 */
 	protected function createTemplateFileFromSetup() {
 		$templateFilename = $this->createTemplateFilenameFromSetup();
-		$templatePathAndFilename = \TYPO3\FLOW3\Utility\Files::concatenatePaths(array($this->settings['profilingTemplatesDirectory'], $templateFilename));
+		$templatePathAndFilename = \TYPO3\Flow\Utility\Files::concatenatePaths(array($this->settings['profilingTemplatesDirectory'], $templateFilename));
 		if (!file_exists($templatePathAndFilename)) {
 			$templateCode = $this->createTemplateFromSetup();
-			\TYPO3\FLOW3\Utility\Files::createDirectoryRecursively($this->settings['profilingTemplatesDirectory']);
+			\TYPO3\Flow\Utility\Files::createDirectoryRecursively($this->settings['profilingTemplatesDirectory']);
 			file_put_contents($templatePathAndFilename, $templateCode);
 		}
 		return $templatePathAndFilename;
@@ -302,10 +302,10 @@ EOT;
 
 		$xhprofData = xhprof_disable();
 
-		require_once \TYPO3\FLOW3\Utility\Files::concatenatePaths(array($this->settings['xhprof']['rootDirectory'], '/xhprof_lib/utils/xhprof_lib.php'));
-		require_once \TYPO3\FLOW3\Utility\Files::concatenatePaths(array($this->settings['xhprof']['rootDirectory'], '/xhprof_lib/utils/xhprof_runs.php'));
+		require_once \TYPO3\Flow\Utility\Files::concatenatePaths(array($this->settings['xhprof']['rootDirectory'], '/xhprof_lib/utils/xhprof_lib.php'));
+		require_once \TYPO3\Flow\Utility\Files::concatenatePaths(array($this->settings['xhprof']['rootDirectory'], '/xhprof_lib/utils/xhprof_runs.php'));
 
-		\TYPO3\FLOW3\Utility\Files::createDirectoryRecursively($this->settings['xhprof']['outputDirectory']);
+		\TYPO3\Flow\Utility\Files::createDirectoryRecursively($this->settings['xhprof']['outputDirectory']);
 		$xhprofRun = new \XHProfRuns_Default($this->settings['xhprof']['outputDirectory']);
 
 		$optimizationIdentifier = isset($this->setup['optimizationIdentifier']) ? $this->setup['optimizationIdentifier'] : 'default';
@@ -318,7 +318,7 @@ EOT;
 		$settingsOutputFilename = $outputFilename . '.settings';
 		$data = $this->setup;
 		$data['time'] = $timeInMilliseconds * 1000;
-		file_put_contents(\TYPO3\FLOW3\Utility\Files::concatenatePaths(array($this->settings['xhprof']['outputDirectory'], $settingsOutputFilename)), serialize($data));
+		file_put_contents(\TYPO3\Flow\Utility\Files::concatenatePaths(array($this->settings['xhprof']['outputDirectory'], $settingsOutputFilename)), serialize($data));
 	}
 }
 ?>

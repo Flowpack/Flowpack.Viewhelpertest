@@ -1,1 +1,11 @@
-{"name":"typo3\/viewhelpertest","type":"typo3-flow-package","description":"","version":"0.5.0-dev","require":{"typo3\/flow":"*"},"autoload":{"psr-0":{"TYPO3\\Viewhelpertest":"Classes"}}}
+{
+	"name": "typo3/viewhelpertest",
+	"type": "typo3-flow-package",
+	"description": "Functional Tests for Fluid ViewHelpers",
+	"require": {
+		"typo3/flow":"*"
+	},
+	"autoload": {
+		"psr-0": { "TYPO3\\Viewhelpertest":"Classes" }
+	}
+}

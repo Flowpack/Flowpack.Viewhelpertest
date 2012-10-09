@@ -1,5 +1,5 @@
 TYPO3:
-  FLOW3:
+  Flow:
     security:
       enable: TRUE
       authentication:
@@ -12,6 +12,6 @@ TYPO3:
 
     xhprof:
       rootDirectory: '' # path to the XHProf library
-      outputDirectory: %FLOW3_PATH_DATA%Temporary/Viewhelpertest/XHProf/ # output directory
+      outputDirectory: %FLOW_PATH_DATA%Temporary/Viewhelpertest/XHProf/ # output directory
 
-    profilingTemplatesDirectory: %FLOW3_PATH_DATA%Temporary/Viewhelpertest/Fluidtemplates/
+    profilingTemplatesDirectory: %FLOW_PATH_DATA%Temporary/Viewhelpertest/Fluidtemplates/

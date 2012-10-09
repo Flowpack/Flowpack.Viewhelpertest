@@ -14,7 +14,7 @@ namespace TYPO3\Viewhelpertest\Controller;
 /**
  * Viewhelpertest Render Controller
  */
-class WidgetController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+class WidgetController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * @var \TYPO3\Viewhelpertest\Domain\Repository\UserRepository
