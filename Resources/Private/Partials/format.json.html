@@ -1,8 +1,12 @@
-<vht:highlight expected="[&quot;bar&quot;,&quot;baz&quot;]"><![CDATA[
-	<f:format.json>{0: 'bar', 1: 'baz'}</f:format.json>
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;]"><![CDATA[
+	<f:format.json>{testVariables.array}</f:format.json>
 ]]></vht:highlight>
 
-{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="[&quot;bar&quot;,&quot;baz&quot;]"><![CDATA[
+	<f:format.json value="{0: 'bar', 1: 'baz'}" />
+]]></vht:highlight>
+
 <vht:highlight expected="[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;]"><![CDATA[
 	{testVariables.array -> f:format.json()}
 ]]></vht:highlight>

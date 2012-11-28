@@ -1,8 +1,16 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
-<vht:highlight><![CDATA[
+<vht:highlight expectedRegex="/.*Flow Variable Dump.*/"><![CDATA[
 	<f:debug>{testVariables.array}</f:debug>
 ]]></vht:highlight>
 
 <vht:highlight expectedRegex="/.*Custom title.*/"><![CDATA[
 	<f:debug title="Custom title">{testVariables.user1}</f:debug>
+]]></vht:highlight>
+
+<vht:highlight expectedRegex="/.*\{0: 'first', 1: 'second'\}.*/"><![CDATA[
+	<f:debug>{0: 'first', 1: 'second'}</f:debug>
+]]></vht:highlight>
+
+<vht:highlight expectedRegex="/.*'<span class=&quot;debug-string&quot;>string<\/span>'.*/"><![CDATA[
+	<f:debug typeOnly="true">{0: 'first', 1: 'second'}</f:debug>
 ]]></vht:highlight>
