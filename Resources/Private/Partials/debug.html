@@ -11,6 +11,6 @@
 	<f:debug>{0: 'first', 1: 'second'}</f:debug>
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/.*'<span class=&quot;debug-string&quot;>string<\/span>'.*/"><![CDATA[
+<vht:highlight expectedRegex="/.*&quot;.*string.*&quot;.*/"><![CDATA[
 	<f:debug typeOnly="true">{0: 'first', 1: 'second'}</f:debug>
 ]]></vht:highlight>
