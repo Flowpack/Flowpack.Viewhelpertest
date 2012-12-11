@@ -20,7 +20,7 @@
 \s*<input type="checkbox" name="foo" value="Bar" />#
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:form>
+	<f:form action="index">
 		<f:form.checkbox name="foo" value="Bar" />
 	</f:form>
 ]]></vht:highlight>
@@ -39,7 +39,7 @@
 \s*<input type="checkbox" name="bars\[\]" value="Baz" />#
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:form>
+	<f:form action="index">
 		<f:form.checkbox name="bars[]" value="Baz" />
 	</f:form>
 	]]></vht:highlight>

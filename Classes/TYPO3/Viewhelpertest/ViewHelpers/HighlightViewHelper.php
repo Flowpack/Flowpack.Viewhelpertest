@@ -91,7 +91,7 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 		$uriToThisTest = $this->controllerContext->getUriBuilder()
 				->reset()
 				->setAddQueryString(TRUE)
-				->uriFor(NULL, array('singleTestcase' => self::$executionCount));
+				->uriFor('index', array('singleTestcase' => self::$executionCount));
 		return '<div class="testcase ' . $className . '">
 			<h3>' . $title . '<a href="' . $uriToThisTest . '">Show only this test</a></h3>
 			<div class="input">' . htmlspecialchars($source) . '</div>

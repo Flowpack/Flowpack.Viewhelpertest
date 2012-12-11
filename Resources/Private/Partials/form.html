@@ -1,6 +1,6 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
 <vht:expected regex="true">
-#^<form action="(index\.php\/)?typo3.viewhelpertest/standard/(\?__csrfToken=[a-f0-9]+)?" method="post">
+#^<form action="(index\.php\/)?typo3.viewhelpertest/standard/foo(\?__csrfToken=[a-f0-9]+)?" method="post">
 \s*<div style="display: none">
 \s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
@@ -12,7 +12,7 @@
 \s*</form>$#
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:form />
+	<f:form action="foo" />
 ]]></vht:highlight>
 
 
@@ -37,7 +37,7 @@
 /<form enctype="multipart\/form-data" onreset="void\(0\)" onsubmit="void\(0\)" action="https?:\/\/(.*?)" method="post">/
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:form enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="Some" package="TYPO3.Viewhelpertest" subpackage="SomeSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
+	<f:form action="index" enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="Some" package="TYPO3.Viewhelpertest" subpackage="SomeSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
 ]]></vht:highlight>
 
 
@@ -59,7 +59,7 @@
 
 <h1>form (bound to object)</h1>
 
-<f:form name="someUser" object="{testVariables.user4}">
+<f:form action="index" name="someUser" object="{testVariables.user4}">
 	<vht:expected><input type="text" name="someUser[firstName]" value="Kasper" /></vht:expected>
 	<vht:highlight><![CDATA[
 		<f:form.textfield property="firstName" />
@@ -107,7 +107,7 @@
 </f:form>
 
 <p>&quot;objectName&quot; argument overrules &quot;name&quot; attribute:</p>
-<f:form name="formName" objectName="someUser" object="{testVariables.user4}">
+<f:form action="index" name="formName" objectName="someUser" object="{testVariables.user4}">
 	<vht:highlight expected="<input type=&quot;text&quot; name=&quot;someUser[firstName]&quot; value=&quot;Kasper&quot; />"><![CDATA[
 		<f:form.textfield property="firstName" />
 	]]></vht:highlight>
@@ -119,7 +119,7 @@
 	/<dt>First name:<\/dt>\n\s*<dd><input type="text" name="user1\[firstName\]" value="Ingmar" \/><\/dd>\n\s*<dt>Last name:<\/dt>\n\s*<dd><input type="text" name="user1\[lastName\]" value="Schlecht" \/><\/dd>/
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:form name="user1" object="{testVariables.user1}">
+	<f:form action="index" name="user1" object="{testVariables.user1}">
 	<f:render partial="form._name" />
 </f:form>
 ]]></vht:highlight>
