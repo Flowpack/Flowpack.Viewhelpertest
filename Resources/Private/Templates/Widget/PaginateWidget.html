@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:f="http://www.w3.org/1999/html">
+	<head>
+		<title>Paginate Widget Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	<body>
+
+		<h1>Paginate Widget Test</h1>
+
+		<p>EXPECTED: List of users (sorted alphabetically by last name) <strong>two at a time</strong> with pagination controls <strong>above</strong> the list rendering <strong>at most five</strong> page links.</p>
+
+		<f:widget.paginate objects="{users}" as="paginatedUsers" configuration="{itemsPerPage: 2, maximumNumberOfLinks: 2, insertAbove: true, insertBelow: false}">
+			<ul>
+				<f:for each="{paginatedUsers}" as="user">
+					<li>{user.firstName} {user.lastName}</li>
+				</f:for>
+			</ul>
+		</f:widget.paginate>
+
+		<p><f:link.action controller="Standard" action="index">&laquo; back</f:link.action></p>
+	</body>
+</html>

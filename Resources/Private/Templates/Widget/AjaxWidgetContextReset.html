@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>Ajax Widget Context Test</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
-		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/base/jquery-ui.css" type="text/css" media="all" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" type="text/css" media="all" />
 		<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
 	</head>
 	<body>
 
-		<h1>Widget Test</h1>
+		<h1>Ajax Widget Context Test</h1>
 
-		<p>EXPECTED: The first input element does an autocomplete on "Kurfuerst", while the second one does an autocomplete on "Lemke".</p>
+		<p>EXPECTED: The first input element does an autocomplete on "Kurfürst", while the second one does an autocomplete on "Lemke".</p>
 
 		<p>BUG #31667: The first input element also does an autocomplete on "Lemke".</p>
 
@@ -22,5 +22,7 @@
 			<input id="foo{key}" /><br />
 			<f:widget.autocomplete for="foo{key}" objects="{testElement}" searchProperty="lastName" />
 		</f:for>
+
+		<p><f:link.action controller="Standard" action="index">&laquo; back</f:link.action></p>
 	</body>
 </html>

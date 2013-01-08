@@ -11,38 +11,80 @@ namespace TYPO3\Viewhelpertest\Controller;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use TYPO3\Flow\Annotations as Flow;
+
 /**
  * Viewhelpertest Render Controller
  */
 class WidgetController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
+	 * @Flow\Inject
 	 * @var \TYPO3\Viewhelpertest\Domain\Repository\UserRepository
 	 */
 	protected $userRepository;
 
 	/**
-	 * @param \TYPO3\Viewhelpertest\Domain\Repository\UserRepository $userRepository
+	 * @return void
 	 */
-	public function injectUserRepository(\TYPO3\Viewhelpertest\Domain\Repository\UserRepository $userRepository) {
-		$this->userRepository = $userRepository;
-	}
-
-	public function setupTestDataAction() {
-		$this->userRepository->removeAll();
-		$user1 = new \TYPO3\Viewhelpertest\Domain\Model\User(1, 'Sebastian', 'Kurfuerst');
-		$user2 = new \TYPO3\Viewhelpertest\Domain\Model\User(2, 'Robert', 'Lemke');
-		$this->userRepository->add($user1);
-		$this->userRepository->add($user2);
-
+	public function setupAjaxWidgetContextResetAction() {
+		$this->createUsers();
 		$this->redirect('ajaxWidgetContextReset');
 	}
 
+	/**
+	 * @return void
+	 */
 	public function ajaxWidgetContextResetAction() {
 		$this->view->assign('testData', array(
 			$this->userRepository->findByFirstName('Sebastian'),
 			$this->userRepository->findByFirstName('Robert')
 		));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function setupPaginateWidgetAction() {
+		$this->createUsers();
+		$this->redirect('paginateWidget');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function paginateWidgetAction() {
+		$this->view->assign('users', $this->userRepository->findAll());
+	}
+
+	/**
+	 * @return void
+	 */
+	public function createUsers() {
+		$this->userRepository->removeAll();
+		$this->addUser(1, 'Rens', 'Admiraal');
+		$this->addUser(2, 'Karsten', 'Dambekalns');
+		$this->addUser(3, 'Aske', 'Ertmann');
+		$this->addUser(4, 'Adrian', 'Föder');
+		$this->addUser(5, 'Andreas', 'Förthner');
+		$this->addUser(6, 'Berit', 'Hlubek');
+		$this->addUser(7, 'Christopher', 'Hlubek');
+		$this->addUser(8, 'Julle', 'Jensen');
+		$this->addUser(9, 'Sebastian', 'Kurfürst');
+		$this->addUser(10, 'Robert', 'Lemke');
+		$this->addUser(11, 'Christian', 'Müller');
+		$this->addUser(12, 'Bastian', 'Waidelich');
+	}
+
+	/**
+	 * @param integer $id
+	 * @param string $firstName
+	 * @param string $lastName
+	 * @return void
+	 */
+	protected function addUser($id, $firstName, $lastName) {
+		$user = new \TYPO3\Viewhelpertest\Domain\Model\User($id, $firstName, $lastName);
+		$this->userRepository->add($user);
 	}
 }
 ?>
