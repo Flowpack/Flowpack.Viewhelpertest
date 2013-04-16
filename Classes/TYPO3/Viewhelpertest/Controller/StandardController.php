@@ -74,7 +74,7 @@ class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 */
 	protected function loginTestAccount() {
 		$account = new \TYPO3\Flow\Security\Account();
-		$account->addRole(new \TYPO3\Flow\Security\Policy\Role('TestRole'));
+		$account->addRole(new \TYPO3\Flow\Security\Policy\Role('TYPO3.Viewhelpertest:TestRole'));
 
 		/** @var $securityContext \TYPO3\Flow\Security\Context */
 		$securityContext = $this->authenticationManager->getSecurityContext();

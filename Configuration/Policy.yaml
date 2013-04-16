@@ -1,7 +1,7 @@
 resources:
   methods:
-    F3_Viewhelpertest_AllowedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->allowedAction())'
-    F3_Viewhelpertest_DeniedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->deniedAction())'
+    Flow_Viewhelpertest_AllowedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->allowedAction())'
+    Flow_Viewhelpertest_DeniedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->deniedAction())'
 
 roles:
   TestRole: []
@@ -9,5 +9,5 @@ roles:
 acls:
   TestRole:
     methods:
-      F3_Viewhelpertest_AllowedMethods: GRANT
-      F3_Viewhelpertest_DeniedMethods: DENY
+      Flow_Viewhelpertest_AllowedMethods: GRANT
+      Flow_Viewhelpertest_DeniedMethods: DENY

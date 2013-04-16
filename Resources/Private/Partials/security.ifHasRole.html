@@ -1,13 +1,13 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
 <vht:highlight expected="You are not in this role"><![CDATA[
-	<f:security.ifHasRole role="SomeRole">
+	<f:security.ifHasRole role="TYPO3.Viewhelpertest:SomeRole">
 		<f:then>You are in this role</f:then>
 		<f:else>You are not in this role</f:else>
 	</f:security.ifHasRole>
 ]]></vht:highlight>
 
 <vht:highlight expected="You are in this role"><![CDATA[
-	<f:security.ifHasRole role="TestRole">
+	<f:security.ifHasRole role="TYPO3.Viewhelpertest:TestRole">
 		<f:then>You are in this role</f:then>
 		<f:else>You are not in this role</f:else>
 	</f:security.ifHasRole>
