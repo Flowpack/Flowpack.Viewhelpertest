@@ -18,9 +18,10 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 	/**
 	 * @param string $expected
 	 * @param string $expectedRegex
+	 * @param string $expectedException
 	 * @return string
 	 */
-	public function render($expected = NULL, $expectedRegex = NULL) {
+	public function render($expected = NULL, $expectedRegex = NULL, $expectedException = NULL) {
 		self::$executionCount++;
 
 		if ($this->controllerContext->getRequest()->hasArgument('singleTestcase')
@@ -28,8 +29,18 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 				return '';
 		}
 
+		$caughtException = NULL;
 		$source = trim($this->renderChildren());
-		$renderedSource = $this->renderSource($source);
+		if ($expectedException !== NULL) {
+			try {
+				$renderedSource = $this->renderSource($source);
+			} catch (\Exception $exception) {
+				$caughtException = $exception;
+				$renderedSource = '- EXCEPTION -';
+			}
+		} else {
+			$renderedSource = $this->renderSource($source);
+		}
 
 		$title = '';
 		if ($expected !== NULL) {
@@ -55,7 +66,18 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 			$this->viewHelperVariableContainer->remove('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'source');
 			$this->viewHelperVariableContainer->remove('TYPO3\Viewhelpertest\ViewHelpers\ExpectedViewHelper', 'regex');
 		}
-		if ($expected !== NULL && trim($renderedSource) === $expected) {
+		if ($expectedException !== NULL) {
+			if ($caughtException === NULL) {
+				$title = sprintf('expected exception "%s", but none was thrown', htmlspecialchars($expectedException));
+				$className = 'failure';
+			} elseif (!$caughtException instanceof $expectedException) {
+				$title = sprintf('expected exception "%s", but exception of type "%s" was thrown', htmlspecialchars($expectedException), htmlspecialchars(get_class($caughtException)));
+				$className = 'failure';
+			} else {
+				$title = sprintf('successfully validated that exception "%s" was thrown', htmlspecialchars($expectedException));
+				$className = 'success';
+			}
+		} elseif ($expected !== NULL && trim($renderedSource) === $expected) {
 			$title = 'successfully compared the rendered result with &quot;' . htmlspecialchars($expected) . '&quot;';
 			$className = 'success';
 		} elseif ($expectedRegex !== NULL && preg_match($expectedRegex, $renderedSource) === 1) {
