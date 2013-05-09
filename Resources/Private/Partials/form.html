@@ -1,6 +1,26 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
-<vht:expected regex="true">
-#^<form action="(index\.php\/)?typo3.viewhelpertest/standard/foo(\?__csrfToken=[a-f0-9]+)?" method="post">
+<f:security.ifAuthenticated>
+	<f:then>
+		<vht:expected regex="true">
+#^<form action="(index\.php\/)?typo3.viewhelpertest/standard/foo" method="post">
+\s*<div style="display: none">
+\s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
+\s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
+\s*<input type="hidden" name="__referrer\[@action\]" value="index" />
+\s*<input type="hidden" name="__referrer\[arguments\]" value="[^"]+" />
+\s*<input type="hidden" name="__trustedProperties" value="[^"]+" />
+\s*<input type="hidden" name="__csrfToken" value="[a-f0-9]+" />
+\s*</div>
+\s*</form>$#
+		</vht:expected>
+		<vht:highlight><![CDATA[
+			<f:form action="foo" />
+		]]></vht:highlight>
+	</f:then>
+	<f:else>
+		<vht:expected regex="true">
+#^<form action="(index\.php\/)?typo3.viewhelpertest/standard/foo" method="post">
 \s*<div style="display: none">
 \s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
@@ -10,10 +30,12 @@
 \s*<input type="hidden" name="__trustedProperties" value="[^"]+" />
 \s*</div>
 \s*</form>$#
-</vht:expected>
-<vht:highlight><![CDATA[
-	<f:form action="foo" />
-]]></vht:highlight>
+		</vht:expected>
+		<vht:highlight><![CDATA[
+			<f:form action="foo" />
+		]]></vht:highlight>
+	</f:else>
+</f:security.ifAuthenticated>
 
 
 <vht:expected regex="true">
