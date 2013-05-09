@@ -1,0 +1,33 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="THE QUICK BROWN FOX JUMPS OVER THE LAZY DÖG"><![CDATA[
+	<f:format.case>The quick brown fox jumps over the lazy dög</f:format.case>
+]]></vht:highlight>
+
+<vht:highlight expected="THE QUICK BROWN FOX JUMPS OVER THE LAZY DÖG"><![CDATA[
+	<f:format.case mode="upper">The quick brown fox jumps over the lazy dög</f:format.case>
+]]></vht:highlight>
+
+<vht:highlight expected="the quick brown fox jumps over the lazy dög"><![CDATA[
+	<f:format.case mode="lower">The quIcK brown fox jumps Over the lazY dög</f:format.case>
+]]></vht:highlight>
+
+<vht:highlight expected="The quIcK brown fox jumps Over the lazY dög"><![CDATA[
+	<f:format.case mode="capital">the quIcK brown fox jumps Over the lazY dög</f:format.case>
+]]></vht:highlight>
+
+<vht:highlight expected="the quIcK brown fox jumps Over the lazY dög"><![CDATA[
+	<f:format.case mode="uncapital">The quIcK brown fox jumps Over the lazY dög</f:format.case>
+]]></vht:highlight>
+
+<vht:highlight expected="The Quick Brown Fox Jumps Over The Lazy Dög"><![CDATA[
+	<f:format.case mode="capitalWords">The quIcK brown fox jumps Over the lazY dög</f:format.case>
+]]></vht:highlight>
+
+<vht:highlight expectedRegex="#THIS IS SOME TEXT WITH NEWLINES
+AND SPECIAL CHARACTERS: ÄÖÜß &LT;SCRIPT&GT;ALERT\('THIS SHOULD NEVER BE EXECUTED!!'\)&LT;/SCRIPT&GT;#"><![CDATA[
+	{testVariables.text -> f:format.case(mode: 'upper')}
+]]></vht:highlight>
+
+<vht:highlight expectedException="TYPO3\Fluid\Core\ViewHelper\Exception\InvalidVariableException"><![CDATA[
+	<f:format.case mode="invalidMode">The quick brown fox jumps over the lazy dög</f:format.case>
+]]></vht:highlight>
