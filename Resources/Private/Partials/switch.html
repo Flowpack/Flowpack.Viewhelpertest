@@ -1,0 +1,51 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="C"><![CDATA[
+	<f:switch expression="{testVariables.array.2}">
+		<f:case value="a">A</f:case>
+		<f:case value="b">B</f:case>
+		<f:case value="c">C</f:case>
+		<f:case value="d">D</f:case>
+	</f:switch>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:switch expression="{testVariables.array.4}">
+		This shouldn't be rendered
+		<f:case value="a">A</f:case>
+		<f:case value="b">B</f:case>
+		<f:case value="c">C</f:case>
+		<f:case value="d">D</f:case>
+	</f:switch>
+]]></vht:highlight>
+
+<vht:highlight expected="A.C"><![CDATA[
+	<f:switch expression="{testVariables.array.0}">
+		<f:case value="a">
+			<f:switch expression="{testVariables.array.2}">
+				<f:case value="a">A.A</f:case>
+				<f:case value="b">A.B</f:case>
+				<f:case value="c">A.C</f:case>
+				<f:case value="d">A.D</f:case>
+			</f:switch>
+		</f:case>
+		<f:case value="b">B</f:case>
+		<f:case value="c">C</f:case>
+		<f:case value="d">D</f:case>
+	</f:switch>
+]]></vht:highlight>
+
+<vht:highlight expected="one"><![CDATA[
+	<f:switch expression="{testVariables.integer}">
+		<f:case value="0">zero</f:case>
+		<f:case value="1">one</f:case>
+		<f:case value="2">two</f:case>
+	</f:switch>
+]]></vht:highlight>
+
+<vht:highlight expected="User1"><![CDATA[
+	<f:switch expression="{testVariables.users.0}">
+		<f:case value="{testVariables.user1}">User1</f:case>
+		<f:case value="{testVariables.user2}">User2</f:case>
+		<f:case value="{testVariables.user3}">User3</f:case>
+	</f:switch>
+]]></vht:highlight>
