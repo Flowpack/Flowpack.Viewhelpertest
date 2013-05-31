@@ -23,8 +23,8 @@
 	<f:format.case mode="capitalWords">The quIcK brown fox jumps Over the lazY dög</f:format.case>
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="#THIS IS SOME TEXT WITH NEWLINES
-AND SPECIAL CHARACTERS: ÄÖÜß &LT;SCRIPT&GT;ALERT\('THIS SHOULD NEVER BE EXECUTED!!'\)&LT;/SCRIPT&GT;#"><![CDATA[
+<vht:highlight expectedRegex="#^THIS IS SOME TEXT WITH NEWLINES
+AND SPECIAL CHARACTERS: ÄÖÜß &LT;SCRIPT&GT;ALERT\('THIS SHOULD NEVER BE EXECUTED!!'\)&LT;/SCRIPT&GT;$#"><![CDATA[
 	{testVariables.text -> f:format.case(mode: 'upper')}
 ]]></vht:highlight>
 
