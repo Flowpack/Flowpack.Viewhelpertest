@@ -121,6 +121,7 @@ class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 			'stdClass2' => new \stdClass(),
 			'integer' => 1,
 			'float' => 1.1,
+			'largeNumber' => pow(1024, 8),
 			'string' => 'foo',
 			'htmlContent' => 'This should be <b>bold</b> and <i>italic</i>',
 			'boolean' => array('true' => TRUE, 'false' => FALSE),

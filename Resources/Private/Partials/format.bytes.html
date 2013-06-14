@@ -22,3 +22,7 @@
 <vht:highlight expected="0.00 B"><![CDATA[
 	{testVariables.number.minusOne -> f:format.bytes(decimals: 2)}
 ]]></vht:highlight>
+
+<vht:highlight expected="1,000 YB"><![CDATA[
+	{testVariables.largeNumber -> f:format.bytes(decimals: 3, decimalSeparator: ',', thousandsSeparator: '.')}
+]]></vht:highlight>
