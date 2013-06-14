@@ -1,0 +1,24 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="0 B"><![CDATA[
+	<f:format.bytes />
+]]></vht:highlight>
+
+<vht:highlight expected="0 B"><![CDATA[
+	<f:format.bytes value="invalid" />
+]]></vht:highlight>
+
+<vht:highlight expected="1 KB"><![CDATA[
+	<f:format.bytes value="1024" />
+]]></vht:highlight>
+
+<vht:highlight expected="2.24 MB"><![CDATA[
+	<f:format.bytes value="2346235" decimals="2" />
+]]></vht:highlight>
+
+<vht:highlight expected="1 B"><![CDATA[
+	{testVariables.number.one -> f:format.bytes()}
+]]></vht:highlight>
+
+<vht:highlight expected="0.00 B"><![CDATA[
+	{testVariables.number.minusOne -> f:format.bytes(decimals: 2)}
+]]></vht:highlight>
