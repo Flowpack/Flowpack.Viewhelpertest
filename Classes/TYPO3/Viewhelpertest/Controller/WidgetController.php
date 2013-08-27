@@ -25,11 +25,16 @@ class WidgetController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	protected $userRepository;
 
 	/**
+	 * @param string $redirectAction
 	 * @return void
 	 */
-	public function setupAjaxWidgetContextResetAction() {
+	public function setupAction($redirectAction) {
 		$this->createUsers();
-		$this->redirect('ajaxWidgetContextReset');
+
+		// This is needed in case the setup action is called with GET
+		$this->persistenceManager->persistAll();
+
+		$this->redirect($redirectAction);
 	}
 
 	/**
@@ -40,14 +45,6 @@ class WidgetController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 			$this->userRepository->findByFirstName('Sebastian'),
 			$this->userRepository->findByFirstName('Robert')
 		));
-	}
-
-	/**
-	 * @return void
-	 */
-	public function setupPaginateWidgetAction() {
-		$this->createUsers();
-		$this->redirect('paginateWidget');
 	}
 
 	/**
