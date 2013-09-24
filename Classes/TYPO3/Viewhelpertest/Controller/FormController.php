@@ -12,11 +12,14 @@ namespace TYPO3\Viewhelpertest\Controller;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Error\Message;
+use TYPO3\Viewhelpertest\Domain\Model\Invoice;
+use TYPO3\Viewhelpertest\Domain\Model\User;
 
 /**
- * Viewhelpertest Render Controller
+ * Viewhelpertest Form Controller
  */
-class WidgetController extends AbstractBaseController {
+class FormController extends AbstractBaseController {
 
 	/**
 	 * @param string $redirectAction
@@ -34,18 +37,18 @@ class WidgetController extends AbstractBaseController {
 	/**
 	 * @return void
 	 */
-	public function ajaxWidgetContextResetAction() {
-		$this->view->assign('testData', array(
-			$this->userRepository->findByFirstName('Sebastian'),
-			$this->userRepository->findByFirstName('Robert')
-		));
+	public function identityPropertiesAction() {
+		$this->view->assign('user', $this->userRepository->findAll()->getFirst());
 	}
 
 	/**
+	 * @param User $user
 	 * @return void
 	 */
-	public function paginateWidgetAction() {
-		$this->view->assign('users', $this->userRepository->findAll());
+	public function identityPropertiesValidateAction(User $user) {
+		$this->userRepository->update($user);
+		$this->addFlashMessage('Updated user "%s"', 'success', Message::SEVERITY_OK, array($user->getFirstName()));
+		$this->redirect('identityProperties');
 	}
 
 	/**
@@ -53,19 +56,12 @@ class WidgetController extends AbstractBaseController {
 	 */
 	public function createUsers() {
 		$this->userRepository->removeAll();
-		$this->addUser(1, 'Rens', 'Admiraal');
-		$this->addUser(2, 'Karsten', 'Dambekalns');
-		$this->addUser(3, 'Aske', 'Ertmann');
-		$this->addUser(4, 'Adrian', 'Föder');
-		$this->addUser(5, 'Andreas', 'Förthner');
-		$this->addUser(6, 'Berit', 'Hlubek');
-		$this->addUser(7, 'Christopher', 'Hlubek');
-		$this->addUser(8, 'Julle', 'Jensen');
-		$this->addUser(9, 'Sebastian', 'Kurfürst');
-		$this->addUser(10, 'Robert', 'Lemke');
-		$this->addUser(11, 'Christian', 'Müller');
-		$this->addUser(12, 'Bastian', 'Waidelich');
-	}
+		$user = $this->createUser(1, 'John', 'Doe');
 
+		$this->createInvoice($user, 'invoice 01');
+		$this->createInvoice($user, 'invoice 02');
+
+		$this->userRepository->add($user);
+	}
 }
 ?>

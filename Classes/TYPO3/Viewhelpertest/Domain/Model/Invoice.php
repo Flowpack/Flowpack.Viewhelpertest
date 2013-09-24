@@ -17,10 +17,15 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * An Invoice
  *
- * @Flow\Scope("prototype")
  * @Flow\Entity
  */
 class Invoice {
+
+	/**
+	 * @var string
+	 * @Flow\Validate(type="NotEmpty")
+	 */
+	protected $subject;
 
 	/**
 	 * @var \DateTime
@@ -28,10 +33,25 @@ class Invoice {
 	protected $date;
 
 	/**
-	 * @ORM\ManyToOne
+	 * @ORM\ManyToOne(inversedBy="invoices")
 	 * @var \TYPO3\Viewhelpertest\Domain\Model\User
 	 */
 	protected $customer;
+
+	/**
+	 * @param string $subject
+	 * @return void
+	 */
+	public function setSubject($subject) {
+		$this->subject = $subject;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSubject() {
+		return $this->subject;
+	}
 
 	/**
 	 * @param \DateTime $date
@@ -61,15 +81,6 @@ class Invoice {
 	 */
 	public function getCustomer() {
 		return $this->customer;
-	}
-
-	/**
-	 * @param \DateTime $date
-	 * @param \TYPO3\Viewhelpertest\Domain\Model\User $customer
-	 */
-	public function __construct(\DateTime $date, \TYPO3\Viewhelpertest\Domain\Model\User $customer) {
-		$this->date = $date;
-		$this->customer = $customer;
 	}
 }
 ?>

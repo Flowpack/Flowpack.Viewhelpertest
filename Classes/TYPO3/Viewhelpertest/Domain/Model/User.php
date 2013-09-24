@@ -11,12 +11,14 @@ namespace TYPO3\Viewhelpertest\Domain\Model;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use TYPO3\Flow\Annotations as Flow;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * A User
  *
- * @Flow\Scope("prototype")
  * @Flow\Entity
  */
 class User {
@@ -28,11 +30,14 @@ class User {
 
 	/**
 	 * @var string
+	 * @Flow\Validate(type="NotEmpty")
+	 * @Flow\Validate(type="EmailAddress")
 	 */
 	protected $firstName;
 
 	/**
 	 * @var string
+	 * @Flow\Validate(type="NotEmpty")
 	 */
 	protected $lastName;
 
@@ -42,9 +47,34 @@ class User {
 	protected $newsletter = FALSE;
 
 	/**
-	 * @var array
+	 * @var array<string>
+	 * @Flow\Validate(type="Count")
 	 */
 	protected $interests = array();
+
+	/**
+	 * @var \Doctrine\Common\Collections\Collection<\TYPO3\Viewhelpertest\Domain\Model\Invoice>
+	 * @ORM\OneToMany(mappedBy="customer", cascade={"all"})
+	 */
+	protected $invoices;
+
+	/**
+	 * @param integer $id
+	 * @param string $firstName
+	 * @param string $lastName
+	 * @param boolean $newsletter
+	 * @param array $interests
+	 */
+	public function __construct($id, $firstName = '', $lastName = '', $newsletter = FALSE, array $interests = NULL) {
+		$this->id = $id;
+		$this->firstName = $firstName;
+		$this->lastName = $lastName;
+		$this->newsletter = (boolean)$newsletter;
+		if ($interests !== NULL) {
+			$this->interests = $interests;
+		}
+		$this->invoices = new ArrayCollection();
+	}
 
 	/**
 	 * @return integer
@@ -110,20 +140,27 @@ class User {
 	}
 
 	/**
-	 * @param integer $id
-	 * @param string $firstName
-	 * @param string $lastName
-	 * @param boolean $newsletter
-	 * @param array $interests
+	 * @param \Doctrine\Common\Collections\Collection<Invoice> $invoices
+	 * @return void
 	 */
-	public function __construct($id, $firstName = '', $lastName = '', $newsletter = FALSE, array $interests = NULL) {
-		$this->id = $id;
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-		$this->newsletter = (boolean)$newsletter;
-		if ($interests !== NULL) {
-			$this->interests = $interests;
-		}
+	public function setInvoices(Collection $invoices) {
+		$this->invoices = $invoices;
+	}
+
+	/**
+	 * @param Invoice $invoice
+	 * @return void
+	 */
+	public function addInvoice(Invoice $invoice) {
+		$invoice->setCustomer($this);
+		$this->invoices->add($invoice);
+	}
+
+	/**
+	 * @return Collection
+	 */
+	public function getInvoices() {
+		return $this->invoices;
 	}
 
 	/**

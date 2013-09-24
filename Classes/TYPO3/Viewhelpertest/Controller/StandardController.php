@@ -16,31 +16,7 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Viewhelpertest Default Controller
  */
-class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
-
-	/**
-	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Context
-	 */
-	protected $securityContext;
-
-	/**
-	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\AccountFactory
-	 */
-	protected $accountFactory;
-
-	/**
-	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Session\SessionInterface
-	 */
-	protected $session;
-
-	/**
-	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface
-	 */
-	protected $authenticationManager;
+class StandardController extends AbstractBaseController {
 
 	/**
 	 * @param string $selectedPartial
@@ -72,23 +48,9 @@ class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	/**
 	 * @return void
 	 */
-	protected function loginTestAccount() {
-		$account = new \TYPO3\Flow\Security\Account();
-		$account->addRole(new \TYPO3\Flow\Security\Policy\Role('TYPO3.Viewhelpertest:TestRole'));
-
-		/** @var $securityContext \TYPO3\Flow\Security\Context */
-		$securityContext = $this->authenticationManager->getSecurityContext();
-
-		$authenticationTokens = $securityContext->getAuthenticationTokensOfType('TYPO3\Flow\Security\Authentication\Token\UsernamePassword');
-		$authenticationTokens[0]->setAccount($account);
-		$authenticationTokens[0]->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
-	}
-
-	/**
-	 * @return void
-	 */
 	public function allowedAction() {
 	}
+
 	public function deniedAction() {
 	}
 
@@ -96,13 +58,13 @@ class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 * @return array
 	 */
 	protected function createTestVariables() {
-		$user1 = new \TYPO3\Viewhelpertest\Domain\Model\User(1, 'Ingmar', 'Schlecht', TRUE);
-		$user2 = new \TYPO3\Viewhelpertest\Domain\Model\User(2, 'Sebastian', 'Kurfürst', FALSE);
-		$user3 = new \TYPO3\Viewhelpertest\Domain\Model\User(3, 'Robert', 'Lemke', TRUE);
-		$user4 = new \TYPO3\Viewhelpertest\Domain\Model\User(4, 'Kasper', 'Skårhøj', TRUE, array('TYPO3', 'Snowboarding', 'Architecture'));
-		$invoice1 = new \TYPO3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('1980-12-13'), $user1);
-		$invoice2 = new \TYPO3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-01'), $user2);
-		$invoice3 = new \TYPO3\Viewhelpertest\Domain\Model\Invoice(new \DateTime('2010-07-04'), $user1);
+		$user1 = $this->createUser(1, 'Ingmar', 'Schlecht', TRUE);
+		$user2 = $this->createUser(2, 'Sebastian', 'Kurfürst', FALSE);
+		$user3 = $this->createUser(3, 'Robert', 'Lemke', TRUE);
+		$user4 = $this->createUser(4, 'Kasper', 'Skårhøj', TRUE, array('TYPO3', 'Snowboarding', 'Architecture'));
+		$invoice1 = $this->createInvoice($user1, 'Invoice #1', new \DateTime('1980-12-13'));
+		$invoice2 = $this->createInvoice($user2, 'Invoice #2', new \DateTime('2010-07-01'));
+		$invoice3 = $this->createInvoice($user1, 'Invoice #3', new \DateTime('2010-07-04'));
 		$testVariables = array(
 			'simpleText' => 'Hello world!',
 			'text' => 'this is some text with newlines' . chr(10) . 'and special characters: äöüß <script>alert(\'this should never be executed!!\')</script>',
@@ -130,5 +92,6 @@ class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		);
 		return $testVariables;
 	}
+
 }
 ?>

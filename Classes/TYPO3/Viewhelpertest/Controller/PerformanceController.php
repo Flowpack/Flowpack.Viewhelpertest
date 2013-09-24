@@ -16,7 +16,7 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Viewhelpertest Performance Controller
  */
-class PerformanceController extends \TYPO3\Flow\Mvc\Controller\ActionController {
+class PerformanceController extends AbstractBaseController {
 
 	/**
 	 * @var array

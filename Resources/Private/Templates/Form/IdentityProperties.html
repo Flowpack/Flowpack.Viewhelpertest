@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Identity Properties</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<f:base />
+	</head>
+	<body>
+
+		<h1>Additional Identity Properties not set on mapping error</h1>
+
+		<h2>Steps to reproduce:</h2>
+		<ol>
+			<li>Provoke a validation error by setting one of the following invoice subjects to an empty string</li>
+			<li>Submit the form -> The validation errors should be shown</li>
+			<li>Change the invoice subject to a valid string again and re-submit the form</li>
+			<li>EXPECTED: The modified subject should be persisted and redisplayed. Before this issued an exception because the modified invoice can't be assigned</li>
+		</ol>
+
+		<p>BUG <a href="http://forge.typo3.org/issues/29290">#29290</a>: Additional Identity Properties not set on mapping error.</p>
+
+		<f:flashMessages />
+
+		<f:form.validationResults>
+			<f:if condition="{validationResults.flattenedErrors}">
+				<ul class="errors">
+					<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+						<li>{propertyPath}
+							<ul>
+								<f:for each="{errors}" as="error">
+									<li>{error.code}: {error}</li>
+								</f:for>
+							</ul>
+						</li>
+					</f:for>
+				</ul>
+			</f:if>
+		 </f:form.validationResults>
+
+		<f:form action="identityPropertiesValidate" object="{user}" objectName="user">
+			<h3>Invoices:</h3>
+			<f:for each="{user.invoices}" as="invoice" iteration="iteration">
+				{iteration.cycle}: <f:form.textfield property="invoices.{iteration.index}.subject" /><br />
+			</f:for>
+			<f:form.submit value="update" />
+		</f:form>
+
+		<p><f:link.action controller="Standard" action="index">&laquo; back</f:link.action></p>
+	</body>
+</html>
