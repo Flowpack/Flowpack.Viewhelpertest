@@ -31,7 +31,6 @@ class User {
 	/**
 	 * @var string
 	 * @Flow\Validate(type="NotEmpty")
-	 * @Flow\Validate(type="EmailAddress")
 	 */
 	protected $firstName;
 
