@@ -42,13 +42,30 @@ class FormController extends AbstractBaseController {
 	}
 
 	/**
-	 * @param User $user
+	 * @param \TYPO3\Viewhelpertest\Domain\Model\User $user
 	 * @return void
 	 */
 	public function identityPropertiesValidateAction(User $user) {
 		$this->userRepository->update($user);
 		$this->addFlashMessage('Updated user "%s"', 'success', Message::SEVERITY_OK, array($user->getFirstName()));
 		$this->redirect('identityProperties');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function nestedFormsAction() {
+		$this->view->assign('user', $this->userRepository->findAll()->getFirst());
+	}
+
+	/**
+	 * @param \TYPO3\Viewhelpertest\Domain\Model\User $user
+	 * @return void
+	 */
+	public function nestedFormsValidateAction(User $user) {
+		$this->userRepository->update($user);
+		$this->addFlashMessage('Updated user "%s"', 'success', Message::SEVERITY_OK, array($user->getFirstName()));
+		$this->redirect('nestedForms');
 	}
 
 	/**

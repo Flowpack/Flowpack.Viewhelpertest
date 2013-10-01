@@ -1,0 +1,28 @@
+{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}<!DOCTYPE html>
+<html xmlns:f="http://www.w3.org/1999/html">
+	<head>
+		<title>Widget Redirect Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<f:base />
+		<link href="{f:uri.resource(path: 'styles.css')}" rel="stylesheet" type="text/css" />
+	</head>
+	<body class="viewhelpertest">
+
+		<h1>Widget Redirect Test</h1>
+
+		<f:flashmessages />
+
+		<h2>Non-AJAX Widget:</h2>
+		<div class="widget">
+			<vht:widget.redirect />
+		</div>
+
+		<h2>AJAX Widget:</h2>
+		<div class="widget">
+			<vht:widget.redirectAjax />
+		</div>
+
+		<hr />
+		<p><f:link.action controller="Standard" action="index">&laquo; back</f:link.action></p>
+	</body>
+</html>

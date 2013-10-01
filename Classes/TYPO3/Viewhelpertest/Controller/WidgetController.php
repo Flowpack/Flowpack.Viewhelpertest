@@ -51,6 +51,12 @@ class WidgetController extends AbstractBaseController {
 	/**
 	 * @return void
 	 */
+	public function redirectAction() {
+	}
+
+	/**
+	 * @return void
+	 */
 	public function createUsers() {
 		$this->userRepository->removeAll();
 		$this->addUser(1, 'Rens', 'Admiraal');

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nested Forms</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<f:base />
+	</head>
+	<body>
+
+		<h1>Nested Forms</h1>
+
+		<h2>Steps to reproduce:</h2>
+		<ol>
+			<li>Set the first and/or last name in the form below to an empty string</li>
+			<li>Submit the form</li>
+			<li>EXPECTED: The form should be re-displayed with validation errors. BUG: validation is skipped for the user in the nested form</li>
+		</ol>
+
+		<p>BUG <a href="http://forge.typo3.org/issues/50585">#50585</a>: Validation fails for nested objects.</p>
+
+		<f:flashMessages />
+
+		<f:form.validationResults>
+			<f:if condition="{validationResults.flattenedErrors}">
+				<ul class="errors">
+					<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+						<li>{propertyPath}
+							<ul>
+								<f:for each="{errors}" as="error">
+									<li>{error.code}: {error}</li>
+								</f:for>
+							</ul>
+						</li>
+					</f:for>
+				</ul>
+			</f:if>
+		 </f:form.validationResults>
+
+		<h2>Simple form:</h2>
+		<f:form action="nestedFormsValidate" object="{user}" objectName="user">
+			First name: <f:form.textfield property="firstName" /><br />
+			Last name: <f:form.textfield property="lastName" /><br />
+			<f:form.submit value="update" />
+		</f:form>
+
+		<h2>Nested form:</h2>
+		<f:form action="nestedFormsValidate" object="{user}" objectName="user">
+			First name: <f:form.textfield property="firstName" /><br />
+			Last name: <f:form.textfield property="lastName" /><br />
+			<h3>Invoices:</h3>
+			<f:for each="{user.invoices}" as="invoice" iteration="iteration">
+				{iteration.cycle}: <f:form.textfield property="invoices.{iteration.index}.subject" /><br />
+			</f:for>
+			<f:form.submit value="update" />
+		</f:form>
+
+		<p><f:link.action controller="Form" action="setup" arguments="{redirectAction: 'nestedForms'}">Reset data</f:link.action></p>
+		<p><f:link.action controller="Standard" action="index">&laquo; back</f:link.action></p>
+	</body>
+</html>
