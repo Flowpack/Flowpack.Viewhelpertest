@@ -1,4 +1,12 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+<vht:highlight expected="999,999,999,999,999.00"><![CDATA[
+	<f:format.number>999999999999999</f:format.number>
+]]></vht:highlight>
+
 <vht:highlight expected="423.423,234"><![CDATA[
 	<f:format.number decimals="3" decimalSeparator="," thousandsSeparator=".">423423.234</f:format.number>
+]]></vht:highlight>
+
+<vht:highlight expected="423,423.234"><![CDATA[
+	<f:format.number forceLocale="en_GB">423423.234</f:format.number>
 ]]></vht:highlight>

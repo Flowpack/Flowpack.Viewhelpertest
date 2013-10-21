@@ -14,3 +14,11 @@
 <vht:highlight expected="10.07.2010"><![CDATA[
 	<f:format.date format="d.m.Y">@1278740610</f:format.date>
 ]]></vht:highlight>
+
+<vht:highlight expected="13 Dec 1980 00:00:00"><![CDATA[
+	<f:format.date format="d.m.Y" forceLocale="en_GB">12/13/1980</f:format.date>
+]]></vht:highlight>
+
+<vht:highlight expected="00:00:00"><![CDATA[
+	<f:format.date format="d.m.Y" forceLocale="en_GB" localeFormatType="time">12/13/1980</f:format.date>
+]]></vht:highlight>

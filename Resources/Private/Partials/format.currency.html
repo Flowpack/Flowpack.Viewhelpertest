@@ -2,3 +2,7 @@
 <vht:highlight expected="54,321.00 $"><![CDATA[
 	<f:format.currency currencySign="$" decimalSeparator="." thousandsSeparator=",">54321</f:format.currency>
 ]]></vht:highlight>
+
+<vht:highlight expected="£54,321.00"><![CDATA[
+	<f:format.currency currencySign="£" forceLocale="en_GB">54321</f:format.currency>
+]]></vht:highlight>
