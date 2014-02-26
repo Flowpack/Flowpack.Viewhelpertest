@@ -2,7 +2,7 @@
 <f:security.ifAuthenticated>
 	<f:then>
 		<vht:expected regex="true">
-#^<form action="(index\.php\/)?typo3.viewhelpertest/standard/foo" method="post">
+#^<form action="\/(index\.php\/)?typo3\.viewhelpertest/standard/foo" method="post">
 \s*<div style="display: none">
 \s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
@@ -20,7 +20,7 @@
 	</f:then>
 	<f:else>
 		<vht:expected regex="true">
-#^<form action="(index\.php\/)?typo3.viewhelpertest/standard/foo" method="post">
+#^<form action="\/(index\.php\/)?typo3\.viewhelpertest/standard/foo" method="post">
 \s*<div style="display: none">
 \s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
@@ -64,7 +64,7 @@
 
 
 <vht:expected regex="true">
-#^<form title="someTitleAttribute" method="get" name="foo" id="bar" action="(index\.php/)?typo3.viewhelpertest/standard/foo">
+#^<form title="someTitleAttribute" method="get" name="foo" id="bar" action="\/(index\.php/)?typo3\.viewhelpertest/standard/foo">
 \s*<div style="display: none">
 \s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
