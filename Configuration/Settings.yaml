@@ -12,6 +12,6 @@ TYPO3:
 
     xhprof:
       rootDirectory: '' # path to the XHProf library
-      outputDirectory: %FLOW_PATH_DATA%Temporary/Viewhelpertest/XHProf/ # output directory
+      outputDirectory: '%FLOW_PATH_DATA%Temporary/Viewhelpertest/XHProf/' # output directory
 
-    profilingTemplatesDirectory: %FLOW_PATH_DATA%Temporary/Viewhelpertest/Fluidtemplates/
+    profilingTemplatesDirectory: '%FLOW_PATH_DATA%Temporary/Viewhelpertest/Fluidtemplates/'
