@@ -7,6 +7,19 @@
 	<f:form.textfield value="other value" name="myTextField"><input type="text" value="###dummy###" /></f:form.textfield>
 ]]></vht:highlight>
 
+<vht:highlight expected="<input type=&quot;text&quot; name=&quot;myTextField&quot; required=&quot;required&quot; />"><![CDATA[
+	<f:form.textfield name="myTextField" required="true" />
+]]></vht:highlight>
+
+<vht:highlight expected="<input type=&quot;text&quot; name=&quot;myTextField&quot; required=&quot;required&quot; />"><![CDATA[
+	<f:form.textfield name="myTextField" required="required" />
+]]></vht:highlight>
+
+<vht:highlight expected="<input type=&quot;text&quot; name=&quot;myTextField&quot; />"><![CDATA[
+	<f:form.textfield name="myTextField" required="false" />
+]]></vht:highlight>
+
+
 <h2>data Attributes (supported by all tag-based ViewHelpers):</h2>
 
 <vht:highlight expected="<input data-test=&quot;hello&quot; data-other=&quot;This should be &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt; and &amp;lt;i&amp;gt;italic&amp;lt;/i&amp;gt;&quot; type=&quot;text&quot; name=&quot;test&quot; />"><![CDATA[
