@@ -3,6 +3,18 @@
 	<f:form.textarea value="Some 'Test'" rows="4" cols="18" />
 ]]></vht:highlight>
 
+<vht:highlight expected="<textarea rows=&quot;4&quot; cols=&quot;18&quot; name=&quot;&quot; required=&quot;required&quot;>Some 'Test'</textarea>"><![CDATA[
+	<f:form.textarea value="Some 'Test'" rows="4" cols="18" required="true" />
+]]></vht:highlight>
+
+<vht:highlight expected="<textarea rows=&quot;4&quot; cols=&quot;18&quot; name=&quot;&quot; required=&quot;required&quot;>Some 'Test'</textarea>"><![CDATA[
+	<f:form.textarea value="Some 'Test'" rows="4" cols="18" required="required" />
+]]></vht:highlight>
+
+<vht:highlight expected="<textarea rows=&quot;4&quot; cols=&quot;18&quot; name=&quot;&quot;>Some 'Test'</textarea>"><![CDATA[
+	<f:form.textarea value="Some 'Test'" rows="4" cols="18" required="false"/>
+]]></vht:highlight>
+
 <vht:expected>
 	<textarea rows="5" cols="10" name="myTextArea">this is some text with newlines
 and special characters: äöüß &lt;script&gt;alert('this should never be executed!!')&lt;/script&gt;</textarea>
