@@ -10,3 +10,11 @@
 <vht:highlight expected="Keep the &amp;quot;quotes&amp;quot;"><![CDATA[
 	<f:format.htmlentitiesDecode keepQuotes="1">Keep the &quot;quotes&quot;</f:format.htmlentitiesDecode>
 ]]></vht:highlight>
+
+<vht:highlight expected="Ernest &lt;b&gt;Escape&lt;/b&gt;"><![CDATA[
+	{testVariables.user6 -> f:format.htmlentitiesDecode()}
+]]></vht:highlight>
+
+<vht:highlight expectedType="double"><![CDATA[
+	{testVariables.largeNumber -> f:format.htmlentitiesDecode()}
+]]></vht:highlight>

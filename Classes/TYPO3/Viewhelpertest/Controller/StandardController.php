@@ -62,6 +62,8 @@ class StandardController extends AbstractBaseController {
 		$user2 = $this->createUser(2, 'Sebastian', 'Kurfürst', FALSE);
 		$user3 = $this->createUser(3, 'Robert', 'Lemke', TRUE);
 		$user4 = $this->createUser(4, 'Kasper', 'Skårhøj', TRUE, array('TYPO3', 'Snowboarding', 'Architecture'));
+		$user5 = $this->createUser(5, 'Xaver', 'Cross <b>Site-Scripting</b>');
+		$user6 = $this->createUser(6, 'Ernest', '&lt;b&gt;Escape&lt;/b&gt;');
 		$invoice1 = $this->createInvoice($user1, 'Invoice #1', new \DateTime('1980-12-13'));
 		$invoice2 = $this->createInvoice($user2, 'Invoice #2', new \DateTime('2010-07-01'));
 		$invoice3 = $this->createInvoice($user1, 'Invoice #3', new \DateTime('2010-07-04'));
@@ -77,6 +79,8 @@ class StandardController extends AbstractBaseController {
 			'user2' => $user2,
 			'user3' => $user3,
 			'user4' => $user4,
+			'user5' => $user5,
+			'user6' => $user6,
 			'users' => array($user1, $user2, $user3, $user4),
 			'date' => new \DateTime(),
 			'stdClass1' => new \stdClass(),

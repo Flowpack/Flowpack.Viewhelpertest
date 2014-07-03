@@ -19,9 +19,10 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 	 * @param string $expected
 	 * @param string $expectedRegex
 	 * @param string $expectedException
+	 * @param string $expectedType
 	 * @return string
 	 */
-	public function render($expected = NULL, $expectedRegex = NULL, $expectedException = NULL) {
+	public function render($expected = NULL, $expectedRegex = NULL, $expectedException = NULL, $expectedType = NULL) {
 		self::$executionCount++;
 
 		if ($this->controllerContext->getRequest()->hasArgument('singleTestcase')
@@ -83,12 +84,17 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 		} elseif ($expectedRegex !== NULL && preg_match($expectedRegex, $renderedSource) === 1) {
 			$title = 'successfully compared the rendered result with RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
 			$className = 'success';
-		} elseif ($expected === NULL && $expectedRegex === NULL) {
+		} elseif ($expectedType !== NULL && gettype($renderedSource) === $expectedType) {
+			$title = 'successfully compared the rendered result type with &quot;' . htmlspecialchars($expectedType) . '&quot;';
+			$className = 'success';
+		} elseif ($expected === NULL && $expectedRegex === NULL && $expectedType === NULL) {
 			$className = 'default';
 		} else {
 			$className = 'failure';
 			if ($expected !== NULL) {
 				$title = 'expected &quot;' . htmlspecialchars($expected) . '&quot;';
+			} elseif ($expectedType !== NULL) {
+				$title = 'expected type &quot;' . htmlspecialchars($expectedType) . '&quot; got &quot;' . htmlspecialchars(gettype($renderedSource)) . '&quot;';
 			} else {
 				$title = 'expected RegEx &quot;' . htmlspecialchars($expectedRegex) . '&quot;';
 			}

@@ -18,3 +18,11 @@
 <vht:highlight expected="This should not be encoded again &amp;amp;"><![CDATA[
 	<f:format.htmlentities doubleEncode="0">This should not be encoded again &amp;</f:format.htmlentities>
 ]]></vht:highlight>
+
+<vht:highlight expected="Xaver Cross &amp;lt;b&amp;gt;Site-Scripting&amp;lt;/b&amp;gt;"><![CDATA[
+	{testVariables.user5 -> f:format.htmlentities()}
+]]></vht:highlight>
+
+<vht:highlight expectedType="double"><![CDATA[
+	{testVariables.largeNumber -> f:format.htmlentities()}
+]]></vht:highlight>

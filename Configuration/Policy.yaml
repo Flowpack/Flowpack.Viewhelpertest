@@ -1,5 +1,6 @@
 resources:
   methods:
+    Flow_Viewhelpertest_PublicActions: 'method(TYPO3\Viewhelpertest\Controller\StandardController->indexAction()) || class(TYPO3\Viewhelpertest\Controller\(Form|Performance|Render|Widget)Controller)'
     Flow_Viewhelpertest_AllowedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->allowedAction())'
     Flow_Viewhelpertest_DeniedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->deniedAction())'
 
@@ -7,6 +8,9 @@ roles:
   TestRole: []
 
 acls:
+  Everybody:
+    methods:
+      Flow_Viewhelpertest_PublicActions: GRANT
   TestRole:
     methods:
       Flow_Viewhelpertest_AllowedMethods: GRANT
