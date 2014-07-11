@@ -36,6 +36,7 @@
 
 <vht:highlight expected="one"><![CDATA[
 	<f:switch expression="{testVariables.integer}">
+		This shouldn't be rendered
 		<f:case value="0">zero</f:case>
 		<f:case value="1">one</f:case>
 		<f:case value="2">two</f:case>
@@ -47,5 +48,11 @@
 		<f:case value="{testVariables.user1}">User1</f:case>
 		<f:case value="{testVariables.user2}">User2</f:case>
 		<f:case value="{testVariables.user3}">User3</f:case>
+	</f:switch>
+]]></vht:highlight>
+
+<vht:highlight expected="NULL"><![CDATA[
+	<f:switch expression="{null}">
+		<f:case value="{null}">NULL</f:case>
 	</f:switch>
 ]]></vht:highlight>
