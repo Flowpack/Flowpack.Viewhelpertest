@@ -12,6 +12,7 @@ namespace TYPO3\Viewhelpertest\Controller;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Error\Message;
 
 /**
  * Viewhelpertest Default Controller
@@ -36,7 +37,7 @@ class StandardController extends AbstractBaseController {
 		$this->view->assign('selectedPartials', $selectedPartials);
 		if (in_array('flashMessages', $selectedPartials)) {
 			$this->addFlashMessage('Some dummy flash message at ' . date('H:i:s'));
-			$this->addFlashMessage('Error flash message with %s content.', 'Flash message title', \TYPO3\Flow\Error\Message::SEVERITY_ERROR, array('dynamic'), 123);
+			$this->addFlashMessage('Error flash message with %s content.', 'Flash message title', Message::SEVERITY_ERROR, array('dynamic'), 123);
 		}
 		if (in_array('security.ifAccess', $selectedPartials) || in_array('security.ifAuthenticated', $selectedPartials) || in_array('security.ifHasRole', $selectedPartials)) {
 			$this->loginTestAccount();

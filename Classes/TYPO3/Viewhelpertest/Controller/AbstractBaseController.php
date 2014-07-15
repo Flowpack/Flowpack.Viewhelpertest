@@ -14,9 +14,12 @@ namespace TYPO3\Viewhelpertest\Controller;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use TYPO3\Flow\Security\Account;
+use TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface;
+use TYPO3\Flow\Security\Authentication\TokenInterface;
 use TYPO3\Flow\Security\Policy\Role;
 use TYPO3\Viewhelpertest\Domain\Model\Invoice;
 use TYPO3\Viewhelpertest\Domain\Model\User;
+use TYPO3\Viewhelpertest\Domain\Repository\UserRepository;
 
 /**
  * Viewhelpertest common base Controller
@@ -25,13 +28,13 @@ abstract class AbstractBaseController extends ActionController {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Viewhelpertest\Domain\Repository\UserRepository
+	 * @var UserRepository
 	 */
 	protected $userRepository;
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface
+	 * @var AuthenticationManagerInterface
 	 */
 	protected $authenticationManager;
 
@@ -40,14 +43,18 @@ abstract class AbstractBaseController extends ActionController {
 	 */
 	protected function loginTestAccount() {
 		$account = new Account();
+		$account->setAccountIdentifier('TestAccount');
 		$account->addRole(new Role('TYPO3.Viewhelpertest:TestRole'));
 
-		/** @var $securityContext \TYPO3\Flow\Security\Context */
 		$securityContext = $this->authenticationManager->getSecurityContext();
 
-		$authenticationTokens = $securityContext->getAuthenticationTokensOfType('TYPO3\Flow\Security\Authentication\Token\UsernamePassword');
-		$authenticationTokens[0]->setAccount($account);
-		$authenticationTokens[0]->setAuthenticationStatus(\TYPO3\Flow\Security\Authentication\TokenInterface::AUTHENTICATION_SUCCESSFUL);
+		/** @var TokenInterface $authenticationToken */
+		foreach ($securityContext->getAuthenticationTokensOfType('TYPO3\Flow\Security\Authentication\Token\UsernamePassword') as $authenticationToken) {
+			$authenticationToken->setAccount($account);
+			$authenticationToken->setAuthenticationStatus(TokenInterface::AUTHENTICATION_SUCCESSFUL);
+		}
+		$securityContext->refreshTokens();
+ 		$this->authenticationManager->authenticate();
 	}
 
 	/**
