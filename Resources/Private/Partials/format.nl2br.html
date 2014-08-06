@@ -4,3 +4,11 @@
 		second line
 	</f:format.nl2br>
 ]]></vht:highlight>
+
+<vht:highlight expectedRegex="/^this is some text with newlines\<br \/\>\nand special characters\: äöüß \&lt\;script\&gt\;alert\('this should never be executed!!'\)\&lt\;\/script\&gt\;$/"><![CDATA[
+	{testVariables.text -> f:format.nl2br()}
+]]></vht:highlight>
+
+<vht:highlight expectedRegex="/^first line<br \/><b>second line<\/b>$/"><![CDATA[
+	<f:format.nl2br>first line<br /><b>second line</b></f:format.nl2br>
+]]></vht:highlight>

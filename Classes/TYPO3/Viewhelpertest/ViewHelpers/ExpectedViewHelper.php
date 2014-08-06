@@ -11,7 +11,12 @@ namespace TYPO3\Viewhelpertest\ViewHelpers;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-class ExpectedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
+use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
+
+/**
+ *
+ */
+class ExpectedViewHelper extends AbstractViewHelper {
 
 	/**
 	 * @param boolean $regex

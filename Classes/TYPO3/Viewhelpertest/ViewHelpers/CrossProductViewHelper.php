@@ -11,7 +11,7 @@ namespace TYPO3\Viewhelpertest\ViewHelpers;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-class CrossProductViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubTemplateRenderingViewHelper {
+class CrossProductViewHelper extends AbstractSubTemplateRenderingViewHelper {
 
 	/**
 	 * @param array $values,

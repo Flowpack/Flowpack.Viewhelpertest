@@ -11,7 +11,12 @@ namespace TYPO3\Viewhelpertest\ViewHelpers;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubTemplateRenderingViewHelper {
+class HighlightViewHelper extends AbstractSubTemplateRenderingViewHelper {
+
+	/**
+	 * @var boolean
+	 */
+	protected $escapeChildren = FALSE;
 
 	protected static $executionCount = 0;
 
@@ -92,7 +97,7 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 		} else {
 			$className = 'failure';
 			if ($expected !== NULL) {
-				$title = 'expected &quot;' . htmlspecialchars($expected) . '&quot;';
+				$title = 'expected &quot;' . htmlspecialchars($expected) . '&quot; got &quot;' . htmlspecialchars($renderedSource) . '&quot;';
 			} elseif ($expectedType !== NULL) {
 				$title = 'expected type &quot;' . htmlspecialchars($expectedType) . '&quot; got &quot;' . htmlspecialchars(gettype($renderedSource)) . '&quot;';
 			} else {

@@ -11,7 +11,14 @@ namespace TYPO3\Viewhelpertest\ViewHelpers;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-abstract class AbstractSubTemplateRenderingViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
+use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
+
+abstract class AbstractSubTemplateRenderingViewHelper extends AbstractViewHelper {
+
+	/**
+	 * @var boolean
+	 */
+	protected $escapeOutput = FALSE;
 
 	/**
 	 * @var \TYPO3\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper
