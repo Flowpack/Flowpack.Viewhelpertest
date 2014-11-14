@@ -16,6 +16,7 @@ use TYPO3\Flow\Mvc\Controller\ActionController;
 use TYPO3\Flow\Security\Account;
 use TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface;
 use TYPO3\Flow\Security\Authentication\TokenInterface;
+use TYPO3\Flow\Security\Policy\PolicyService;
 use TYPO3\Flow\Security\Policy\Role;
 use TYPO3\Viewhelpertest\Domain\Model\Invoice;
 use TYPO3\Viewhelpertest\Domain\Model\User;
@@ -39,12 +40,18 @@ abstract class AbstractBaseController extends ActionController {
 	protected $authenticationManager;
 
 	/**
+	 * @Flow\Inject
+	 * @var PolicyService
+	 */
+	protected $policyService;
+
+	/**
 	 * @return void
 	 */
 	protected function loginTestAccount() {
 		$account = new Account();
 		$account->setAccountIdentifier('TestAccount');
-		$account->addRole(new Role('TYPO3.Viewhelpertest:TestRole'));
+		$account->addRole($this->policyService->getRole('TYPO3.Viewhelpertest:TestRole'));
 
 		$securityContext = $this->authenticationManager->getSecurityContext();
 

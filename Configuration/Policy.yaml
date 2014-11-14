@@ -1,17 +1,27 @@
-resources:
-  methods:
-    Flow_Viewhelpertest_PublicActions: 'method(TYPO3\Viewhelpertest\Controller\StandardController->indexAction()) || class(TYPO3\Viewhelpertest\Controller\(Form|Performance|Render|Widget)Controller)'
-    Flow_Viewhelpertest_AllowedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->allowedAction())'
-    Flow_Viewhelpertest_DeniedMethods: 'method(TYPO3\Viewhelpertest\Controller\StandardController->deniedAction())'
+
+privilegeTargets:
+
+  'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+    'TYPO3.Viewhelpertest:PublicActions':
+      matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->indexAction()) || class(TYPO3\Viewhelpertest\Controller\(Form|Performance|Render|Widget)Controller)'
+    'TYPO3.Viewhelpertest:AllowedMethods':
+      matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->allowedAction())'
+    'TYPO3.Viewhelpertest:DeniedMethods':
+      matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->deniedAction())'
 
 roles:
-  TestRole: []
 
-acls:
-  Everybody:
-    methods:
-      Flow_Viewhelpertest_PublicActions: GRANT
-  TestRole:
-    methods:
-      Flow_Viewhelpertest_AllowedMethods: GRANT
-      Flow_Viewhelpertest_DeniedMethods: DENY
+  'TYPO3.Viewhelpertest:TestRole':
+    privileges:
+      -
+        privilegeTarget: 'TYPO3.Viewhelpertest:AllowedMethods'
+        permission: GRANT
+      -
+        privilegeTarget: 'TYPO3.Viewhelpertest:DeniedMethods'
+        permission: DENY
+
+  'TYPO3.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'TYPO3.Viewhelpertest:PublicActions'
+        permission: GRANT
