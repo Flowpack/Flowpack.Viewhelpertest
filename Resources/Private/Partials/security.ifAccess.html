@@ -20,3 +20,24 @@
 		<f:else>You don't have access to the Privilege Target</f:else>
 	</f:security.ifAccess>
 ]]></vht:highlight>
+
+<vht:highlight expected="You don't have access to the Privilege Target"><![CDATA[
+	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:Methods" parameters="{actionName: 'nonExisting'}">
+		<f:then>You have access to the Privilege Target</f:then>
+		<f:else>You don't have access to the Privilege Target</f:else>
+	</f:security.ifAccess>
+]]></vht:highlight>
+
+<vht:highlight expected="You don't have access to the Privilege Target"><![CDATA[
+	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:Methods" parameters="{actionName: 'denied'}">
+		<f:then>You have access to the Privilege Target</f:then>
+		<f:else>You don't have access to the Privilege Target</f:else>
+	</f:security.ifAccess>
+]]></vht:highlight>
+
+<vht:highlight expected="You have access to the Privilege Target"><![CDATA[
+	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:Methods" parameters="{actionName: 'allowed'}">
+		<f:then>You have access to the Privilege Target</f:then>
+		<f:else>You don't have access to the Privilege Target</f:else>
+	</f:security.ifAccess>
+]]></vht:highlight>

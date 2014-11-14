@@ -8,6 +8,11 @@ privilegeTargets:
       matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->allowedAction())'
     'TYPO3.Viewhelpertest:DeniedMethods':
       matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->deniedAction())'
+    'TYPO3.Viewhelpertest:Methods':
+      matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->{parameters.actionName}Action())'
+      parameters:
+        'actionName':
+          className: 'TYPO3\Flow\Security\Authorization\Privilege\Parameter\StringPrivilegeParameter'
 
 roles:
 
@@ -19,6 +24,11 @@ roles:
       -
         privilegeTarget: 'TYPO3.Viewhelpertest:DeniedMethods'
         permission: DENY
+      -
+        privilegeTarget: 'TYPO3.Viewhelpertest:Methods'
+        parameters:
+          'actionName': 'allowed'
+        permission: GRANT
 
   'TYPO3.Flow:Everybody':
     privileges:
