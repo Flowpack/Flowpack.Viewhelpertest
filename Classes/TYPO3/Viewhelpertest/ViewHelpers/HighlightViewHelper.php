@@ -37,7 +37,7 @@ class HighlightViewHelper extends \TYPO3\Viewhelpertest\ViewHelpers\AbstractSubT
 				$renderedSource = $this->renderSource($source);
 			} catch (\Exception $exception) {
 				$caughtException = $exception;
-				$renderedSource = '- EXCEPTION -';
+				$renderedSource = htmlspecialchars(sprintf('EXCEPTION #%d: %s', $exception->getCode(), $exception->getMessage()));
 			}
 		} else {
 			$renderedSource = $this->renderSource($source);
