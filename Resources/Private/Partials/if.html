@@ -130,6 +130,17 @@ This test part should especially specify edge cases, and cover each case at leas
 	<f:if condition="{testVariables.string} != 'bar'">satisfied condition!</f:if>
 ]]></vht:highlight>
 
+<h3>Escaping</h3>
+
+<vht:highlight expected="this is some text with newlines
+and special characters: äöüß &amp;lt;script&amp;gt;alert('this should never be executed!!')&amp;lt;/script&amp;gt;"><![CDATA[
+	<f:if condition="{testVariables.string} == 'foo'">{testVariables.text}</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="&lt;b&gt;HTML&lt;/b&gt;"><![CDATA[
+	<f:if condition="{testVariables.string} == 'foo'"><b>HTML</b></f:if>
+]]></vht:highlight>
+
 <h2>Complex Comparisons</h2>
 
 TODO: Strings, and Boolean literal values, and NULL literal value

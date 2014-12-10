@@ -3,6 +3,14 @@
 	<f:uri.action action="someAction" />
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/^\/(index\.php\/)?typo3\.viewhelpertest\/some\/someaction\?foo=bar&tx_myextension_myplugin%5Baction%5D=overruled&baz=test&%40subpackage=somesubpackage$/"><![CDATA[
+<vht:highlight expectedRegex="/^\/(index\.php\/)?typo3\.viewhelpertest\/some\/someaction\?foo=bar&amp;amp;tx_myextension_myplugin%5Baction%5D=overruled&amp;amp;baz=test&amp;amp;%40subpackage=somesubpackage$/"><![CDATA[
 	<f:uri.action action="someAction" controller="Some" package="TYPO3.Viewhelpertest" subpackage="SomeSubpackage" arguments="{foo: 'bar', baz: 'test'}" additionalParams="{foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}}" />
+]]></vht:highlight>
+
+<vht:highlight expectedRegex="/^\/(index\.php\/)?typo3\.viewhelpertest\/some\/someaction\?foo=bar&amp;amp;tx_myextension_myplugin%5Baction%5D=overruled&amp;amp;baz=test&amp;amp;%40subpackage=somesubpackage$/"><![CDATA[
+	{f:uri.action(action: 'someAction', controller: 'Some', package: 'TYPO3.Viewhelpertest', subpackage: 'SomeSubpackage', arguments: {foo: 'bar', baz: 'test'}, additionalParams: {foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}})}
+]]></vht:highlight>
+
+<vht:highlight expectedRegex="/^\/(index\.php\/)?typo3\.viewhelpertest\/some\/someaction\?foo=bar&tx_myextension_myplugin%5Baction%5D=overruled&baz=test&%40subpackage=somesubpackage$/"><![CDATA[
+	{f:uri.action(action: 'someAction', controller: 'Some', package: 'TYPO3.Viewhelpertest', subpackage: 'SomeSubpackage', arguments: {foo: 'bar', baz: 'test'}, additionalParams: {foo: 'bar', tx_myextension_myplugin: {action: 'overruled'}}) -> f:format.raw()}
 ]]></vht:highlight>
