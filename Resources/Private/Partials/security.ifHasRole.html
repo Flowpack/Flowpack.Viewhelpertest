@@ -1,21 +1,51 @@
 {namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
-<vht:highlight expected="You are not in this role"><![CDATA[
-	<f:security.ifHasRole role="TYPO3.Viewhelpertest:SomeRole">
-		<f:then>You are in this role</f:then>
-		<f:else>You are not in this role</f:else>
+<vht:highlight expected="The user does not have this role"><![CDATA[
+	<f:security.ifHasRole role="TYPO3.Viewhelpertest:TestRole2">
+		<f:then>The user has this role</f:then>
+		<f:else>The user does not have this role</f:else>
 	</f:security.ifHasRole>
 ]]></vht:highlight>
 
-<vht:highlight expected="You are in this role"><![CDATA[
-	<f:security.ifHasRole role="TYPO3.Viewhelpertest:TestRole">
-		<f:then>You are in this role</f:then>
-		<f:else>You are not in this role</f:else>
+<vht:highlight expected="The user has this role"><![CDATA[
+	<f:security.ifHasRole role="TYPO3.Viewhelpertest:TestRole1">
+		<f:then>The user has this role</f:then>
+		<f:else>The user does not have this role</f:else>
 	</f:security.ifHasRole>
 ]]></vht:highlight>
 
-<vht:highlight expected="You are in this role"><![CDATA[
-	<f:security.ifHasRole role="TestRole">
-		<f:then>You are in this role</f:then>
-		<f:else>You are not in this role</f:else>
+<vht:highlight expected="The user has this role"><![CDATA[
+	<f:security.ifHasRole role="TestRole1">
+		<f:then>The user has this role</f:then>
+		<f:else>The user does not have this role</f:else>
 	</f:security.ifHasRole>
+]]></vht:highlight>
+
+<vht:highlight expected="The user has this role"><![CDATA[
+	<f:security.ifHasRole role="TYPO3.Viewhelpertest:TestRole2" account="{testVariables.account}">
+		<f:then>The user has this role</f:then>
+		<f:else>The user does not have this role</f:else>
+	</f:security.ifHasRole>
+]]></vht:highlight>
+
+<vht:highlight expected="The user has this role"><![CDATA[
+	<f:security.ifHasRole role="TYPO3.Viewhelpertest:TestRole1" account="{testVariables.account}">
+		<f:then>The user has this role</f:then>
+		<f:else>The user does not have this role</f:else>
+	</f:security.ifHasRole>
+]]></vht:highlight>
+
+<div class="specification">If the account argument is specified but null the current account is assumed</div>
+<vht:highlight expected="The user has this role"><![CDATA[
+	<f:security.ifHasRole role="TestRole1" account="{testVariables.null}">
+		<f:then>The user has this role</f:then>
+		<f:else>The user does not have this role</f:else>
+	</f:security.ifHasRole>
+]]></vht:highlight>
+
+<vht:highlight expected="The user has this role"><![CDATA[
+	{f:security.ifHasRole(role: 'TestRole1', then: 'The user has this role')}
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	{f:security.ifHasRole(role: 'TestRole2', then: 'The user has this role')}
 ]]></vht:highlight>

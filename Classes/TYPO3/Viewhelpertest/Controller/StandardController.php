@@ -83,6 +83,7 @@ class StandardController extends AbstractBaseController {
 			'user5' => $user5,
 			'user6' => $user6,
 			'users' => array($user1, $user2, $user3, $user4),
+			'account' => $this->getAccount('someAccount', array('TYPO3.Viewhelpertest:TestRole2', 'TYPO3.Viewhelpertest:TestRole1')),
 			'date' => new \DateTime(),
 			'stdClass1' => new \stdClass(),
 			'stdClass2' => new \stdClass(),

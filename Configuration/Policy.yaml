@@ -16,7 +16,7 @@ privilegeTargets:
 
 roles:
 
-  'TYPO3.Viewhelpertest:TestRole':
+  'TYPO3.Viewhelpertest:TestRole1':
     privileges:
       -
         privilegeTarget: 'TYPO3.Viewhelpertest:AllowedMethods'
@@ -29,6 +29,8 @@ roles:
         parameters:
           'actionName': 'allowed'
         permission: GRANT
+
+  'TYPO3.Viewhelpertest:TestRole2': []
 
   'TYPO3.Flow:Everybody':
     privileges:

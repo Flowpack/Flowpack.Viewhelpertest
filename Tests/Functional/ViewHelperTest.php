@@ -41,7 +41,7 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	 * @test
 	 */
 	public function runViewHelperTest() {
-		$this->authenticateRoles(array('TYPO3.Viewhelpertest:TestRole'));
+		$this->authenticateRoles(array('TYPO3.Viewhelpertest:TestRole1'));
 
 		$result = $this->browser->request('http://localhost/typo3.viewhelpertest/standard/index?selectedPartial=all')->getContent();
 

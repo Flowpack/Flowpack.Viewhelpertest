@@ -49,9 +49,7 @@ abstract class AbstractBaseController extends ActionController {
 	 * @return void
 	 */
 	protected function loginTestAccount() {
-		$account = new Account();
-		$account->setAccountIdentifier('TestAccount');
-		$account->addRole($this->policyService->getRole('TYPO3.Viewhelpertest:TestRole'));
+		$account = $this->getAccount('TestAccount', array('TYPO3.Viewhelpertest:TestRole1'));
 
 		$securityContext = $this->authenticationManager->getSecurityContext();
 
@@ -63,6 +61,21 @@ abstract class AbstractBaseController extends ActionController {
 		$securityContext->refreshTokens();
  		$this->authenticationManager->authenticate();
 	}
+
+	/**
+	 * @param string $accountIdentifier
+	 * @param array $roleIdentifiers
+	 * @return Account
+	 */
+	protected function getAccount($accountIdentifier, array $roleIdentifiers) {
+		$account = new Account();
+		$account->setAccountIdentifier($accountIdentifier);
+		foreach ($roleIdentifiers as $roleIdentifier) {
+			$account->addRole($this->policyService->getRole($roleIdentifier));
+		}
+		return $account;
+	}
+
 
 	/**
 	 * @param integer $id
