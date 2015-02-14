@@ -124,8 +124,9 @@ class HighlightViewHelper extends AbstractSubTemplateRenderingViewHelper {
 		$uriToThisTest = $this->controllerContext->getUriBuilder()
 				->reset()
 				->setAddQueryString(TRUE)
+				->setSection('test' . self::$executionCount)
 				->uriFor('index', array('singleTestcase' => self::$executionCount));
-		return '<div class="testcase ' . $className . '">
+		return '<div class="testcase ' . htmlspecialchars($className) . '" id="test' . self::$executionCount . '">
 			<h3>' . $title . '<a href="' . $uriToThisTest . '">Show only this test</a></h3>
 			<div class="input">' . htmlspecialchars($source) . '</div>
 			<div class="output">' . $renderedSource . '</div>

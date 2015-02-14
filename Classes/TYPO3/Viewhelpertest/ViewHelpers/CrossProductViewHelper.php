@@ -84,9 +84,8 @@ class CrossProductViewHelper extends AbstractSubTemplateRenderingViewHelper {
 					} elseif ($results['total'] > 0) {
 						$status = 'success';
 					}
+					$output .= '<td class="' . $status . '" ext:qtip="' . htmlspecialchars($testExecutionHtml) . '">' . $expectedResult . ' <span class="numberOfTests">(' . $results['total'] . ' Tests)</span></td>';
 				}
-
-				$output .= '<td class="' . $status . '" ext:qtip="' . htmlspecialchars($testExecutionHtml) . '">' . $expectedResult . ' <span class="numberOfTests">(' . $results['total'] . ' Tests)</span></td>';
 
 			}
 			$output .= '</tr>';
