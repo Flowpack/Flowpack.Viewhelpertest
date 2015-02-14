@@ -297,46 +297,46 @@ Array          ;    0          ;    0          ;    0          ;    0          ;
 
 <b>TODO: Formulate and throw exceptions at Invalid comparison strings (more than one comparator, ...)</b>
 
-<vht:highlight expected="Else part!"><![CDATA[
+<vht:highlight expected="Else child!"><![CDATA[
 	<f:if condition="-1 != -1">
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 		<f:else>
-			Else part!
+			Else child!
 		</f:else>
 	</f:if>
 ]]></vht:highlight>
 
 
-<vht:highlight expected="Else part!"><![CDATA[
+<vht:highlight expected="Else child!"><![CDATA[
 	<f:if condition="{testVariables.number.minusOne} > -1">
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 		<f:else>
-			Else part!
+			Else child!
 		</f:else>
 	</f:if>
 ]]></vht:highlight>
 
-<vht:highlight expected="Else part!"><![CDATA[
+<vht:highlight expected="Else child!"><![CDATA[
 	<f:if condition="{testVariables.number.one} < 1">
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 		<f:else>
-			Else part!
+			Else child!
 		</f:else>
 	</f:if>
 ]]></vht:highlight>
-<vht:highlight expected="Else part!"><![CDATA[
+<vht:highlight expected="Else child!"><![CDATA[
 	<f:if condition="{testVariables.number.minusOne} < -1.1">
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 		<f:else>
-			Else part!
+			Else child!
 		</f:else>
 	</f:if>
 ]]></vht:highlight>
@@ -359,11 +359,11 @@ Array          ;    0          ;    0          ;    0          ;    0          ;
 
 <h3>then</h3>
 
-<vht:highlight expected="Then part!"><![CDATA[
+<vht:highlight expected="Then child!"><![CDATA[
 	<f:if condition="true">
 		Some code which should not be shown, as there is a "then" part
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 	</f:if>
 ]]></vht:highlight>
@@ -372,53 +372,131 @@ Array          ;    0          ;    0          ;    0          ;    0          ;
 	<f:if condition="false">
 		Some code which should not be shown, as there is a "then" part
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 	</f:if>
 ]]></vht:highlight>
 
 <h3>then/else</h3>
 
-<vht:highlight expected="Then part!"><![CDATA[
+<vht:highlight expected="Then child!"><![CDATA[
 	<f:if condition="true">
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 		<f:else>
-			Else part!
+			Else child!
 		</f:else>
 		Some code which should not be shown!
 	</f:if>
 ]]></vht:highlight>
 
 
-<vht:highlight expected="Else part!"><![CDATA[
+<vht:highlight expected="Else child!"><![CDATA[
 	<f:if condition="false">
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 		<f:else>
-			Else part!
+			Else child!
 		</f:else>
 		Some code which should not be shown!
 	</f:if>
 ]]></vht:highlight>
+
+<vht:highlight expected="Then child!"><![CDATA[
+	<f:if condition="true">
+		<f:else>
+			Else child!
+		</f:else>
+		<f:then>
+			Then child!
+		</f:then>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+
+<vht:highlight expected="Else child!"><![CDATA[
+	<f:if condition="false">
+		<f:else>
+			Else child!
+		</f:else>
+		<f:then>
+			Then child!
+		</f:then>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
 
 <h3>else</h3>
 
 <vht:highlight expected=""><![CDATA[
 	<f:if condition="true">
 		<f:else>
-			Else part!
+			Else child!
+		</f:else>
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	<f:if condition="true">
+		<f:else>
+			Else child!
 		</f:else>
 		Some code which should not be shown!
 	</f:if>
 ]]></vht:highlight>
 
-<vht:highlight expected="Else part!"><![CDATA[
+<vht:highlight expected="Else child!"><![CDATA[
 	<f:if condition="false">
 		<f:else>
-			Else part!
+			Else child!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<h3>nested</h3>
+
+<vht:highlight expectedRegex="/^\s*Then child!\s*Inner else child!\s*$/"><![CDATA[
+	<f:if condition="true">
+		<f:then>
+			Then child!
+			<f:if condition="false">
+				<f:then>
+					Inner then child!
+				</f:then>
+				Some code which should not be shown!
+				<f:else>
+					Inner else child!
+				</f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			Else child!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expectedRegex="/^\s*Else child!\s*Inner then child!\s*$/"><![CDATA[
+	<f:if condition="false">
+		<f:then>
+			Then child!
+		</f:then>
+		<f:else>
+			Else child!
+			<f:if condition="true">
+				Some code which should not be shown!
+				<f:then>
+					Inner then child!
+				</f:then>
+				<f:else>
+					Inner else child!
+				</f:else>
+			</f:if>
 		</f:else>
 		Some code which should not be shown!
 	</f:if>
@@ -466,6 +544,25 @@ Array          ;    0          ;    0          ;    0          ;    0          ;
 	{f:if(condition: 'false', else: 'else part')}
 ]]></vht:highlight>
 
+<h3>Child nodes</h3>
+
+<vht:highlight expected="Hello world!"><![CDATA[
+	{testVariables.simpleText -> f:if(condition: true)}
+]]></vht:highlight>
+
+<vht:highlight expected="Hello world!"><![CDATA[
+	{testVariables.simpleText -> f:if(condition: true, else: 'else')}
+]]></vht:highlight>
+
+<vht:highlight expected=""><![CDATA[
+	{testVariables.simpleText -> f:if(condition: false)}
+]]></vht:highlight>
+
+<vht:highlight expected="else"><![CDATA[
+	{testVariables.simpleText -> f:if(condition: false, else: 'else')}
+]]></vht:highlight>
+
+
 <h2>Check overrides of then / else</h2>
 
 Sub-ViewHelpers should be <b>overridden</b> by direct then/else arguments.
@@ -473,10 +570,10 @@ Sub-ViewHelpers should be <b>overridden</b> by direct then/else arguments.
 <vht:highlight expected="inline then"><![CDATA[
 	<f:if condition="true" then="inline then" else="inline else">
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 		<f:else>
-			Else part!
+			Else child!
 		</f:else>
 		Some code which should not be shown!
 	</f:if>
@@ -485,11 +582,71 @@ Sub-ViewHelpers should be <b>overridden</b> by direct then/else arguments.
 <vht:highlight expected="inline else"><![CDATA[
 	<f:if condition="false" then="inline then" else="inline else">
 		<f:then>
-			Then part!
+			Then child!
 		</f:then>
 		<f:else>
-			Else part!
+			Else child!
 		</f:else>
 		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="inline else"><![CDATA[
+	<f:if condition="false" else="inline else">
+		<f:then>
+			Then child!
+		</f:then>
+		<f:else>
+			Else child!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="inline else"><![CDATA[
+	<f:if condition="false" else="inline else">
+		Then child!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="Then child!"><![CDATA[
+	<f:if condition="true" else="inline else">
+		<f:then>
+			Then child!
+		</f:then>
+		<f:else>
+			Else child!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="Then child!"><![CDATA[
+	<f:if condition="true" else="inline else">
+		Then child!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="inline then"><![CDATA[
+	<f:if condition="true" then="inline then">
+		Then child!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="inline then"><![CDATA[
+	<f:if condition="true" then="inline then">
+		<f:then>
+			Then child!
+		</f:then>
+		<f:else>
+			Else child!
+		</f:else>
+		Some code which should not be shown!
+	</f:if>
+]]></vht:highlight>
+
+<vht:highlight expected="inline then"><![CDATA[
+	<f:if condition="true" then="inline then">
+		Then child!
 	</f:if>
 ]]></vht:highlight>
