@@ -2,7 +2,7 @@
 namespace TYPO3\Viewhelpertest\Tests\Functional;
 
 /*                                                                        *
- * This script belongs to the FLOW3 framework.                            *
+ * This script belongs to the FLOW3 package "TYPO3.Viewhelpertest".       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -10,8 +10,6 @@ namespace TYPO3\Viewhelpertest\Tests\Functional;
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
-
-use TYPO3\Flow\Mvc\Routing\Route;
 
 /**
  * Testcase for all view helpers
@@ -90,12 +88,10 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	 */
 	protected function writeResultToFile($result) {
 		$newHeader =' -->';
-		$newHeader .= '<style>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/styles.css') . '</style>';
-		$newHeader .= '<link rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css" />
-			<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/ext/ext-base.js"> </script>
-			<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all.js"> </script>';
+		$newHeader .= '<style>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/Styles/app.css') . '</style>';
 
-		$newHeader .= '<script type="text/javascript">' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/javascript.js') . '</script>';
+		$newHeader .= '<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>';
+		$newHeader .= '<script>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/Scripts/app.js') . '</script>';
 
 		$newHeader .= '<!--';
 
@@ -105,4 +101,3 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 		file_put_contents(FLOW_PATH_ROOT . 'Build/Reports/Viewhelpertest.html', $result);
 	}
 }
-?>
