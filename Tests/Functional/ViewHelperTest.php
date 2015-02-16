@@ -90,7 +90,7 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 		$newHeader =' -->';
 		$newHeader .= '<style>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/Styles/app.css') . '</style>';
 
-		$newHeader .= '<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>';
+		$newHeader .= '<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>';
 		$newHeader .= '<script>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/Scripts/app.js') . '</script>';
 
 		$newHeader .= '<!--';
