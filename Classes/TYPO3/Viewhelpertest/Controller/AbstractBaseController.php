@@ -83,10 +83,11 @@ abstract class AbstractBaseController extends ActionController {
 	 * @param string $lastName
 	 * @param boolean $newsletter
 	 * @param array $interests
+	 * @param string $title
 	 * @return User
 	 */
-	protected function createUser($id, $firstName, $lastName, $newsletter = FALSE, array $interests = array()) {
-		return new User($id, $firstName, $lastName, $newsletter, $interests);
+	protected function createUser($id, $firstName, $lastName, $newsletter = FALSE, array $interests = array(), $title = NULL) {
+		return new User($id, $firstName, $lastName, $newsletter, $interests, $title);
 	}
 
 	/**

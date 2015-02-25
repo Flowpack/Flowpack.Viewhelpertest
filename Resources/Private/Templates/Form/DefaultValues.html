@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Form: Default values</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	<body>
+
+		<h1>Form default values</h1>
+
+		<h2>Steps to reproduce:</h2>
+		<ol>
+			<li>Set the first name in the form below to an empty string (to provoke a validation error)</li>
+			<li>Change the value of one or more of the other fields</li>
+			<li>Submit the form</li>
+			<li>EXPECTED: The form should be re-displayed with the changed values (and an empty first name field). BUG: The form fields are pre-filled with the default values, overruling the user specified ones</li>
+		</ol>
+
+		<p>BUG <a href="https://jira.typo3.org/browse/FLOW-213">FLOW-213</a>: Submitted form data is replaced by value argument.</p>
+
+		<f:flashMessages />
+
+		<f:form.validationResults>
+			<f:if condition="{validationResults.flattenedErrors}">
+				<ul class="errors">
+					<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+						<li>{propertyPath}
+							<ul>
+								<f:for each="{errors}" as="error">
+									<li>{error.code}: {error}</li>
+								</f:for>
+							</ul>
+						</li>
+					</f:for>
+				</ul>
+			</f:if>
+		 </f:form.validationResults>
+
+		<h2>UPDATE form (object accessor):</h2>
+		<f:form action="defaultValuesValidate" object="{user}" objectName="user1">
+			<f:form.hidden property="invoices.0.subject" value="default subject" />
+			Title: <label><f:form.radio property="title" value="mr" /> Mr.</label> / <label><f:form.radio property="title" value="mrs" /> Mrs.</label><br />
+			First name: <f:form.textfield property="firstName" value="default1" /><br />
+			Last name (password): <f:form.password property="lastName" value="default2" /><br />
+			Newsletter: <f:form.checkbox property="newsletter" value="1" checked="false" /><br />
+			Interests: <f:form.select property="interests" options="{Flow: 'Flow', Neos: 'Neos', Music: 'Music', Sports: 'Sports'}" value="{Flow: 'Flow'}" multiple="true" />
+			<f:form.submit value="update" />
+		</f:form>
+
+		<h2>CREATE form (object accessor):</h2>
+		<f:form action="defaultValuesValidate" objectName="user2">
+			<f:form.hidden property="id" value="123" />
+			Title: <label><f:form.radio property="title" value="mr" /> Mr.</label> / <label><f:form.radio property="title" value="mrs" /> Mrs.</label><br />
+			First name: <f:form.textfield property="firstName" value="default1" /><br />
+			Last name (password): <f:form.password property="lastName" value="default2" /><br />
+			Newsletter: <f:form.checkbox property="newsletter" value="1" /><br />
+			Interests: <f:form.select property="interests" options="{Flow: 'Flow', Neos: 'Neos', Music: 'Music', Sports: 'Sports'}" value="{Flow: 'Flow'}" multiple="true" />
+			<f:form.submit value="create" />
+		</f:form>
+
+		<h2>CREATE form (no object accessor):</h2>
+		<f:form action="defaultValuesValidate">
+			<f:form.hidden name="user3[id]" value="123" />
+			Title: <label><f:form.radio name="user3[title]" value="mr" checked="true" /> Mr.</label> / <label><f:form.radio name="user3[title]" value="mrs" /> Mrs.</label><br />
+			First name: <f:form.textfield name="user3[firstName]" value="default1" /><br />
+			Last name (password): <f:form.password name="user3[lastName]" value="default2" /><br />
+			Newsletter: <f:form.checkbox name="user3[newsletter]" value="1" checked="true" /><br />
+			Interests: <f:form.select name="user3[interests]" options="{Flow: 'Flow', Neos: 'Neos', Music: 'Music', Sports: 'Sports'}" value="{Flow: 'Flow'}" multiple="true" />
+			<f:form.submit value="create" />
+		</f:form>
+
+
+		<p><f:link.action controller="Form" action="setup" arguments="{redirectAction: 'defaultValues'}">Reset data</f:link.action></p>
+		<p><f:link.action controller="Standard" action="index">&laquo; back</f:link.action></p>
+	</body>
+</html>

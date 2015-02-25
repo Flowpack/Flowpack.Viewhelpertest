@@ -23,10 +23,19 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User {
 
+	const TITLE_MR = 'mr';
+	const TITLE_MRS = 'mrs';
+
 	/**
 	 * @var integer
 	 */
 	protected $id;
+
+	/**
+	 * @ORM\Column(nullable=true)
+	 * @var string one of the TITLE_* constants
+	 */
+	protected $title;
 
 	/**
 	 * @var string
@@ -64,7 +73,7 @@ class User {
 	 * @param boolean $newsletter
 	 * @param array $interests
 	 */
-	public function __construct($id, $firstName = '', $lastName = '', $newsletter = FALSE, array $interests = NULL) {
+	public function __construct($id, $firstName = '', $lastName = '', $newsletter = FALSE, array $interests = NULL, $title = NULL) {
 		$this->id = $id;
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
@@ -72,6 +81,7 @@ class User {
 		if ($interests !== NULL) {
 			$this->interests = $interests;
 		}
+		$this->title = $title;
 		$this->invoices = new ArrayCollection();
 	}
 
@@ -80,6 +90,21 @@ class User {
 	 */
 	public function getId() {
 		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * @param string $title
+	 * @return void
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
 	}
 
 	/**
