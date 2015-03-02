@@ -126,6 +126,21 @@
 	<vht:highlight><![CDATA[
 		<label><f:form.radio property="newsletter" value="1" /> YES</label><label><f:form.radio property="newsletter" value="0" /> NO</label>
 	]]></vht:highlight>
+
+	<vht:expected><input type="hidden" name="someUser[firstName]" value="Kasper" /></vht:expected>
+	<vht:highlight><![CDATA[
+		<f:form.hidden property="firstName" />
+	]]></vht:highlight>
+
+	<vht:expected><button type="submit" name="someUser[firstName]" value="Kasper" /></vht:expected>
+	<vht:highlight><![CDATA[
+		<f:form.button property="firstName" />
+	]]></vht:highlight>
+
+	<vht:expected><input type="submit" name="someUser[firstName]" value="Kasper" /></vht:expected>
+	<vht:highlight><![CDATA[
+		<f:form.submit property="firstName" />
+	]]></vht:highlight>
 </f:form>
 
 <p>&quot;objectName&quot; argument overrules &quot;name&quot; attribute:</p>
