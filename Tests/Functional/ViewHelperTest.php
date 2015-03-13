@@ -100,4 +100,15 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 		file_put_contents(FLOW_PATH_ROOT . 'Build/Reports/Viewhelpertest.html', $result);
 	}
+
+	/**
+	 * Logout any authenticated accounts
+	 *
+	 * @return void
+	 */
+	protected function tearDownSecurity() {
+		$this->authenticationManager->logout();
+		parent::tearDownSecurity();
+	}
+
 }
