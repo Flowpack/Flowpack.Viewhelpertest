@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Uploads</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	<body>
+
+		<h1>Uploads</h1>
+
+		<p>BUG <a href="https://jira.typo3.org/browse/FLOW-214">FLOW-214</a>: f:form.upload does not work correctly if value is set.</p>
+
+		<f:flashMessages />
+
+		<h2>The current user:</h2>
+		<dl>
+			<dt>Name:</dt>
+			<dd>{user.name}</dd>
+			<dt>Image:</dt>
+			<dd>
+				<f:if condition="{user.image}" else="<em>no image</em>">
+					<img src="{f:uri.resource(resource: user.image)}" width="200" alt="{user}"/><br />
+				</f:if>
+			</dd>
+		</dl>
+
+		<f:form.validationResults>
+			<f:if condition="{validationResults.flattenedErrors}">
+				<ul class="errors">
+					<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+						<li>{propertyPath}
+							<ul>
+								<f:for each="{errors}" as="error">
+									<li>{error.code}: {error}</li>
+								</f:for>
+							</ul>
+						</li>
+					</f:for>
+				</ul>
+			</f:if>
+		 </f:form.validationResults>
+
+		<h2>Create User</h2>
+		<f:if condition="{useObjectAccessorMode}">
+			<f:then>
+				<p>Object accessor mode{f:if(condition: defaultResource, then: ', with default resource')}:</p>
+				<f:form action="upload" objectName="user" enctype="multipart/form-data">
+					<f:form.hidden name="useObjectAccessorMode" value="{useObjectAccessorMode}" />
+					<f:form.hidden name="useDefaultResource" value="{f:if(condition: defaultResource, then: true, else: false)}" />
+					<f:form.hidden property="id" value="123" />
+					First name: <f:form.textfield property="firstName" /><br />
+					Last name: <f:form.textfield property="lastName" /><br />
+					<h3>Image:</h3>
+					<f:if condition="{defaultResource}">
+						<f:then>
+							<f:form.upload property="image" value="{defaultResource}" /> (defaults to <img src="{f:uri.resource(resource: defaultResource)}" width="20" />)<br />
+						</f:then>
+						<f:else>
+							<f:form.upload property="image" /><br />
+						</f:else>
+					</f:if>
+					<f:form.submit value="CREATE" />
+				</f:form>
+			</f:then>
+			<f:else>
+				<p>No object accessor mode{f:if(condition: defaultResource, then: ', with default resource')}:</p>
+				<f:form action="upload" enctype="multipart/form-data">
+					<f:form.hidden name="useObjectAccessorMode" value="{useObjectAccessorMode}" />
+					<f:form.hidden name="useDefaultResource" value="{f:if(condition: defaultResource, then: true, else: false)}" />
+					<f:form.hidden name="user[id]" value="123" />
+					First name: <f:form.textfield name="user[firstName]" /><br />
+					Last name: <f:form.textfield name="user[lastName]" /><br />
+					<h3>Image :</h3>
+					<f:if condition="{defaultResource}">
+						<f:then>
+							<f:form.upload name="user[image]" value="{defaultResource}" /> (defaults to <img src="{f:uri.resource(resource: defaultResource)}" width="20" />)<br />
+						</f:then>
+						<f:else>
+							<f:form.upload name="user[image]" /><br />
+						</f:else>
+					</f:if>
+					<f:form.submit value="CREATE" />
+				</f:form>
+			</f:else>
+		</f:if>
+
+		<h2>Update User "{user.name}"</h2>
+		<f:if condition="{useObjectAccessorMode}">
+			<f:then>
+				<p>Object accessor mode{f:if(condition: defaultResource, then: ', with default resource')}:</p>
+				<f:form action="upload" object="{user}" objectName="user" enctype="multipart/form-data">
+					<f:form.hidden name="useObjectAccessorMode" value="{useObjectAccessorMode}" />
+					<f:form.hidden name="useDefaultResource" value="{f:if(condition: defaultResource, then: true, else: false)}" />
+					First name: <f:form.textfield property="firstName" /><br />
+					Last name: <f:form.textfield property="lastName" /><br />
+					<h3>Image:</h3>
+					<f:if condition="{user.image}">
+						<p>Current image: <img src="{f:uri.resource(resource: user.image)}" width="100" /></p>
+					</f:if>
+					<f:if condition="{defaultResource}">
+						<f:then>
+							<f:form.upload property="image" value="{defaultResource}" /> (defaults to <img src="{f:uri.resource(resource: defaultResource)}" width="20" />)<br />
+						</f:then>
+						<f:else>
+							<f:form.upload property="image" /><br />
+						</f:else>
+					</f:if>
+					<f:form.submit value="UPDATE" />
+				</f:form>
+			</f:then>
+			<f:else>
+				<p>No object accessor mode{f:if(condition: defaultResource, then: ', with default resource')}:</p>
+				<f:form action="upload" enctype="multipart/form-data">
+					<f:form.hidden name="useObjectAccessorMode" value="{useObjectAccessorMode}" />
+					<f:form.hidden name="useDefaultResource" value="{f:if(condition: defaultResource, then: true, else: false)}" />
+					<f:form.hidden name="user[__identity]" value="{user -> f:format.identifier()}" />
+					First name: <f:form.textfield name="user[firstName]" value="{user.firstName}" /><br />
+					Last name: <f:form.textfield name="user[lastName]" value="{user.lastName}" /><br />
+					<h3>Image :</h3>
+					<f:if condition="{user.image}">
+						<p>Current image: <img src="{f:uri.resource(resource: user.image)}" width="100" /></p>
+					</f:if>
+					<f:if condition="{defaultResource}">
+						<f:then>
+							<f:form.upload name="user[image]" value="34430064-080b-81f2-acf1-79d4ae31bb76" /> (defaults to <img src="{f:uri.resource(resource: defaultResource)}" width="20" />)<br />
+						</f:then>
+						<f:else>
+							<f:form.upload name="user[image]" /><br />
+						</f:else>
+					</f:if>
+					<f:form.submit value="UPDATE" />
+				</f:form>
+			</f:else>
+		</f:if>
+
+		<p><f:link.action controller="Form" action="setup" arguments="{redirectAction: 'uploadForm'}">Reset data</f:link.action></p>
+		<f:if condition="{useObjectAccessorMode}">
+			<f:then>
+				<p><f:link.action controller="Form" action="uploadForm" arguments="{useObjectAccessorMode: false}" addQueryString="true">Disable object accessor mode</f:link.action></p>
+			</f:then>
+			<f:else>
+				<p><f:link.action controller="Form" action="uploadForm" arguments="{useObjectAccessorMode: true}" addQueryString="true">Enable object accessor mode</f:link.action></p>
+			</f:else>
+		</f:if>
+		<f:if condition="{defaultResource}">
+			<f:then>
+				<p><f:link.action controller="Form" action="uploadForm" arguments="{useDefaultResource: false}" addQueryString="true">Don't use default resource</f:link.action></p>
+			</f:then>
+			<f:else>
+				<p><f:link.action controller="Form" action="uploadForm" arguments="{useDefaultResource: true}" addQueryString="true">Use default resource</f:link.action></p>
+			</f:else>
+		</f:if>
+		<p><f:link.action controller="Form" action="setup" arguments="{redirectAction: 'uploadForm'}">Reset data</f:link.action></p>
+		<p><f:link.action controller="Standard" action="index">&laquo; back</f:link.action></p>
+	</body>
+</html>

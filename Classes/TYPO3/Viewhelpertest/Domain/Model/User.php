@@ -15,6 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
+use TYPO3\Flow\Resource\Resource;
 
 /**
  * A User
@@ -32,8 +33,8 @@ class User {
 	protected $id;
 
 	/**
-	 * @ORM\Column(nullable=true)
 	 * @var string one of the TITLE_* constants
+	 * @ORM\Column(nullable=true)
 	 */
 	protected $title;
 
@@ -67,11 +68,19 @@ class User {
 	protected $invoices;
 
 	/**
+	 * @var Resource
+	 * @ORM\ManyToOne
+	 * @ORM\Column(nullable=true)
+	 */
+	protected $image;
+
+	/**
 	 * @param integer $id
 	 * @param string $firstName
 	 * @param string $lastName
 	 * @param boolean $newsletter
 	 * @param array $interests
+	 * @param string $title
 	 */
 	public function __construct($id, $firstName = '', $lastName = '', $newsletter = FALSE, array $interests = NULL, $title = NULL) {
 		$this->id = $id;
@@ -136,6 +145,13 @@ class User {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getName() {
+		return sprintf('%s %s', $this->firstName, $this->lastName);
+	}
+
+	/**
 	 * @param boolean $newsletter
 	 * @return void
 	 */
@@ -185,6 +201,21 @@ class User {
 	 */
 	public function getInvoices() {
 		return $this->invoices;
+	}
+
+	/**
+	 * @return Resource
+	 */
+	public function getImage() {
+		return $this->image;
+	}
+
+	/**
+	 * @param Resource $image
+	 * @return void
+	 */
+	public function setImage(Resource $image = NULL) {
+		$this->image = $image;
 	}
 
 	/**

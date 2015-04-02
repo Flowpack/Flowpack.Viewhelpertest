@@ -13,12 +13,19 @@ namespace TYPO3\Viewhelpertest\Controller;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Error\Message;
+use TYPO3\Flow\Resource\ResourceManager;
 use TYPO3\Viewhelpertest\Domain\Model\User;
 
 /**
  * Viewhelpertest Form Controller
  */
 class FormController extends AbstractBaseController {
+
+	/**
+	 * @Flow\Inject
+	 * @var ResourceManager
+	 */
+	protected $resourceManager;
 
 	/**
 	 * @param string $redirectAction
@@ -102,6 +109,40 @@ class FormController extends AbstractBaseController {
 		$this->redirect('defaultValues');
 	}
 
+	/**
+	 * @param boolean $useDefaultResource
+	 * @param boolean $useObjectAccessorMode
+	 * @param User $user If specified that user will be displayed
+	 * @return void
+	 */
+	public function uploadFormAction($useDefaultResource = FALSE, $useObjectAccessorMode = FALSE, User $user = NULL) {
+		if ($user === NULL) {
+			$user = $this->userRepository->findAll()->getFirst();
+		}
+		$this->view->assign('user', $user);
+		$this->view->assign('useObjectAccessorMode', $useObjectAccessorMode);
+		if ($useDefaultResource) {
+			$this->view->assign('defaultResource', $this->getDummyResource());
+		}
+	}
+
+	/**
+	 * @param User $user
+	 * @param boolean $useDefaultResource
+	 * @param boolean $useObjectAccessorMode
+	 * @return void
+	 */
+	public function uploadAction(User $user, $useDefaultResource = FALSE, $useObjectAccessorMode = FALSE) {
+		// don't do this in productive code, use different action methods
+		if ($this->persistenceManager->isNewObject($user)) {
+			$this->userRepository->add($user);
+			$this->addFlashMessage('Created user "%s"', 'success', Message::SEVERITY_OK, array($user->getFirstName()));
+		} else {
+			$this->userRepository->update($user);
+			$this->addFlashMessage('Updated user "%s"', 'success', Message::SEVERITY_OK, array($user->getFirstName()));
+		}
+		$this->redirect('uploadForm', NULL, NULL, ['user' => $user, 'useDefaultResource' => $useDefaultResource, 'useObjectAccessorMode' => $useObjectAccessorMode]);
+	}
 
 	/**
 	 * @return void
@@ -114,5 +155,18 @@ class FormController extends AbstractBaseController {
 		$this->createInvoice($user, 'invoice 02');
 
 		$this->userRepository->add($user);
+	}
+
+	/**
+	 * @return Resource
+	 */
+	protected function getDummyResource() {
+		$dummyFileContent = file_get_contents('resource://TYPO3.Viewhelpertest/Public/typo3_logo.png');
+		$resource = $this->resourceManager->getResourceBySha1(sha1($dummyFileContent));
+		if ($resource === NULL) {
+			$resource = $this->resourceManager->importResourceFromContent($dummyFileContent, 'logo.png');
+			$this->persistenceManager->whitelistObject($resource);
+		}
+		return $resource;
 	}
 }
