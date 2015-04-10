@@ -172,11 +172,19 @@ class User {
 	public function setInterests(array $interests) {
 		$this->interests = $interests;
 	}
+
 	/**
 	 * @return array
 	 */
 	public function getInterests() {
 		return $this->interests;
+	}
+
+	/**
+	 * @return \ArrayObject
+	 */
+	public function getInterestsObject() {
+		return new \ArrayObject($this->interests);
 	}
 
 	/**

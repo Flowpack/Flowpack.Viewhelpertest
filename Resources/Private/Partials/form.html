@@ -141,6 +141,14 @@
 	<vht:highlight><![CDATA[
 		<f:form.submit property="firstName" />
 	]]></vht:highlight>
+
+	<vht:expected><select multiple="true" name="someUser[interestsObject][]"><option value="TYPO3" selected="selected">TYPO3</option>
+<option value="Snowboarding" selected="selected">Snowboarding</option>
+<option value="Commerce">Commerce</option>
+</select></vht:expected>
+	<vht:highlight><![CDATA[
+		<f:form.select property="interestsObject" options="{'TYPO3': 'TYPO3', 'Snowboarding': 'Snowboarding', 'Commerce': 'Commerce'}" multiple="true" />
+	]]></vht:highlight>
 </f:form>
 
 <p>&quot;objectName&quot; argument overrules &quot;name&quot; attribute:</p>
