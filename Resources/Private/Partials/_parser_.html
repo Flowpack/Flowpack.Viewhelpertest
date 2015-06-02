@@ -24,7 +24,17 @@
 <vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
 	<non.existing.namespace:bar />
 ]]></vht:highlight>
+<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+	<nonExistingNamespace:bar />
+]]></vht:highlight>
+<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+	Before<nonExistingNamespace:bar />After
+]]></vht:highlight>
 
+
+<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+	{nonExistingNamespace:bar()}
+]]></vht:highlight>
 <vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
 	{non.existing.namespace:bar()}
 ]]></vht:highlight>
@@ -36,7 +46,6 @@
 ]]></vht:highlight>
 
 
-
 <vht:highlight expected="This is still parsed&lt;any.namespace:bar /&gt;"><![CDATA[
 	]]>{<![CDATA[namespace *}
 	<f:format.raw>This is still parsed</f:format.raw><any.namespace:bar />
@@ -45,6 +54,16 @@
 <vht:highlight expected="This is still parsed"><![CDATA[
 	]]>{<![CDATA[namespace *}
 	{f:format.raw(value: 'This is still parsed')}{any.namespace:bar()}
+]]></vht:highlight>
+
+<vht:highlight expected="Default namespace Custom namespace"><![CDATA[
+	]]>{<![CDATA[namespace some.namespace=TYPO3\Fluid\ViewHelpers}
+	{f:format.raw(value: 'Default namespace')} {some.namespace:format.raw(value: 'Custom namespace')}
+]]></vht:highlight>
+
+<vht:highlight expected="Default namespace Custom namespace"><![CDATA[
+	]]>{<![CDATA[namespace someNamespace=TYPO3\Fluid\ViewHelpers}
+	{f:format.raw(value: 'Default namespace')} {someNamespace:format.raw(value: 'Custom namespace')}
 ]]></vht:highlight>
 
 <div class="specification">Array syntax, quoted keys</div>
