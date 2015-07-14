@@ -85,6 +85,12 @@
 <vht:highlight expected="{&amp;quot;foo.bar&amp;quot;:&amp;quot;baz&amp;quot;}"><![CDATA[
 	<f:format.json value="{'foo.bar': 'baz'}" />
 ]]></vht:highlight>
+<vht:highlight expected="{&amp;quot;foo@bar&amp;quot;:&amp;quot;baz&amp;quot;}"><![CDATA[
+	<f:format.json value="{'foo@bar': 'baz'}" />
+]]></vht:highlight>
+<vht:highlight expected="{&amp;quot;foo@bar&amp;quot;:&amp;quot;baz&amp;quot;}"><![CDATA[
+	{f:format.json(value: '{"foo@bar": "baz"}')}
+]]></vht:highlight>
 
 <div class="specification">Mixed-style quotes are not parsed</div>
 <vht:highlight expected="&amp;quot;{'foo.bar\&amp;quot;: 'baz'}&amp;quot;"><![CDATA[
@@ -92,4 +98,7 @@
 ]]></vht:highlight>
 <vht:highlight expected="&amp;quot;{\&amp;quot;foo[bar]': \&amp;quot;baz\&amp;quot;}&amp;quot;"><![CDATA[
 	{f:format.json(value: '{"foo[bar]\': "baz"}')}
+]]></vht:highlight>
+<vht:highlight expected="&amp;quot;{\&amp;quot;foo@bar': \&amp;quot;baz\&amp;quot;}&amp;quot;"><![CDATA[
+	{f:format.json(value: '{"foo@bar\': "baz"}')}
 ]]></vht:highlight>
