@@ -5,12 +5,15 @@ namespace Flowpack\Viewhelpertest\ViewHelpers;
  * This script belongs to the FLOW3 package "Flowpack.Viewhelpertest".    *
  *                                                                        */
 
+use Flowpack\Viewhelpertest\View\FakeTemplatePaths;
+use TYPO3\Fluid\View\TemplateView;
+
 /**
  * This is the TemplateView for the Highlight ViewHelper. To properly test
  * <f:render>, <f:section> and the like, we need a properly initialized
  * TemplateView, which is also fresh (== clean state)
  */
-class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView {
+class TemplateViewForHighlightViewHelper extends TemplateView {
 
 	/**
 	 * The source of the template
@@ -22,18 +25,16 @@ class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView 
 	 * The ViewHelperVariableContainer of the surrounding area,
 	 * this makes it possible to test single form elements inside a surrounding
 	 * <f:form>.
-	 * @var \TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer
+	 * @var \NamelessCoder\Fluid\Core\ViewHelper\ViewHelperVariableContainer
 	 */
 	protected $viewHelperVariableContainer;
 
 	/**
-	 * Return the template source to the Parser.
-	 *
-	 * @param string $actionName the name of the action to render.
-	 * @return string
+	 * TemplateViewForHighlightViewHelper constructor.
 	 */
-	protected function getTemplateSource($actionName = NULL) {
-		return $this->templateSource;
+	public function __construct() {
+		parent::__construct();
+		$this->templatePaths = new FakeTemplatePaths();
 	}
 
 	/**
@@ -41,16 +42,16 @@ class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView 
 	 * @return void
 	 */
 	public function setTemplateSource($templateSource) {
-		$this->templateSource = $templateSource;
+		$this->templatePaths->setTemplateSource($templateSource);
 	}
 
 	/**
 	 * Set the current ViewHelperVariableContainer.
 	 *
-	 * @param \TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
+	 * @param \NamelessCoder\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
 	 * @return void
 	 */
-	public function setViewHelperVariableContainer(\TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
+	public function setViewHelperVariableContainer(\NamelessCoder\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
 		$this->viewHelperVariableContainer = clone $viewHelperVariableContainer;
 	}
 
