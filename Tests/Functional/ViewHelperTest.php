@@ -1,14 +1,8 @@
 <?php
-namespace TYPO3\Viewhelpertest\Tests\Functional;
+namespace Flowpack\Viewhelpertest\Tests\Functional;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Viewhelpertest".       *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License, either version 3   *
- * of the License, or (at your option) any later version.                 *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
+ * This script belongs to the FLOW3 package "Flowpack.Viewhelpertest".    *
  *                                                                        */
 
 /**
@@ -28,7 +22,7 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->registerRoute('Viewhelpertest', '{@package}/{@controller}(/{@action})', array(
-			'@package' => 'TYPO3.Viewhelpertest',
+			'@package' => 'Flowpack.Viewhelpertest',
 			'@controller' => 'Standard',
 			'@action' => 'index',
 			'@format' =>'html'
@@ -39,9 +33,9 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	 * @test
 	 */
 	public function runViewHelperTest() {
-		$this->authenticateRoles(array('TYPO3.Viewhelpertest:TestRole1'));
+		$this->authenticateRoles(array('Flowpack.Viewhelpertest:TestRole1'));
 
-		$result = $this->browser->request('http://localhost/typo3.viewhelpertest/standard/index?selectedPartial=all')->getContent();
+		$result = $this->browser->request('http://localhost/flowpack.viewhelpertest/standard/index?selectedPartial=all')->getContent();
 
 		$resultsWithFailures = \PHPUnit_Util_XML::cssSelect('.failure', TRUE, $result);
 		$successfulResultList = \PHPUnit_Util_XML::cssSelect('.success', TRUE, $result);
@@ -88,10 +82,10 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	 */
 	protected function writeResultToFile($result) {
 		$newHeader =' -->';
-		$newHeader .= '<style>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/Styles/app.css') . '</style>';
+		$newHeader .= '<style>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/Flowpack.Viewhelpertest/Resources/Public/Styles/app.css') . '</style>';
 
 		$newHeader .= '<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>';
-		$newHeader .= '<script>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/TYPO3.Viewhelpertest/Resources/Public/Scripts/app.js') . '</script>';
+		$newHeader .= '<script>' . file_get_contents(FLOW_PATH_ROOT . 'Packages/Application/Flowpack.Viewhelpertest/Resources/Public/Scripts/app.js') . '</script>';
 
 		$newHeader .= '<!--';
 

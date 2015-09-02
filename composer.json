@@ -1,11 +1,13 @@
 {
-	"name": "typo3/viewhelpertest",
+	"name": "flowpack/viewhelpertest",
 	"type": "typo3-flow-package",
 	"description": "Functional Tests for Fluid ViewHelpers",
 	"require": {
-		"typo3/flow":"*"
+		"typo3/flow":"~3.0"
 	},
 	"autoload": {
-		"psr-0": { "TYPO3\\Viewhelpertest":"Classes" }
+		"psr-0": {
+			"Flowpack\\Viewhelpertest":"Classes"
+		}
 	}
 }

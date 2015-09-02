@@ -1,4 +1,4 @@
-{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+{namespace vht=Flowpack\Viewhelpertest\ViewHelpers}
 <f:if condition="{rowValue.literal -> vht:isset()}"><f:if condition="{columnValue.literal -> vht:isset()}">
 	<vht:highlight expected="{expectedResult}"><![CDATA[
 		<f:if condition="]]>{rowValue.literal} {comparator -> f:format.raw()} {columnValue.literal}<![CDATA[">

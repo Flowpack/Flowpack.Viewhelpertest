@@ -1,42 +1,42 @@
-{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+{namespace vht=Flowpack\Viewhelpertest\ViewHelpers}
 
 <vht:highlight expected="You don't have access to the Privilege Target"><![CDATA[
-	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:DeniedMethods">
+	<f:security.ifAccess privilegeTarget="Flowpack.Viewhelpertest:DeniedMethods">
 		<f:then>You have access to the Privilege Target</f:then>
 		<f:else>You don't have access to the Privilege Target</f:else>
 	</f:security.ifAccess>
 ]]></vht:highlight>
 
 <vht:highlight expected="You have access to the Privilege Target"><![CDATA[
-	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:AllowedMethods">
+	<f:security.ifAccess privilegeTarget="Flowpack.Viewhelpertest:AllowedMethods">
 		<f:then>You have access to the Privilege Target</f:then>
 		<f:else>You don't have access to the Privilege Target</f:else>
 	</f:security.ifAccess>
 ]]></vht:highlight>
 
 <vht:highlight expected="You don't have access to the Privilege Target"><![CDATA[
-	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:UnknownPrivilegeTarget">
+	<f:security.ifAccess privilegeTarget="Flowpack.Viewhelpertest:UnknownPrivilegeTarget">
 		<f:then>You have access to the Privilege Target</f:then>
 		<f:else>You don't have access to the Privilege Target</f:else>
 	</f:security.ifAccess>
 ]]></vht:highlight>
 
 <vht:highlight expected="You don't have access to the Privilege Target"><![CDATA[
-	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:Methods" parameters="{actionName: 'nonExisting'}">
+	<f:security.ifAccess privilegeTarget="Flowpack.Viewhelpertest:Methods" parameters="{actionName: 'nonExisting'}">
 		<f:then>You have access to the Privilege Target</f:then>
 		<f:else>You don't have access to the Privilege Target</f:else>
 	</f:security.ifAccess>
 ]]></vht:highlight>
 
 <vht:highlight expected="You don't have access to the Privilege Target"><![CDATA[
-	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:Methods" parameters="{actionName: 'denied'}">
+	<f:security.ifAccess privilegeTarget="Flowpack.Viewhelpertest:Methods" parameters="{actionName: 'denied'}">
 		<f:then>You have access to the Privilege Target</f:then>
 		<f:else>You don't have access to the Privilege Target</f:else>
 	</f:security.ifAccess>
 ]]></vht:highlight>
 
 <vht:highlight expected="You have access to the Privilege Target"><![CDATA[
-	<f:security.ifAccess privilegeTarget="TYPO3.Viewhelpertest:Methods" parameters="{actionName: 'allowed'}">
+	<f:security.ifAccess privilegeTarget="Flowpack.Viewhelpertest:Methods" parameters="{actionName: 'allowed'}">
 		<f:then>You have access to the Privilege Target</f:then>
 		<f:else>You don't have access to the Privilege Target</f:else>
 	</f:security.ifAccess>

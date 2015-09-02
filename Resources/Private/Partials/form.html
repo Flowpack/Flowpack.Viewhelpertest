@@ -1,10 +1,10 @@
-{namespace vht=TYPO3\Viewhelpertest\ViewHelpers}
+{namespace vht=Flowpack\Viewhelpertest\ViewHelpers}
 <f:security.ifAuthenticated>
 	<f:then>
 		<vht:expected regex="true">
-#^<form action="\/(index\.php\/)?typo3\.viewhelpertest/standard/foo" method="post">
+#^<form action="\/(index\.php\/)?flowpack\.viewhelpertest/standard/foo" method="post">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="Flowpack.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
 \s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
 \s*<input type="hidden" name="__referrer\[@action\]" value="index" />
@@ -20,9 +20,9 @@
 	</f:then>
 	<f:else>
 		<vht:expected regex="true">
-#^<form action="\/(index\.php\/)?typo3\.viewhelpertest/standard/foo" method="post">
+#^<form action="\/(index\.php\/)?flowpack\.viewhelpertest/standard/foo" method="post">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="Flowpack.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
 \s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
 \s*<input type="hidden" name="__referrer\[@action\]" value="index" />
@@ -41,7 +41,7 @@
 <vht:expected regex="true">
 #^<form method="get" action="custom\/relative\/uri">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="Flowpack.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
 \s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
 \s*<input type="hidden" name="__referrer\[@action\]" value="index" />
@@ -59,14 +59,14 @@
 /<form enctype="multipart\/form-data" onreset="void\(0\)" onsubmit="void\(0\)" action="https?:\/\/(.*?)" method="post">/
 </vht:expected>
 <vht:highlight><![CDATA[
-	<f:form action="index" enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="Some" package="TYPO3.Viewhelpertest" subpackage="SomeSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
+	<f:form action="index" enctype="multipart/form-data" onsubmit="void(0)" onreset="void(0)" action="someAction" arguments="{arg1: 'val1', arg2: 'val2'}" controller="Some" package="Flowpack.Viewhelpertest" subpackage="SomeSubpackage" section="someSection" format="txt" additionalParams="{param1: 'val1', param2: 'val2'}" absolute="true" addQueryString="true" argumentsToBeExcludedFromQueryString="{0: 'foo'}" />
 ]]></vht:highlight>
 
 
 <vht:expected regex="true">
-#^<form title="someTitleAttribute" method="get" name="foo" id="bar" action="\/(index\.php/)?typo3\.viewhelpertest/standard/foo">
+#^<form title="someTitleAttribute" method="get" name="foo" id="bar" action="\/(index\.php/)?flowpack\.viewhelpertest/standard/foo">
 \s*<div style="display: none">
-\s*<input type="hidden" name="__referrer\[@package\]" value="TYPO3.Viewhelpertest" />
+\s*<input type="hidden" name="__referrer\[@package\]" value="Flowpack.Viewhelpertest" />
 \s*<input type="hidden" name="__referrer\[@subpackage\]" value="" />
 \s*<input type="hidden" name="__referrer\[@controller\]" value="Standard" />
 \s*<input type="hidden" name="__referrer\[@action\]" value="index" />

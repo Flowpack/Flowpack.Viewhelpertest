@@ -1,14 +1,8 @@
 <?php
-namespace TYPO3\Viewhelpertest\Tests\Functional;
+namespace Flowpack\Viewhelpertest\Tests\Functional;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Viewhelpertest".       *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License, either version 3   *
- * of the License, or (at your option) any later version.                 *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
+ * This script belongs to the FLOW3 package "Flowpack.Viewhelpertest".    *
  *                                                                        */
 
 /**
@@ -68,7 +62,7 @@ class RenderingTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	 * @return void
 	 */
 	protected function callActionAndValidateResult($actionName) {
-		$result = $this->browser->request('http://localhost/typo3.viewhelpertest/render/' . $actionName)->getContent();
+		$result = $this->browser->request('http://localhost/flowpack.viewhelpertest/render/' . $actionName)->getContent();
 
 		// Check if there is a '.expected-notEmpty' area which only contains whitespace. If this is the case,
 			// the assertion fails.
@@ -83,7 +77,7 @@ class RenderingTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	 * @test
 	 */
 	public function recursiveSections() {
-		$actual = $this->browser->request('http://localhost/typo3.viewhelpertest/render/recursivesections')->getContent();
+		$actual = $this->browser->request('http://localhost/flowpack.viewhelpertest/render/recursivesections')->getContent();
 		$expected = '
 			<ul>
 				<li>

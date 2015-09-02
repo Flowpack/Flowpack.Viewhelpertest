@@ -2,38 +2,38 @@
 privilegeTargets:
 
   'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
-    'TYPO3.Viewhelpertest:PublicActions':
-      matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->indexAction()) || class(TYPO3\Viewhelpertest\Controller\(Form|Performance|Render|Widget)Controller)'
-    'TYPO3.Viewhelpertest:AllowedMethods':
-      matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->allowedAction())'
-    'TYPO3.Viewhelpertest:DeniedMethods':
-      matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->deniedAction())'
-    'TYPO3.Viewhelpertest:Methods':
-      matcher: 'method(TYPO3\Viewhelpertest\Controller\StandardController->{parameters.actionName}Action())'
+    'Flowpack.Viewhelpertest:PublicActions':
+      matcher: 'method(Flowpack\Viewhelpertest\Controller\StandardController->indexAction()) || class(Flowpack\Viewhelpertest\Controller\(Form|Performance|Render|Widget)Controller)'
+    'Flowpack.Viewhelpertest:AllowedMethods':
+      matcher: 'method(Flowpack\Viewhelpertest\Controller\StandardController->allowedAction())'
+    'Flowpack.Viewhelpertest:DeniedMethods':
+      matcher: 'method(Flowpack\Viewhelpertest\Controller\StandardController->deniedAction())'
+    'Flowpack.Viewhelpertest:Methods':
+      matcher: 'method(Flowpack\Viewhelpertest\Controller\StandardController->{parameters.actionName}Action())'
       parameters:
         'actionName':
           className: 'TYPO3\Flow\Security\Authorization\Privilege\Parameter\StringPrivilegeParameter'
 
 roles:
 
-  'TYPO3.Viewhelpertest:TestRole1':
+  'Flowpack.Viewhelpertest:TestRole1':
     privileges:
       -
-        privilegeTarget: 'TYPO3.Viewhelpertest:AllowedMethods'
+        privilegeTarget: 'Flowpack.Viewhelpertest:AllowedMethods'
         permission: GRANT
       -
-        privilegeTarget: 'TYPO3.Viewhelpertest:DeniedMethods'
+        privilegeTarget: 'Flowpack.Viewhelpertest:DeniedMethods'
         permission: DENY
       -
-        privilegeTarget: 'TYPO3.Viewhelpertest:Methods'
+        privilegeTarget: 'Flowpack.Viewhelpertest:Methods'
         parameters:
           'actionName': 'allowed'
         permission: GRANT
 
-  'TYPO3.Viewhelpertest:TestRole2': []
+  'Flowpack.Viewhelpertest:TestRole2': []
 
   'TYPO3.Flow:Everybody':
     privileges:
       -
-        privilegeTarget: 'TYPO3.Viewhelpertest:PublicActions'
+        privilegeTarget: 'Flowpack.Viewhelpertest:PublicActions'
         permission: GRANT
