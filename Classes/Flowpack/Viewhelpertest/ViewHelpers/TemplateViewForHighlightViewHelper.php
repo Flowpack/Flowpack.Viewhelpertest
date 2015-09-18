@@ -34,7 +34,7 @@ class TemplateViewForHighlightViewHelper extends TemplateView {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->templatePaths = new FakeTemplatePaths();
+		$this->templatePaths = new FakeTemplatePaths([]);
 	}
 
 	/**

@@ -5,7 +5,7 @@ namespace Flowpack\Viewhelpertest\View;
  * This script belongs to the FLOW3 package "Flowpack.Viewhelpertest".    *
  *                                                                        */
 
-use NamelessCoder\Fluid\View\TemplatePaths;
+use TYPO3\Fluid\View\TemplatePaths;
 
 class FakeTemplatePaths extends TemplatePaths {
 
