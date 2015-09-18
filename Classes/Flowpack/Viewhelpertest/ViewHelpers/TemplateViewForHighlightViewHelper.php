@@ -25,7 +25,7 @@ class TemplateViewForHighlightViewHelper extends TemplateView {
 	 * The ViewHelperVariableContainer of the surrounding area,
 	 * this makes it possible to test single form elements inside a surrounding
 	 * <f:form>.
-	 * @var \NamelessCoder\Fluid\Core\ViewHelper\ViewHelperVariableContainer
+	 * @var \TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer
 	 */
 	protected $viewHelperVariableContainer;
 
@@ -48,10 +48,10 @@ class TemplateViewForHighlightViewHelper extends TemplateView {
 	/**
 	 * Set the current ViewHelperVariableContainer.
 	 *
-	 * @param \NamelessCoder\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
+	 * @param \TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
 	 * @return void
 	 */
-	public function setViewHelperVariableContainer(\NamelessCoder\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
+	public function setViewHelperVariableContainer(\TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
 		$this->viewHelperVariableContainer = clone $viewHelperVariableContainer;
 	}
 
