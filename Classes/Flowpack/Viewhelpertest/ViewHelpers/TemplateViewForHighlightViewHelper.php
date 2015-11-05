@@ -51,7 +51,7 @@ class TemplateViewForHighlightViewHelper extends TemplateView {
 	 * @param \TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
 	 * @return void
 	 */
-	public function setViewHelperVariableContainer(\TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
+	public function setViewHelperVariableContainer($viewHelperVariableContainer) {
 		$this->viewHelperVariableContainer = clone $viewHelperVariableContainer;
 	}
 
