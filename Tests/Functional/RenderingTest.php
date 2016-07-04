@@ -66,11 +66,15 @@ class RenderingTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 		// Check if there is a '.expected-notEmpty' area which only contains whitespace. If this is the case,
 			// the assertion fails.
-		$this->assertSelectRegExp('.expected-notEmpty', '/^\s*$/', FALSE, $result, 'A variable which should not be empty was found empty.');
+		$notEmptyDomNode = $this->browser->getCrawler()->filter('.expected-notEmpty');
+		$notEmptyDomNodeValue = $notEmptyDomNode->html();
+		$this->assertRegExp('/^.+$/s', $notEmptyDomNodeValue, 'A variable which should not be empty was found empty.');
 
 			// Check if there is a '.expected-empty' area which contains content. If this is the case,
 			// the assertion fails.
-		$this->assertSelectRegExp('.expected-empty', '/^.+$/s', FALSE, $result, 'A variable which should be empty was not.');
+		$emptyDomNode = $this->browser->getCrawler()->filter('.expected-empty');
+		$emptyDomNodeValue = $emptyDomNode->count() === 0 ? '' : $emptyDomNode->html();
+		$this->assertRegExp('/^\s*$/', $emptyDomNodeValue, 'A variable which should be empty was not.');
 	}
 
 	/**

@@ -3,7 +3,8 @@
 	"type": "typo3-flow-package",
 	"description": "Functional Tests for Fluid ViewHelpers",
 	"require": {
-		"typo3/flow":"~3.0"
+		"typo3/flow":"~3.0",
+		"symfony/css-selector":"~2.8"
 	},
 	"autoload": {
 		"psr-0": {
