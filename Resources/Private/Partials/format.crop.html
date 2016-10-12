@@ -9,7 +9,7 @@
 
 <vht:expected>
 this is some text with newlines
-and special characters: äöüß &lt;script&gt;alert('this should never be executed!!')&lt;/script&gt;
+and special characters: äöüß &lt;script&gt;alert(&#039;this should never be executed!!&#039;)&lt;/script&gt;
 </vht:expected>
 <vht:highlight><![CDATA[
 	{testVariables.text -> f:format.crop(maxCharacters: 200)}

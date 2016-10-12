@@ -1,11 +1,7 @@
 {namespace vht=Flowpack\Viewhelpertest\ViewHelpers}
-<vht:highlight expected="[&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;d&amp;quot;,&amp;quot;e&amp;quot;]"><![CDATA[
-	<f:format.json>{testVariables.array}</f:format.json>
-]]></vht:highlight>
+<vht:highlight expected="[&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;d&amp;quot;,&amp;quot;e&amp;quot;]"><![CDATA[<f:format.json>{testVariables.array}</f:format.json>]]></vht:highlight>
 
-<vht:highlight expected="[&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;d&amp;quot;,&amp;quot;e&amp;quot;]"><![CDATA[
-	{testVariables.array -> f:format.json()}
-]]></vht:highlight>
+<vht:highlight expected="[&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;d&amp;quot;,&amp;quot;e&amp;quot;]"><![CDATA[{testVariables.array -> f:format.json()}]]></vht:highlight>
 
 <vht:highlight expected="[&amp;quot;bar&amp;quot;,&amp;quot;baz&amp;quot;]"><![CDATA[
 	<f:format.json value="{0: 'bar', 1: 'baz'}" />

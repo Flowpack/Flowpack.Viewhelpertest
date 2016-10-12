@@ -11,5 +11,7 @@ the ViewHelper tests were actually executed. DO NOT REMOVE!
 ]]></vht:highlight>
 
 <vht:highlight expected="Kurfürst, Sebastian"><![CDATA[
-	<f:alias map="{firstName: testVariables.user2.firstName, user: testVariables.user2}">{user.lastName}, {firstName}</f:alias>
+	<f:alias map="{user: testVariables.user2, firstName: testVariables.user2.firstName}">
+		{user.lastName}, {firstName}
+	</f:alias>
 ]]></vht:highlight>

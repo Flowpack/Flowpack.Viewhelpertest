@@ -6,7 +6,7 @@ namespace Flowpack\Viewhelpertest\ViewHelpers\Widget;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Fluid\Core\Widget\AbstractWidgetViewHelper;
+use Neos\FluidAdaptor\Core\Widget\AbstractWidgetViewHelper;
 
 class RedirectAjaxViewHelper extends AbstractWidgetViewHelper {
 

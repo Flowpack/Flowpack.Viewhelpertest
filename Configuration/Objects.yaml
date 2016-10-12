@@ -1,4 +1,5 @@
-Flowpack\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper:
-  properties:
-    renderingContext:
-      object: 'TYPO3\Fluid\Core\Rendering\RenderingContext'
+---
+#Flowpack\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper:
+#  properties:
+#    renderingContext:
+#      object: 'Neos\FluidAdaptor\Core\Rendering\RenderingContext'

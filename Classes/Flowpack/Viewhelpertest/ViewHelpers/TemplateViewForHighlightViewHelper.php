@@ -10,48 +10,14 @@ namespace Flowpack\Viewhelpertest\ViewHelpers;
  * <f:render>, <f:section> and the like, we need a properly initialized
  * TemplateView, which is also fresh (== clean state)
  */
-class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView {
-
-	/**
-	 * The source of the template
-	 * @var string
-	 */
-	protected $templateSource;
-
-	/**
-	 * The ViewHelperVariableContainer of the surrounding area,
-	 * this makes it possible to test single form elements inside a surrounding
-	 * <f:form>.
-	 * @var \TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer
-	 */
-	protected $viewHelperVariableContainer;
-
-	/**
-	 * Return the template source to the Parser.
-	 *
-	 * @param string $actionName the name of the action to render.
-	 * @return string
-	 */
-	protected function getTemplateSource($actionName = NULL) {
-		return $this->templateSource;
-	}
+class TemplateViewForHighlightViewHelper extends \Neos\FluidAdaptor\View\TemplateView {
 
 	/**
 	 * @param string $templateSource
 	 * @return void
 	 */
 	public function setTemplateSource($templateSource) {
-		$this->templateSource = $templateSource;
-	}
-
-	/**
-	 * Set the current ViewHelperVariableContainer.
-	 *
-	 * @param \TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer
-	 * @return void
-	 */
-	public function setViewHelperVariableContainer(\TYPO3\Fluid\Core\ViewHelper\ViewHelperVariableContainer $viewHelperVariableContainer) {
-		$this->viewHelperVariableContainer = clone $viewHelperVariableContainer;
+		$this->getTemplatePaths()->setTemplateSource($templateSource);
 	}
 
 	/**
@@ -61,8 +27,6 @@ class TemplateViewForHighlightViewHelper extends \TYPO3\Fluid\View\TemplateView 
 	 * @return string the rendered result
 	 */
 	public function render($actionName = NULL) {
-		$this->baseRenderingContext->injectViewHelperVariableContainer($this->viewHelperVariableContainer);
-		$this->baseRenderingContext->getViewHelperVariableContainer()->setView($this);
 		return parent::render($actionName);
 	}
 
