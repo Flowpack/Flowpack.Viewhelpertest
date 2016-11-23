@@ -24,10 +24,10 @@
 ]]></vht:highlight>
 
 <vht:highlight expected="THIS IS SOME TEXT WITH NEWLINES
-AND SPECIAL CHARACTERS: ÄÖÜß &amp;lt;SCRIPT&amp;gt;ALERT('THIS SHOULD NEVER BE EXECUTED!!')&amp;lt;/SCRIPT&amp;gt;"><![CDATA[
+AND SPECIAL CHARACTERS: ÄÖÜß &amp;lt;SCRIPT&amp;gt;ALERT(&#039;THIS SHOULD NEVER BE EXECUTED!!&#039;)&amp;lt;/SCRIPT&amp;gt;"><![CDATA[
 	{testVariables.text -> f:format.case(mode: 'upper')}
 ]]></vht:highlight>
 
-<vht:highlight expectedException="TYPO3\Fluid\Core\ViewHelper\Exception\InvalidVariableException"><![CDATA[
+<vht:highlight expectedException="Neos\FluidAdaptor\Core\ViewHelper\Exception\InvalidVariableException"><![CDATA[
 	<f:format.case mode="invalidMode">The quick brown fox jumps over the lazy dög</f:format.case>
 ]]></vht:highlight>

@@ -5,7 +5,7 @@ namespace Flowpack\Viewhelpertest\ViewHelpers;
  * This script belongs to the FLOW3 package "Flowpack.Viewhelpertest".    *
  *                                                                        */
 
-class IssetViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
+class IssetViewHelper extends \Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * @return string

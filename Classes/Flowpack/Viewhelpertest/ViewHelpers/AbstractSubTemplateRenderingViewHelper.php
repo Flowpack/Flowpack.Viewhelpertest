@@ -5,7 +5,10 @@ namespace Flowpack\Viewhelpertest\ViewHelpers;
  * This script belongs to the FLOW3 package "Flowpack.Viewhelpertest".    *
  *                                                                        */
 
-use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\Flow\Mvc\Controller\ControllerContext;
+use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
+use Neos\FluidAdaptor\View\TemplateView;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContext;
 
 abstract class AbstractSubTemplateRenderingViewHelper extends AbstractViewHelper {
 
@@ -20,26 +23,19 @@ abstract class AbstractSubTemplateRenderingViewHelper extends AbstractViewHelper
 	protected $templateView;
 
 	/**
-	 * @param \Flowpack\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView
-	 * @return void
-	 */
-	public function injectTemplateView(\Flowpack\Viewhelpertest\ViewHelpers\TemplateViewForHighlightViewHelper $templateView) {
-		$this->templateView = $templateView;
-	}
-
-	/**
 	 * @param $source
+	 * @param ControllerContext $controllerContext
+	 * @param RenderingContext $renderingContext
 	 * @return mixed
 	 */
-	protected function renderSource($source) {
-		$this->templateView->setTemplateSource($source);
-		$this->templateView->setControllerContext($this->renderingContext->getControllerContext());
-		$this->templateView->setViewHelperVariableContainer($this->viewHelperVariableContainer);
+	protected static function renderSource($source, ControllerContext $controllerContext, RenderingContext $renderingContext) {
+		$templateView = new TemplateView();
+		$templateView->setControllerContext($controllerContext);
+		$templateView->getRenderingContext()->setViewHelperVariableContainer($renderingContext->getViewHelperVariableContainer());
+		$templateView->getRenderingContext()->setVariableProvider($renderingContext->getVariableProvider());
+		$templateView->getTemplatePaths()->setTemplateSource($source);
 
-		$this->templateView->assign('testVariables', $this->templateVariableContainer->get('testVariables'));
-		$this->templateView->assign('settings', $this->templateVariableContainer->get('settings'));
-
-		return $this->templateView->render();
+		return $templateView->render(md5($source));
 	}
 }
 

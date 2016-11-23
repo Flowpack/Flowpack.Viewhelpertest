@@ -6,7 +6,7 @@ namespace Flowpack\Viewhelpertest\ViewHelpers\Widget\Controller;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Fluid\Core\Widget\AbstractWidgetController;
+use Neos\FluidAdaptor\Core\Widget\AbstractWidgetController;
 
 class RedirectController extends AbstractWidgetController {
 
@@ -42,7 +42,7 @@ class RedirectController extends AbstractWidgetController {
 		}
 		$action = $otherController ? 'index' : 'target';
 		$controller = $otherController ? 'Paginate' : NULL;
-		$package = $otherController ? 'TYPO3.Fluid\ViewHelpers\Widget' : NULL;
+		$package = $otherController ? 'Neos.FluidAdaptor\ViewHelpers\Widget' : NULL;
 		$this->redirect($action, $controller, $package, $arguments, $delay);
 	}
 

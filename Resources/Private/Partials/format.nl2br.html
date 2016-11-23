@@ -5,7 +5,7 @@
 	</f:format.nl2br>
 ]]></vht:highlight>
 
-<vht:highlight expectedRegex="/^this is some text with newlines\<br \/\>\nand special characters\: äöüß \&lt\;script\&gt\;alert\('this should never be executed!!'\)\&lt\;\/script\&gt\;$/"><![CDATA[
+<vht:highlight expectedRegex="/^this is some text with newlines<br \/>\nand special characters\: äöüß \&lt\;script\&gt\;alert\(\&#039;this should never be executed!!\&#039;\)\&lt\;\/script\&gt\;$/"><![CDATA[
 	{testVariables.text -> f:format.nl2br()}
 ]]></vht:highlight>
 

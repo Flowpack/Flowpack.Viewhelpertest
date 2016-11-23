@@ -11,6 +11,4 @@
 	{testVariables.user5 -> f:format.stripTags()}
 ]]></vht:highlight>
 
-<vht:highlight expectedType="double"><![CDATA[
-	{testVariables.largeNumber -> f:format.stripTags()}
-]]></vht:highlight>
+<vht:highlight expectedType="double"><![CDATA[{testVariables.largeNumber -> f:format.stripTags() -> f:format.raw()}]]></vht:highlight>

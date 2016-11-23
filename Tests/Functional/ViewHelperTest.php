@@ -37,18 +37,11 @@ class ViewHelperTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 		$result = $this->browser->request('http://localhost/flowpack.viewhelpertest/standard/index?selectedPartial=all')->getContent();
 
-		$resultsWithFailures = \PHPUnit_Util_XML::cssSelect('.failure', TRUE, $result);
-		$successfulResultList = \PHPUnit_Util_XML::cssSelect('.success', TRUE, $result);
+        $resultsWithFailures = $this->browser->getCrawler()->filter('.failure');
+        $successfulResultList = $this->browser->getCrawler()->filter('.success');
 
-		$numberOfSuccessfulTests = 0;
-		if (is_array($successfulResultList)) {
-			$numberOfSuccessfulTests = count($successfulResultList);
-		}
-
-		$numberOfFailedTests = 0;
-		if (is_array($resultsWithFailures)) {
-			$numberOfFailedTests = count($resultsWithFailures);
-		}
+        $numberOfSuccessfulTests = $successfulResultList->count();
+		$numberOfFailedTests = $resultsWithFailures->count();
 
 			// Outputting some statistics for the Jenkins Measurement Plots plugin:
 			// https://wiki.jenkins-ci.org/display/JENKINS/Measurement+Plots+Plugin

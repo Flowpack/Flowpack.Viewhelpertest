@@ -3,66 +3,66 @@
 <h2>Note: These tests don't cover a certain ViewHelper but the behavior of the TemplateParser</h2>
 
 <div class="specification">Parser throws an exception if the ViewHelper classname can't be resolved</div>
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	<f:nonExistingViewHelper />
 ]]></vht:highlight>
 
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	{f:nonExistingViewHelper()}
 ]]></vht:highlight>
 
 <div class="specification">Parser throws an exception if the ViewHelper class name case is incorrect</div>
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	<f:flashmessages />
 ]]></vht:highlight>
 
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	{f:flashmessages()}
 ]]></vht:highlight>
 
 <div class="specification">Parser throws an exception if it comes across an unknown namespace alias</div>
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="\TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	<non.existing.namespace:bar />
 ]]></vht:highlight>
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	<nonExistingNamespace:bar />
 ]]></vht:highlight>
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	Before<nonExistingNamespace:bar />After
 ]]></vht:highlight>
 
 
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	{nonExistingNamespace:bar()}
 ]]></vht:highlight>
-<vht:highlight expectedException="TYPO3\Fluid\Core\Parser\Exception"><![CDATA[
+<vht:highlight expectedException="TYPO3Fluid\Fluid\Core\Parser\Exception"><![CDATA[
 	{non.existing.namespace:bar()}
 ]]></vht:highlight>
 
 <div class="specification">Parser ignores declared namespaces</div>
 <vht:highlight expected="&lt;ignored.namespace:foo /&gt;"><![CDATA[
-	]]>{<![CDATA[namespace ignored.*}
+	{namespace ignored.*}
 	<ignored.namespace:foo />
 ]]></vht:highlight>
 
 
 <vht:highlight expected="This is still parsed&lt;any.namespace:bar /&gt;"><![CDATA[
-	]]>{<![CDATA[namespace *}
+	{namespace *}
 	<f:format.raw>This is still parsed</f:format.raw><any.namespace:bar />
 ]]></vht:highlight>
 
 <vht:highlight expected="This is still parsed"><![CDATA[
-	]]>{<![CDATA[namespace *}
+	{namespace *}
 	{f:format.raw(value: 'This is still parsed')}{any.namespace:bar()}
 ]]></vht:highlight>
 
 <vht:highlight expected="Default namespace Custom namespace"><![CDATA[
-	]]>{<![CDATA[namespace some.namespace=TYPO3\Fluid\ViewHelpers}
+	{namespace some.namespace=TYPO3Fluid\Fluid\ViewHelpers}
 	{f:format.raw(value: 'Default namespace')} {some.namespace:format.raw(value: 'Custom namespace')}
 ]]></vht:highlight>
 
 <vht:highlight expected="Default namespace Custom namespace"><![CDATA[
-	]]>{<![CDATA[namespace someNamespace=TYPO3\Fluid\ViewHelpers}
+	{namespace someNamespace=TYPO3Fluid\Fluid\ViewHelpers}
 	{f:format.raw(value: 'Default namespace')} {someNamespace:format.raw(value: 'Custom namespace')}
 ]]></vht:highlight>
 
@@ -93,12 +93,12 @@
 ]]></vht:highlight>
 
 <div class="specification">Mixed-style quotes are not parsed</div>
-<vht:highlight expected="&amp;quot;{'foo.bar\&amp;quot;: 'baz'}&amp;quot;"><![CDATA[
+<vht:highlight expected="&amp;quot;{&#039;foo.bar\&amp;quot;: &#039;baz&#039;}&amp;quot;"><![CDATA[
 	<f:format.json value="{'foo.bar\": 'baz'}" />
 ]]></vht:highlight>
-<vht:highlight expected="&amp;quot;{\&amp;quot;foo[bar]': \&amp;quot;baz\&amp;quot;}&amp;quot;"><![CDATA[
+<vht:highlight expected="&amp;quot;{\&amp;quot;foo[bar]&#039;: \&amp;quot;baz\&amp;quot;}&amp;quot;"><![CDATA[
 	{f:format.json(value: '{"foo[bar]\': "baz"}')}
 ]]></vht:highlight>
-<vht:highlight expected="&amp;quot;{\&amp;quot;foo@bar': \&amp;quot;baz\&amp;quot;}&amp;quot;"><![CDATA[
+<vht:highlight expected="&amp;quot;{\&amp;quot;foo@bar&#039;: \&amp;quot;baz\&amp;quot;}&amp;quot;"><![CDATA[
 	{f:format.json(value: '{"foo@bar\': "baz"}')}
 ]]></vht:highlight>

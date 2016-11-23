@@ -4,29 +4,4 @@
 	<f:section name="mySection">This should not be rendered</f:section>
 ]]></vht:highlight>
 
-
-<h2>A section automatically has access to the settings.</h2>
-<vht:expected>
-	Settings inside the section: someSettingValue
-</vht:expected>
-<vht:highlight><![CDATA[
-	<f:section name="mySection">Settings inside the section: {settings.someSettingForTestingSettingsInPartials}</f:section>
-	<f:render section="mySection" />
-]]></vht:highlight>
-
-
-
 <h2>If the settings are explicitely defined, they completely override the automatic settings.</h2>
-
-<vht:expected>
-This setting should not be accessible anymore: ""
-However, this setting should be there, as it comes from the overridden setting: "foo"
-</vht:expected>
-
-<vht:highlight><![CDATA[
-<f:section name="mySection">
-This setting should not be accessible anymore: "{settings.someSettingForTestingSettingsInPartials}"
-However, this setting should be there, as it comes from the overridden setting: "{settings.string}"
-</f:section>
-<f:render section="mySection" arguments="{settings: testVariables}" />
-]]></vht:highlight>
